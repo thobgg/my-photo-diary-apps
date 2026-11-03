@@ -1196,6 +1196,7 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
                 api.login(base, username.trim(), password)
                 settings.baseUrl = base
                 password = ""
+                vergissKontodaten()   // nie mit den Daten eines anderen Kontos starten
                 state = stateFor(api.whoami(base).also {
                     settings.lastUser = it.user // Personenkuerzel fuer Worker
                 })
@@ -3164,11 +3165,43 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
                 // Cookie ist lokal geloescht, das reicht
             } finally {
                 busy = false
-                // Beim naechsten Login ggf. ein anderer Server (Core ↔ Plus).
-                missingModules.clear()
+                vergissKontodaten()
                 state = AppState.Setup
             }
         }
+    }
+
+    /**
+     * Alles vergessen, was zum angemeldeten Konto gehoert: Albenliste,
+     * Zeitstrahl, Erinnerungen, Suche, Statistik, Konten, Favoriten,
+     * Einstellungen. Bis 03.11.2026 blieb das alles nach dem Abmelden
+     * stehen — wer sich danach mit einem anderen Konto anmeldete (etwa dem
+     * Demo-Konto), sah noch die Alben des vorherigen, bis etwas neu lud.
+     * Der Server gab dem neuen Konto nichts davon heraus; die Anzeige war
+     * trotzdem falsch. Geraetefotos (localItems) bleiben: Die gehoeren zum
+     * Geraet, nicht zum Konto.
+     */
+    private fun vergissKontodaten() {
+        albums = null
+        openAlbum = null
+        pendingUndoDelete = null
+        folderCandidates = null
+        appSettings = null
+        durchlaufCount = 0
+        timelineItems.clear()
+        timelineFeed.clear()
+        timelineSelection.clear()
+        gesichertAufGeraet = emptyList()
+        timelineLightbox = null
+        timelineFeedVersion++
+        recycleBySpace.clear()
+        editVersions.clear()
+        missingModules.clear()
+        memories.vergiss()
+        search.vergiss()
+        stats.vergiss()
+        users.vergiss()
+        favorites.vergiss()
     }
 
     // -- Gedaechtnis fuer eigene Teilen-/Beisteuern-Links -------------------

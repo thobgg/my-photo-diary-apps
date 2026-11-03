@@ -96,4 +96,14 @@ class StatsState(
             }
         }
     }
+
+    /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
+    fun vergiss() {
+        job?.cancel(); job = null
+        open = false
+        data = null
+        text = null
+        scanning = false
+        error = null
+    }
 }

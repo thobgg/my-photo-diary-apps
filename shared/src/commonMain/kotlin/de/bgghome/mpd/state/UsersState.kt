@@ -47,4 +47,10 @@ class UsersState(
             }
         }
     }
+
+    /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
+    fun vergiss() {
+        open = false
+        list = null
+    }
 }

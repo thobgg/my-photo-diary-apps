@@ -67,4 +67,14 @@ class SearchState(
             }
         }
     }
+
+    /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
+    fun vergiss() {
+        job?.cancel(); job = null
+        open = false
+        query = ""
+        results = null
+        building = false
+        error = null
+    }
 }

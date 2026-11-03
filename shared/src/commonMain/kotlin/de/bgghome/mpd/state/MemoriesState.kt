@@ -123,4 +123,14 @@ class MemoriesState(
             }
         }
     }
+
+    /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
+    fun vergiss() {
+        open = false
+        data = null
+        error = null
+        loading = false
+        offsetDays = 0
+        geladenAm = null
+    }
 }

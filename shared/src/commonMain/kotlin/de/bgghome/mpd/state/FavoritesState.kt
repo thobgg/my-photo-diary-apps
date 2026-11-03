@@ -153,4 +153,10 @@ class FavoritesState(
         sets[p.space] = (sets[p.space] ?: emptySet())
             .let { if (adding) it + k else it - k }
     }
+
+    /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
+    fun vergiss() {
+        sets.clear()
+        error = null
+    }
 }
