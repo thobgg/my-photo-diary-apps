@@ -3,7 +3,7 @@
 **Kurzweg ohne Abtippen:** Die Skripte `windows-einrichten.cmd` und `windows-bauen.cmd`
 liegen seit 23.09.2026 unter `tools/windows/` (nicht im Git, kommt über den NAS-Abgleich auf den
 Laptop), zusammen mit `mpd-app.bundle` und einer `LIESMICH.md`. Auf dem Laptop im abgeglichenen
-Ordner `AI-Projects\myphotodiary\mpd-apps\tools\windows` `windows-bauen.cmd` doppelklicken; gebaut wird in
+Ordner `AI-Projects\my-photo-diary\mpd-apps\tools\windows` `windows-bauen.cmd` doppelklicken; gebaut wird in
 `C:\MPD\mpd-app`. Der Rest dieser Seite beschreibt, was die Skripte tun, für den Fall, dass
 etwas hakt.
 
