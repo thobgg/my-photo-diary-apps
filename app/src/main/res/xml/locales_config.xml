@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sprachen, die die App mitbringt — damit Android 13+ in den
+     Systemeinstellungen eine App-Sprache anbietet (i18n 08.09.2026).
+     Deutsch ist Standard und Rueckfall (res/values), Englisch in
+     res/values-en. Kein eigener Umschalter in der App: Bedienung folgt
+     der Plattform (CI v1.2). -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="de" />
+    <locale android:name="en" />
+</locale-config>

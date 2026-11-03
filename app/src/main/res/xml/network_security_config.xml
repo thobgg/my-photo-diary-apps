@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Klartext-HTTP ist erlaubt, weil typische Installationen im LAN laufen
+  (http://192.168.x.x:5000). Kein stilles Wegducken: Der Einrichtungs-
+  Bildschirm zeigt bei http-Adressen eine deutliche Warnung an.
+  Zertifikatspruefung bleibt an; selbstsignierte Zertifikate laufen ueber
+  die ausdrueckliche Vertrauensabfrage in der App (TOFU, MpdApi).
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

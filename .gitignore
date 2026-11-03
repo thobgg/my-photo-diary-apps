@@ -1,0 +1,30 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+keystore.properties
+*.jks
+
+# Kotlin-Compiler-Cache (Gradle)
+.kotlin/
+
+# Bleibt lokal, nie auf GitHub: Notizen und Arbeitspapiere (privat/, eigenes lokales Git-Repo),
+# Hilfswerkzeuge mit NAS-Adressen (tools/ ausser den Git-Hooks), Testdaten, Schluessel
+privat/
+tools/*
+!tools/git-hooks/
+testdata/
+
+# Build-Ausgaben aller Module (app/, shared/, desktop/)
+build/
+
+# Fertige Pakete, die per NAS-Spiegel hier landen (Windows-Build vom Laptop)
+*.exe
+*.msi
+*.deb

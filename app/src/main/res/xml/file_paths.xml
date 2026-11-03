@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Eng geschnitten mit Absicht: freigegeben wird ausschliesslich der
+  Unterordner cache/share, in den wir zum Weitergeben kopieren — nicht
+  der Cache insgesamt und schon gar nicht der Dateibereich der App.
+  „where your memories stay yours" heisst auch, dass eine fremde App nur
+  genau das Bild sieht, das der Nutzer ihr gerade gibt.
+-->
+<paths>
+    <cache-path name="share" path="share/" />
+</paths>

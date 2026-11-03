@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Alben, Albumansicht, Gestaltung, Lightbox — deutsche Vorgabe (08.09.2026).
+     Englisch in values-en/strings_album.xml. Wortlaut unveraendert uebernommen. -->
+<resources>
+    <!-- gemeinsam -->
+    <string name="common_undo">Rückgängig</string>
+    <string name="common_back">Zurück</string>
+    <string name="common_insert">Einfügen</string>
+    <string name="common_more">Mehr</string>
+    <string name="common_ok">OK</string>
+    <string name="common_saving">Speichere…</string>
+    <string name="common_saving_spaced">Speichere …</string>
+    <string name="common_loading_photos">Lade Fotos …</string>
+    <string name="common_load_failed">Laden fehlgeschlagen: %1$s</string>
+    <string name="space_personal">Persönlich</string>
+    <string name="space_shared">Geteilt</string>
+
+    <!-- Albenuebersicht -->
+    <string name="overview_album_deleted">Album „%1$s“ gelöscht</string>
+    <plurals name="overview_albums">
+        <item quantity="one">%1$d Album</item>
+        <item quantity="other">%1$d Alben</item>
+    </plurals>
+    <string name="overview_photos">%1$s Photos</string>
+    <string name="overview_videos">%1$d Videos</string>
+    <plurals name="album_elements">
+        <item quantity="one">1 Element</item>
+        <item quantity="other">%1$d Elemente</item>
+    </plurals>
+
+    <!-- Kachel-Menue und Dialoge -->
+    <string name="tile_rename">Umbenennen…</string>
+    <string name="tile_cover">Deckblatt ändern…</string>
+    <string name="tile_crop">Ausschnitt wählen…</string>
+    <string name="tile_crop_needs_cover">Erst ein Deckblatt wählen.</string>
+    <string name="tile_share">Teilen…</string>
+    <string name="tile_share_off">Teilen  (aus)</string>
+    <string name="tile_delete">Album löschen…</string>
+    <string name="rename_title">Album umbenennen</string>
+    <string name="rename_label">Anzeigetitel</string>
+    <string name="rename_hint">Der Ordner „%1$s“ behält seinen Namen — geändert wird nur die Anzeige.</string>
+    <string name="rename_btn">Umbenennen</string>
+    <string name="tile_delete_title">„%1$s“ löschen?</string>
+    <string name="tile_delete_body">Entfernt nur die Album-Gestaltung (album.json) — Fotos und Ordner bleiben unangetastet. Rückgängig geht direkt danach.</string>
+    <string name="cover_title">Deckblatt für „%1$s“</string>
+    <string name="cover_none">Keine Fotos im Ordner.</string>
+    <string name="crop_title">Ausschnitt für „%1$s“</string>
+    <string name="crop_hint">Rahmen verschieben oder an den Ecken ziehen — der Ausschnitt füllt später die Kachel.</string>
+    <string name="crop_reset">Zurücksetzen</string>
+
+    <!-- Neues Album -->
+    <string name="create_empty_title">Leeres Album</string>
+    <string name="create_title">Neues Album</string>
+    <string name="create_empty_btn">Leeres Album…</string>
+    <string name="create_scanning">Suche Ordner ohne Album …</string>
+    <string name="create_all_have_album">Alle Ordner mit Medien haben schon ein Album. Über „Leeres Album…“ legst du einen neuen Ordner an.</string>
+    <string name="create_media_count">%1$d Medien · %2$s</string>
+    <string name="create_creating">Erstelle Album …</string>
+    <string name="create_empty_hint">Legt einen neuen, leeren Ordner samt Album an — Inhalte kommen danach über den ＋-Knopf im Album.</string>
+    <string name="create_name_label">Ordner-/Albumname (z.B. „2026 - Herbstwanderung“)</string>
+    <string name="create_target">Ziel:</string>
+    <string name="create_creating_short">Erstelle …</string>
+    <string name="create_btn">Anlegen</string>
+
+    <!-- Kalender -->
+    <string name="calendar_prev">Vormonat</string>
+    <string name="calendar_next">Folgemonat</string>
+    <string name="calendar_album_days">Album-Tage</string>
+    <string name="calendar_today">Heute</string>
+    <string name="calendar_album">Album</string>
+
+    <!-- Albumansicht -->
+    <string name="view_removed_from_album">„%1$s“ aus Album entfernt</string>
+    <plurals name="view_media_count">
+        <item quantity="one">%1$d Element</item>
+        <item quantity="other">%1$d Elemente</item>
+    </plurals>
+    <plurals name="view_text_count">
+        <item quantity="one">%1$d Text</item>
+        <item quantity="other">%1$d Texte</item>
+    </plurals>
+    <string name="view_counts">%1$s · %2$s</string>
+    <string name="view_back_end_edit">Bearbeiten beenden</string>
+    <string name="view_back_close">Album schließen</string>
+    <string name="view_calendar">Kalender</string>
+    <string name="view_locked_shown">Gesperrte werden gezeigt</string>
+    <string name="view_locked_hidden">Gesperrte sind verborgen</string>
+    <string name="view_menu_calendar">Kalender…</string>
+    <string name="view_menu_backups">Sicherungen…</string>
+    <string name="view_not_yet">Kommt noch — dieser Dialog fehlt in der App bisher</string>
+    <string name="fab_text">Text</string>
+    <string name="fab_photo">Foto / Video</string>
+    <string name="fab_separator">Separator</string>
+    <string name="fab_map">Karte</string>
+    <string name="fab_audio">Audio</string>
+    <string name="fab_document">Dokument</string>
+    <string name="fab_link">Web-Link</string>
+    <string name="fab_tour">Tour (GPX)</string>
+    <string name="fab_mixed">Foto aus anderem Album</string>
+    <string name="fab_add">Element hinzufügen</string>
+    <string name="fab_edit">Bearbeiten</string>
+    <string name="link_insert_title">Web-Link einfügen</string>
+    <string name="link_edit_title">Link bearbeiten</string>
+    <string name="conflict_title">Album wurde woanders geändert</string>
+    <string name="conflict_body">Seit dem Öffnen hat jemand (Web oder anderes Gerät) dieses Album gespeichert. Neu laden verwirft deine ungespeicherten Änderungen hier; Überschreiben ersetzt den fremden Stand (Sicherung existiert).</string>
+    <string name="conflict_reload">Neu laden</string>
+    <string name="conflict_overwrite">Überschreiben</string>
+    <string name="empty_save_title">Album wirklich leer speichern?</string>
+    <string name="empty_save_body">Du hast alle Elemente entfernt. Beim Speichern wird die Album-Gestaltung leer — die Fotos selbst bleiben unangetastet.</string>
+    <string name="empty_save_ok">Leer speichern</string>
+    <string name="video">Video</string>
+    <string name="text_placeholder">Text eingeben…</string>
+    <string name="quote_source">— %1$s</string>
+    <string name="document_tap_open">Zum Öffnen tippen</string>
+
+    <!-- Gestaltung -->
+    <string name="save_saving">Speichert…</string>
+    <string name="save_saved">Gespeichert</string>
+    <string name="save_unsaved">Ungespeichert</string>
+    <string name="save_error">Fehler — erneut?</string>
+    <string name="lock_private">Privat</string>
+    <string name="lock_public">Öffentlich</string>
+    <string name="edit_remove">Aus Album entfernen</string>
+    <string name="edit_delete_file">Datei löschen</string>
+    <string name="menu_unlock">Nicht mehr privat</string>
+    <string name="menu_lock">Als privat markieren</string>
+    <string name="menu_delete_file">Datei löschen…</string>
+    <string name="menu_lives_in_folder">Liegt im Albumordner „%1$s“ — dort löschen</string>
+    <string name="text_source_label">Quelle (optional)</string>
+    <string name="text_md_hint">*kursiv*, **fett**</string>
+    <string name="style_default">Standard</string>
+    <string name="style_heading">Überschrift</string>
+    <string name="style_info">Info</string>
+    <string name="style_quote">Zitat</string>
+    <string name="style_note">Notiz</string>
+    <string name="meta_title">Album-Titel</string>
+    <string name="meta_year">Jahr</string>
+    <string name="meta_cover_change">Album-Titelbild ändern</string>
+    <string name="sep_line">Linie</string>
+    <string name="sep_bold">Fett</string>
+    <string name="sep_dashed">Gestrichelt</string>
+    <string name="sep_dots">Punkte</string>
+    <string name="sep_space">Abstand</string>
+    <string name="sep_label_placeholder">Label…</string>
+    <string name="sep_insert_title">Trenner einfügen</string>
+    <string name="sep_insert_placeholder">Label (optional) – z. B. „2006“ oder „Ankunft“</string>
+    <string name="link_url_placeholder">https://…</string>
+    <string name="link_title_placeholder">Titel (optional)</string>
+    <string name="link_note_placeholder">Notiz (optional)</string>
+    <string name="delete_hint_recycle">Die Datei landet im Papierkorb der NAS. Zurückholen geht in File Station; im Album liegt sie danach unsortiert.</string>
+    <string name="delete_hint_norecycle">Kein Papierkorb aktiv — die Datei wird unwiderruflich gelöscht.</string>
+    <string name="delete_hint_default">Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_file_title">Datei löschen?</string>
+    <string name="delete_file_body">Datei, Thumbnails und alle Backup-Versionen (.bak) werden entfernt.</string>
+
+    <!-- Wartung -->
+    <string name="backups_title">Sicherungen</string>
+    <string name="backups_none">Noch keine Sicherungen — sie entstehen bei jedem Speichern.</string>
+    <string name="backups_hint">Bei jedem Speichern sichert der Server den vorherigen Stand (die letzten 10 bleiben erhalten). Antippen stellt einen Stand wieder her.</string>
+    <string name="backups_size">%1$d kB · %2$s</string>
+    <string name="restore_title">Stand wiederherstellen?</string>
+    <string name="restore_body">Album auf den Stand vom %1$s zurücksetzen? Der aktuelle Stand wird vorher gesichert.</string>
+    <string name="restore_done">Stand wiederhergestellt.</string>
+    <string name="restore_failed">Wiederherstellen fehlgeschlagen: %1$s</string>
+    <string name="restore_btn">Wiederherstellen</string>
+    <string name="delete_album_title">Album löschen?</string>
+    <string name="delete_album_body">Gelöscht wird nur die Album-Gestaltung (album.json) — alle Fotos im Ordner bleiben unangetastet. Eine Sicherung wird angelegt, direkt danach gibt es ein Rückgängig.</string>
+    <string name="delete_album_confirm">Zum Bestätigen den Albumtitel eingeben:</string>
+
+    <!-- Einfuegen-Dialoge -->
+    <string name="folder_audio_title">Audio einfügen</string>
+    <string name="folder_document_title">Dokument einfügen</string>
+    <string name="folder_empty">Keine passenden Dateien im Albumordner, die nicht schon im Album sind.</string>
+    <string name="tour_insert_title">Tour einfügen</string>
+    <string name="tour_no_range">Kein Fotozeitraum erkennbar</string>
+    <string name="tour_all">Alle</string>
+    <string name="tour_load_failed">Touren nicht ladbar: %1$s</string>
+    <string name="tour_none_in_range">— Keine Touren in diesem Zeitraum —</string>
+    <string name="tour_none">— Keine Touren gefunden —</string>
+    <string name="tour_copying">Füge ein …</string>
+    <string name="tour_error">Fehler: %1$s</string>
+    <string name="tour_folder_section">IM ALBUM-ORDNER</string>
+    <string name="tour_in_album">im Album-Ordner</string>
+    <string name="tour_already_inserted">schon eingefügt</string>
+    <string name="tour_used_in">in: %1$s</string>
+    <string name="tour_stub">Stummel</string>
+    <string name="tour_insert_n">%1$s einfügen</string>
+    <string name="tour_delete_n">%1$s löschen</string>
+    <string name="tour_delete_title">%1$s Touren in den Papierkorb?</string>
+    <string name="tour_delete_kept">%1$s weitere ausgewählte bleiben – sie stecken in einem Album.</string>
+    <string name="tour_delete_used_here">steckt in diesem Album – das Tour-Element wird entfernt</string>
+    <string name="tour_save_failed">Album ließ sich nicht speichern – nichts gelöscht.</string>
+    <string name="tour_double">Doppelt?</string>
+    <string name="tour_swap">Tauschen</string>
+    <string name="tour_swap_title">Touren tauschen?</string>
+    <string name="tour_swap_keep">Bleibt im Album:</string>
+    <string name="tour_swap_drop">Kommt in den Papierkorb:</string>
+    <string name="tour_swap_body">Die bleibende Tour übernimmt den Platz der anderen im Album, samt Titel.</string>
+    <string name="tour_swapped">Getauscht</string>
+    <string name="map_insert_title">Karte einfügen</string>
+    <string name="map_search_placeholder">Ort suchen…</string>
+    <string name="map_not_found">Ort nicht gefunden.</string>
+    <string name="map_pin_label_placeholder">Label (optional)</string>
+    <string name="map_remove_pin">Pin entfernen</string>
+    <string name="map_title_placeholder">Kartentitel (optional)</string>
+    <string name="mixed_no_albums">Keine weiteren Alben in diesem Bereich.</string>
+    <string name="mixed_selected">ausgewählt</string>
+    <string name="mixed_insert_n">Einfügen (%1$d)</string>
+    <string name="mixed_back_albums">‹ Alben</string>
+    <string name="cover_picker_title">Album-Cover wählen</string>
+    <string name="cover_picker_empty">Keine Fotos im Album.</string>
+    <string name="media_title">Foto / Video einfügen</string>
+    <string name="media_all_in_album">Alle Dateien des Albumordners sind bereits im Album.</string>
+    <plurals name="media_pending">
+        <item quantity="one">%1$d Datei im Ordner, die noch nicht im Album ist:</item>
+        <item quantity="other">%1$d Dateien im Ordner, die noch nicht im Album sind:</item>
+    </plurals>
+
+    <!-- Lightbox -->
+    <string name="lb_back_to">Zurück zu %1$s</string>
+    <string name="lb_fav_remove">Aus Favoriten entfernen</string>
+    <string name="lb_fav_add">Zu Favoriten</string>
+    <string name="lb_share">Weitergeben</string>
+    <string name="lb_edit">Foto bearbeiten</string>
+    <string name="lb_trash">Wegwerfen</string>
+    <string name="lb_share_send">Das Foto senden</string>
+    <string name="lb_share_send_hint">Die Bilddatei geht an eine App deiner Wahl — der Empfänger braucht kein MPD.</string>
+    <string name="lb_share_link">Einen MPD-Link erstellen</string>
+    <string name="lb_share_link_hint">Ein Link auf dieses Foto in deinem MPD, mit Ablaufdatum.</string>
+    <string name="lb_fate_local">Die Aufnahme wandert in den Papierkorb des Geräts und ist dort 30 Tage wiederherstellbar; Android fragt gleich noch einmal.</string>
+    <string name="lb_fate_pc">Die Datei liegt nur auf diesem PC und wandert in den Papierkorb des Systems.</string>
+    <string name="lb_download">Herunterladen</string>
+    <string name="lb_downloaded">Gespeichert: %1$s</string>
+    <string name="lb_fate_recycle">Die Datei landet im Papierkorb der NAS. Zurückholen geht in File Station.</string>
+    <string name="lb_fate_norecycle">Kein Papierkorb auf der Freigabe — die Datei ist unwiderruflich weg.</string>
+    <string name="lb_fate_default">Die Datei wird vom Server entfernt.</string>
+    <string name="lb_trash_title">„%1$s“ wegwerfen?</string>
+    <string name="lb_decode_failed">Bild konnte nicht dekodiert werden</string>
+    <string name="lb_load_failed">Bild konnte nicht geladen werden</string>
+    <string name="lb_original_loading">Original lädt …</string>
+    <string name="lb_original_failed">Original konnte nicht geladen werden</string>
+
+    <!-- EXIF-Panel -->
+    <string name="exif_file">Datei</string>
+    <string name="exif_album">Album</string>
+    <string name="exif_only_device">nur auf dem Gerät</string>
+    <string name="exif_no_album">in keinem Album</string>
+    <string name="exif_resolution">Auflösung</string>
+    <string name="exif_load_failed">EXIF nicht ladbar: %1$s</string>
+    <string name="exif_locked_module">nicht freigeschaltet</string>
+    <string name="exif_capture">Aufnahme</string>
+    <string name="exif_date">Datum</string>
+    <string name="exif_time">Uhrzeit</string>
+    <string name="exif_time_value">%1$s Uhr</string>
+    <string name="exif_where">Wo war ich?</string>
+    <string name="exif_dayroute">→ Tagesweg</string>
+    <string name="exif_camera">Kamera</string>
+    <string name="exif_model">Modell</string>
+    <string name="exif_lens">Objektiv</string>
+    <string name="exif_focal">Brennweite</string>
+    <string name="exif_aperture">Blende</string>
+    <string name="exif_shutter">Belichtung</string>
+    <string name="exif_iso">ISO</string>
+    <string name="exif_location">Standort</string>
+    <string name="exif_coords">Koordinaten</string>
+    <string name="exif_altitude">Höhe</string>
+    <string name="exif_altitude_value">%1$s m</string>
+    <string name="exif_description">Beschreibung</string>
+    <string name="exif_edit">EXIF bearbeiten</string>
+    <string name="exif_gps">GPS</string>
+    <string name="exif_map_close">Karte zu</string>
+    <string name="exif_map_open">Auf Karte setzen</string>
+    <string name="exif_place_not_found">Ort nicht gefunden</string>
+    <string name="exif_search_failed">Suche fehlgeschlagen: %1$s</string>
+    <string name="exif_search">Suchen</string>
+    <string name="exif_pin_set">Pin: %1$s, %2$s — Tipp auf die Karte verschiebt ihn</string>
+    <string name="exif_pin_none">Kein Pin gesetzt — auf die Karte tippen</string>
+    <string name="exif_alt_label">Höhe in Metern (optional)</string>
+    <string name="exif_filename">Dateiname</string>
+    <string name="exif_filename_current">.%1$s · Aktuell: %2$s</string>
+    <string name="exif_iso_suggestion"> · ISO-Vorschlag aus EXIF</string>
+    <string name="status_saving">Speichern…</string>
+    <string name="status_saved">✓ Gespeichert</string>
+    <string name="status_save_error">Fehler beim Speichern</string>
+    <string name="status_preview_failed">Vorschau fehlgeschlagen</string>
+    <string name="exif_rename">Umbenennen</string>
+    <string name="rename_q_title">Umbenennen?</string>
+    <string name="rename_arrow">%1$s →</string>
+    <string name="rename_collision">Der Wunschname war belegt — der Server hat einen Zähler angehängt.</string>
+    <string name="status_renaming">Umbenennen…</string>
+    <string name="status_renamed">✓ Umbenannt</string>
+    <string name="status_rename_failed">Umbenennen fehlgeschlagen</string>
+
+    <!-- Foto-Editor -->
+    <string name="editor_no_changes">Keine Änderungen zu speichern</string>
+    <string name="status_saved_backup">✓ Gespeichert · Backup: %1$s</string>
+    <string name="crop_whole">Ganzes Bild</string>
+    <string name="crop_apply">Übernehmen</string>
+    <string name="editor_rotate">90° drehen</string>
+    <string name="editor_flip_h">Horizontal spiegeln</string>
+    <string name="editor_flip_v">Vertikal spiegeln</string>
+    <string name="editor_crop">Zuschneiden</string>
+    <string name="editor_crop_active">Zuschnitt aktiv — antippen zum Entfernen</string>
+    <string name="editor_brightness">Helligkeit</string>
+    <string name="editor_contrast">Kontrast</string>
+    <string name="editor_saturation">Sättigung</string>
+    <string name="editor_local_hint">Diese Aufnahme liegt nur auf dem Gerät — Speichern überschreibt das Original, ohne Sicherungskopie. Auf der NAS legt MPD vorher eine an.</string>
+    <string name="editor_straighten">Geraderichten</string>
+    <string name="editor_reset">Original wiederherstellen</string>
+    <string name="editor_reset_title">Original wiederherstellen?</string>
+    <string name="editor_reset_body">Alle gespeicherten Bearbeitungen dieses Fotos werden verworfen und das Original aus der Sicherung zurueckgeholt.</string>
+    <string name="status_resetting">Stelle Original wieder her…</string>
+    <string name="status_reset_done">✓ Original wiederhergestellt</string>
+    <string name="status_error">Fehler</string>
+
+    <!-- Medien, Karten, PDF, QR -->
+    <string name="media_pause">Pause</string>
+    <string name="media_play">Abspielen</string>
+    <string name="map_tap_to_move">Karte antippen zum Bewegen</string>
+    <string name="map_layer_topo">Gelände</string>
+    <string name="map_layer_map">Karte</string>
+    <string name="gpx_no_points">Keine GPS-Punkte in GPX-Datei</string>
+    <string name="gpx_load_failed">GPX konnte nicht geladen werden: %1$s</string>
+    <string name="tour_default_title">Tour</string>
+    <string name="pdf_load_failed">PDF konnte nicht geladen werden</string>
+    <string name="pdf_page">Seite %1$d</string>
+    <string name="qr_description">QR-Code zum Beisteuern-Link</string>
+    <string name="crop_load_failed">Das Bild ließ sich nicht für den Zuschnitt laden.</string>
+    <string name="crop_load_failed_reason">Das Bild ließ sich nicht für den Zuschnitt laden (%1$s).</string>
+    <string name="vm_album_created_x">Album „%1$s" wurde angelegt.</string>
+    <string name="document_text_not_yet">Textdatei — vorläufig nur im Browser lesbar</string>
+    <string name="document_text_failed">Der Text ließ sich nicht laden.</string>
+    <string name="document_text_cut">… gekürzt, zum vollständigen Lesen die Datei im Browser öffnen.</string>
+    <string name="pdf_load_failed_reason">PDF konnte nicht geladen werden (%1$s).</string>
+    <string name="document_text_failed_reason">Der Text ließ sich nicht laden (%1$s).</string>
+    <string name="media_play_failed">Abspielen nicht möglich (%1$s).</string>
+</resources>

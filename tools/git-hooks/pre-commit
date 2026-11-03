@@ -1,0 +1,13 @@
+#!/bin/bash
+# Spurensuche vor jedem Commit: Dieses Repo ist oeffentlich, jeder Commit landet
+# auf GitHub. Namen, private Adressen, Schluessel und Pfade der Ursprungs-
+# installation haben hier nichts verloren; Privates gehoert nach privat/.
+# Aktivieren: git config core.hooksPath tools/git-hooks
+TRACES='Thomas[^ ]|Thomas (hat|will|sagt|am|,)|bgg-mail|thobug|gabu|mmustermann|192\.168\.178|NAS_shared|/home/thomas|sk-ant-|BEGIN (RSA )?PRIVATE KEY|MPD_NOTIFY_PUBLISH_TOKEN=[^ ]+'
+ALLOW='Thomas Bugge|thomas@bgg-mail\.de|[^.a-z-]bgg-home\.de'
+treffer="$(git diff --cached -U0 --diff-filter=AM -- . ':(exclude)tools/git-hooks' | grep -E '^\+[^+]' | grep -E "$TRACES" | grep -vE "$ALLOW" || true)"
+if [ -n "$treffer" ]; then
+  echo "!! Spuren im Commit — nicht committet. Privates gehoert nach privat/, Beispielwerte neutral (anna, 192.168.1.109, mpd.example.org):" >&2
+  printf '%s\n' "$treffer" | cut -c1-160 >&2
+  exit 1
+fi

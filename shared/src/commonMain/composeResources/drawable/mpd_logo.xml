@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bildmarke — Handkonvertierung von frontend/img/brand/mpd-logo.svg
+     (Tagebuch, Kamera, Stift). Gruppen-Transformationen wie im Original:
+     translate(1.5,1.5) scale(0.75), Tagebuch um -4° gedreht (Pivot 70,70). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="42dp"
+    android:height="42dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:translateX="1.5"
+        android:translateY="1.5"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:pivotX="0"
+        android:pivotY="0">
+
+        <!-- Tagebuch, leicht gedreht -->
+        <group android:rotation="-4" android:pivotX="70" android:pivotY="70">
+            <path
+                android:pathData="M31,24 H109 A5,5 0 0 1 114,29 V123 A5,5 0 0 1 109,128 H31 A5,5 0 0 1 26,123 V29 A5,5 0 0 1 31,24 Z"
+                android:fillColor="#F5F2EC"
+                android:strokeColor="#C0C0B8"
+                android:strokeWidth="0.8" />
+            <path
+                android:pathData="M28.5,24 H33.5 A2.5,2.5 0 0 1 36,26.5 V125.5 A2.5,2.5 0 0 1 33.5,128 H28.5 A2.5,2.5 0 0 1 26,125.5 V26.5 A2.5,2.5 0 0 1 28.5,24 Z"
+                android:fillColor="#2E75B6" />
+            <path android:pathData="M44,42 L106,42" android:strokeColor="#4F81BD"
+                android:strokeWidth="1.2" android:strokeAlpha="0.5" />
+            <path android:pathData="M44,52 L106,52" android:strokeColor="#4F81BD"
+                android:strokeWidth="1.2" android:strokeAlpha="0.5" />
+            <path android:pathData="M44,62 L90,62" android:strokeColor="#4F81BD"
+                android:strokeWidth="1.2" android:strokeAlpha="0.5" />
+        </group>
+
+        <!-- Kamera -->
+        <path
+            android:pathData="M37,70 H103 A7,7 0 0 1 110,77 V117 A7,7 0 0 1 103,124 H37 A7,7 0 0 1 30,117 V77 A7,7 0 0 1 37,70 Z"
+            android:fillColor="#2C3E50"
+            android:strokeColor="#1A2735"
+            android:strokeWidth="1.5" />
+        <path
+            android:pathData="M51,62 H73 A3,3 0 0 1 76,65 V71 A3,3 0 0 1 73,74 H51 A3,3 0 0 1 48,71 V65 A3,3 0 0 1 51,62 Z"
+            android:fillColor="#2C3E50"
+            android:strokeColor="#1A2735"
+            android:strokeWidth="1.5" />
+        <path android:pathData="M93,80 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0 Z"
+            android:fillColor="#C8922A" />
+        <path android:pathData="M42,97 a20,20 0 1 0 40,0 a20,20 0 1 0 -40,0 Z"
+            android:fillColor="#0D1520" android:strokeColor="#1A2735" android:strokeWidth="2" />
+        <path android:pathData="M48,97 a14,14 0 1 0 28,0 a14,14 0 1 0 -28,0 Z"
+            android:fillColor="#111D28" android:strokeColor="#2E75B6" android:strokeWidth="1.2" />
+        <path android:pathData="M54,93 a4,4 0 1 0 8,0 a4,4 0 1 0 -8,0 Z"
+            android:fillColor="#4F81BD" android:fillAlpha="0.55" />
+        <path android:pathData="M54.2,91 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z"
+            android:fillColor="#FFFFFF" android:fillAlpha="0.45" />
+
+        <!-- Stift -->
+        <path android:pathData="M98,120 L104.3,113.7 L96.7,111.1 Z" android:fillColor="#B8915C" />
+        <path android:pathData="M98,120 L100.5,117.5 L97.5,116.5 Z" android:fillColor="#2C3E50" />
+        <path android:pathData="M96.7,111.1 L104.3,113.7 L127.8,42.2 L120.2,39.6 Z" android:fillColor="#C8922A" />
+        <path android:pathData="M100.5,112.4 L124,41" android:strokeColor="#A8751C"
+            android:strokeWidth="0.8" android:strokeAlpha="0.5" />
+        <path android:pathData="M120.2,39.6 L127.8,42.2 L129.8,36.1 L122.2,33.5 Z" android:fillColor="#7A7A7A" />
+        <path android:pathData="M122.2,33.5 L129.8,36.1 L131.5,31.0 L123.9,28.4 Z" android:fillColor="#A84F44" />
+    </group>
+</vector>

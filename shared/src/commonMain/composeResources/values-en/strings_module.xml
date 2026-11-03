@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English for the module screens. Terms follow frontend/js/i18n.js (en). -->
+<resources>
+    <!-- Search -->
+    <string name="search_close">Close search</string>
+    <string name="search_placeholder">Search…</string>
+    <string name="search_clear">Clear search</string>
+    <string name="search_scope_all">All</string>
+    <string name="search_scope_shared">Shared</string>
+    <string name="search_scope_personal">Personal</string>
+    <string name="search_building">Building the search index…</string>
+    <string name="search_hint">Searches album titles, texts and links —\nstarts at two characters.</string>
+    <string name="search_no_results">No matches.</string>
+    <string name="search_type_album">Album</string>
+    <string name="search_type_link">Link</string>
+    <string name="search_type_quote">Quote</string>
+    <string name="search_type_note">Note</string>
+    <string name="search_type_info">Info</string>
+    <string name="search_type_heading">Heading</string>
+    <string name="search_type_text">Text</string>
+
+    <!-- Memories (pinboard) -->
+    <string name="memories_close">Close memories</string>
+    <string name="memories_back_today">→ back to today</string>
+    <string name="memories_title_today">Today, … ago</string>
+    <string name="memories_title_day">On this day, … ago</string>
+    <string name="memories_empty">No memories\non this day yet.</string>
+    <string name="memories_this_year">This year</string>
+    <plurals name="memories_years_ago">
+        <item quantity="one">One year ago</item>
+        <item quantity="other">%1$d years ago</item>
+    </plurals>
+    <plurals name="memories_more">
+        <item quantity="one">and one more</item>
+        <item quantity="other">and %1$d more</item>
+    </plurals>
+    <string name="memories_teaser_and">and</string>
+    <string name="memories_teaser_multi">%1$s years ago today — %2$s</string>
+    <plurals name="memories_teaser_single">
+        <item quantity="one">One year ago today (%2$s) — %3$s</item>
+        <item quantity="other">%1$d years ago today (%2$s) — %3$s</item>
+    </plurals>
+    <plurals name="memories_teaser_count">
+        <item quantity="one">%1$d memory</item>
+        <item quantity="other">%1$d memories</item>
+    </plurals>
+    <string name="memories_footer">✦ Your memories ✦</string>
+    <string name="memories_theme_auto">🎨 Auto</string>
+    <string name="memories_theme_creme">🎞 Cream</string>
+    <string name="memories_theme_dark">🌙 Dark</string>
+    <string name="memories_theme_sepia">📜 Sepia</string>
+    <string name="memories_theme_nordic">❄️ Nordic</string>
+    <string name="memories_theme_sunset">🌇 Sunset</string>
+
+    <!-- Tours -->
+    <string name="tours_close">Close Tours</string>
+    <string name="tours_back_to_list">Back to the list</string>
+    <plurals name="tours_track_count">
+        <item quantity="one">%1$d track</item>
+        <item quantity="other">%1$d tracks</item>
+    </plurals>
+    <string name="tours_pick_track">Pick a track</string>
+    <string name="tours_filter_all">All</string>
+    <string name="tours_year">Year</string>
+    <string name="tours_year_pick">Pick a year</string>
+    <string name="tours_all_years">All years</string>
+    <string name="tours_search_placeholder">Search…</string>
+    <string name="tours_none_found">No tracks found</string>
+    <string name="tours_no_points">No GPS points in the file</string>
+    <string name="tours_gpx_unreadable">GPX could not be loaded</string>
+    <string name="tours_distance">Distance</string>
+    <string name="tours_duration">Duration</string>
+    <string name="tours_hr_avg">Avg. HR</string>
+    <string name="tours_hr_max">Max HR</string>
+    <string name="tours_file">File</string>
+    <string name="tours_elevation">Elevation</string>
+    <string name="tours_album_search">Search albums…</string>
+    <string name="tours_state_open">Open</string>
+    <string name="tours_state_used">In album</string>
+    <string name="tours_state_stub">Stubs</string>
+    <string name="tours_badge_open">open</string>
+    <string name="tours_badge_old">tours/</string>
+    <string name="tours_stub_unlesbar">unreadable</string>
+    <string name="tours_stub_punkte">hardly any points</string>
+    <string name="tours_stub_strecke">under 0.5 km</string>
+    <string name="tours_stub_dauer">under 5 min</string>
+    <string name="tours_points">Points</string>
+    <string name="tours_folder">Stored in</string>
+    <string name="tours_used_in">In album</string>
+    <string name="tours_insert_into_album">Insert into album …</string>
+    <string name="tours_already_in">already there</string>
+    <string name="tours_inserted">Added at the end of “%1$s”</string>
+    <string name="tours_recycle">Move to recycle bin</string>
+    <string name="tours_recycle_blocked">Can only be deleted once no album uses it.</string>
+    <string name="tours_recycle_title">Move tour to the recycle bin?</string>
+    <string name="tours_recycle_hint">It can be restored from the NAS recycle bin.</string>
+    <string name="tours_no_distance">no distance</string>
+    <string name="tours_recycled">In the recycle bin</string>
+    <string name="tours_deleted_no_bin">Deleted (no recycle bin found)</string>
+    <string name="tours_not_deleted">Not deleted: %1$s</string>
+    <string name="tours_stubs_unused">%1$s stubs in no album</string>
+    <string name="tours_recycle_all">Move all to recycle bin</string>
+    <string name="tours_recycle_all_title">Move %1$s stubs to the recycle bin?</string>
+    <string name="tours_recycle_all_body">All stubs currently listed that no album uses. They can be restored from the NAS recycle bin.</string>
+    <string name="tours_recycle_progress">%1$s / %2$s …</string>
+    <string name="tours_recycled_n">%1$s of %2$s in the recycle bin</string>
+
+    <!-- Stats -->
+    <string name="stats_close">Close statistics</string>
+    <string name="stats_scanning">Scanning the library — the first time takes a while…</string>
+    <string name="stats_loading">Loading statistics…</string>
+    <string name="stats_photos">Photos</string>
+    <string name="stats_storage">Storage</string>
+    <string name="stats_period">Period</string>
+    <string name="stats_words">Words</string>
+    <string name="stats_texts">Texts</string>
+    <string name="stats_albums_with_text">Albums with text</string>
+    <string name="stats_per_year">📈 Photos per year</string>
+    <string name="stats_per_month">📆 Photos per month</string>
+    <string name="stats_seasons">🌸 Seasons</string>
+    <string name="stats_weekdays">📅 Weekdays</string>
+    <string name="stats_hours">🕐 Time of day</string>
+    <string name="stats_cameras">📷 Cameras</string>
+    <string name="stats_gps_per_year">📍 GPS coverage per year (%)</string>
+    <string name="stats_filesize_per_year">💾 Avg. file size per year (MB)</string>
+    <string name="stats_storage_per_year">📦 Storage per year (GB)</string>
+    <string name="stats_top_albums">🗂️ Top albums</string>
+    <string name="stats_diary_texts">✍️ Diary texts</string>
+    <string name="stats_writing_per_year">📝 Writing activity per year (words)</string>
+    <string name="stats_text_styles">🏷️ Text styles</string>
+    <string name="stats_diary_score">🏆 Diary score (texts per photo)</string>
+    <string name="stats_tours_per_year">🚴 Tours per year</string>
+    <string name="stats_month_year">📅 Month / year</string>
+    <string name="stats_no_data">No data.</string>
+    <string name="stats_up_to">up to %1$s</string>
+    <string name="stats_style_default">Default</string>
+    <string name="stats_style_info">Info</string>
+    <string name="stats_style_quote">Quote</string>
+    <string name="stats_style_note">Note</string>
+    <string name="stats_style_heading">Heading</string>
+    <string-array name="stats_weekday_labels">
+        <item>Mo</item><item>Tu</item><item>We</item><item>Th</item><item>Fr</item><item>Sa</item><item>Su</item>
+    </string-array>
+    <string-array name="stats_season_labels">
+        <item>Spring</item><item>Summer</item><item>Autumn</item><item>Winter</item>
+    </string-array>
+    <string-array name="stats_month_letters">
+        <item>J</item><item>F</item><item>M</item><item>A</item><item>M</item><item>J</item><item>J</item><item>A</item><item>S</item><item>O</item><item>N</item><item>D</item>
+    </string-array>
+
+    <!-- Timeline -->
+    <string name="timeline_filter_uncurated">Inbox</string>
+    <string name="timeline_filter_all">All</string>
+    <string name="timeline_not_backed_up">%1$d not backed up</string>
+    <string name="timeline_clear_selection">Clear selection</string>
+    <string name="timeline_selected">%1$d selected</string>
+    <string name="timeline_sort_into">Sort into</string>
+    <plurals name="timeline_backup_now_n">
+        <item quantity="one">Back up now</item>
+        <item quantity="other">Back up %1$d now</item>
+    </plurals>
+    <string name="timeline_backup_now">Back up now</string>
+    <string name="timeline_share_selection">Send</string>
+    <string name="timeline_delete">Delete</string>
+    <string name="timeline_delete_title_trash">Move to trash?</string>
+    <string name="timeline_delete_title_nothing">Nothing to delete</string>
+    <plurals name="timeline_delete_title_n">
+        <item quantity="one">Delete %1$d file?</item>
+        <item quantity="other">Delete %1$d files?</item>
+    </plurals>
+    <string name="timeline_fate_server">The files will be removed from the server.</string>
+    <string name="timeline_fate_recycle">The files go to the NAS recycle bin. They can be restored in File Station.</string>
+    <string name="timeline_fate_final">No recycle bin on this share — the files are gone for good.</string>
+    <string name="timeline_fate_mixed">Careful, mixed: one library has the recycle bin on, the other does not — there it would be final.</string>
+    <plurals name="timeline_device_note">
+        <item quantity="one">One photo is only on the device — it goes to the device trash (restorable for 30 days); Android will ask once more.</item>
+        <item quantity="other">%1$d photos are only on the device — they go to the device trash (restorable for 30 days); Android will ask once more.</item>
+    </plurals>
+    <plurals name="timeline_pc_note">
+        <item quantity="one">One file exists only on this PC — it goes to the system recycle bin.</item>
+        <item quantity="other">%1$d files exist only on this PC — they go to the system recycle bin.</item>
+    </plurals>
+    <string name="pc_folders_title">Folders on this PC</string>
+    <string name="timeline_download_selection">Download</string>
+    <string name="pc_folders_intro">Photos and videos from these folders (including subfolders) appear in the timeline. Anything not yet on the NAS shows the crossed-out cloud — select it and “Back up” uploads it to the inbox.</string>
+    <string name="pc_folders_empty">No folder chosen yet.</string>
+    <string name="pc_folders_add">Add folder …</string>
+    <string name="pc_folders_remove">Remove folder</string>
+    <string name="pc_folders_target">Upload to library</string>
+    <string name="pc_folders_target_shared">Family</string>
+    <string name="pc_folders_target_personal">Private</string>
+    <string name="pc_folders_choose">Choose a folder with photos</string>
+    <string name="settings_pc_folders_hint">Show photos from this PC in the timeline and upload selected ones</string>
+    <string name="timeline_kept_one">The file belongs to an album and stays.</string>
+    <string name="timeline_kept_all">All %1$d belong to albums and stay.</string>
+    <plurals name="timeline_kept_some">
+        <item quantity="one">Delete is meant for rejects. %1$d file belongs to an album and stays untouched.</item>
+        <item quantity="other">Delete is meant for rejects. %1$d files belong to an album and stay untouched.</item>
+    </plurals>
+    <string name="timeline_curate_hint">Curating means distributing — delete is meant for rejects.</string>
+    <string name="timeline_sort_into_title">Sort into…</string>
+    <string name="timeline_album_search">Search albums</string>
+    <string name="timeline_year_match">fits</string>
+    <string name="timeline_video">Video</string>
+    <string name="timeline_in_album">In an album</string>
+    <string name="timeline_selected_mark">selected</string>
+    <plurals name="timeline_photo_count">
+        <item quantity="one">%1$d photo</item>
+        <item quantity="other">%1$d photos</item>
+    </plurals>
+    <string name="timeline_memories">Memories</string>
+    <plurals name="timeline_years_ago">
+        <item quantity="one">%1$d year ago</item>
+        <item quantity="other">%1$d years ago</item>
+    </plurals>
+
+    <!-- Contribute -->
+    <string name="contrib_close">Close Contribute</string>
+    <string name="contrib_title">Contribute</string>
+    <string name="contrib_intro">A contribute link lets others drop off photos and videos — no account, no app, just the browser. The files land in a collection folder, not in an album; afterwards they are sorted in through the Timeline as usual.</string>
+    <string name="contrib_fresh_title">New contribute link</string>
+    <string name="contrib_qr_local_only">Note: this server is registered under an address in your own network. The code therefore only works for guests on the same Wi-Fi.</string>
+    <string name="contrib_qr_hint">Hold it up to be photographed — guests need neither an account nor an app.</string>
+    <string name="contrib_copy">Copy</string>
+    <string name="contrib_share">Send</string>
+    <string name="contrib_link_label">Link</string>
+    <string name="contrib_fresh_hint">Visible only now — afterwards the server only knows the fingerprint. The QR code is gone then, too.</string>
+    <string name="contrib_active_links">Active links</string>
+    <string name="contrib_empty">No contribute links yet.</string>
+    <string name="contrib_create_button">+ Create contribute link</string>
+    <string name="contrib_qr_title">To be photographed</string>
+    <string name="contrib_qr_dialog_local_only">For guests on the same Wi-Fi only — the server is registered under an address in your own network.</string>
+    <string name="contrib_close_dialog">Close</string>
+    <string name="contrib_revoke_title">Revoke link?</string>
+    <string name="contrib_revoke_body">The link to “%1$s” will stop working. The %2$d files already delivered stay in the collection folder.</string>
+    <string name="contrib_revoke">Revoke</string>
+    <string name="contrib_space_shared">Family</string>
+    <string name="contrib_space_personal">Private</string>
+    <string name="contrib_row_files">%1$d of %2$d files</string>
+    <string name="contrib_expired">expired</string>
+    <string name="contrib_until">until %1$s</string>
+    <string name="contrib_full">Limit reached — further uploads are rejected.</string>
+    <string name="contrib_show_qr">Show QR code</string>
+    <string name="contrib_share_link">Share link</string>
+    <string name="contrib_withdraw">Withdraw</string>
+    <string name="contrib_create_title">Create contribute link</string>
+    <string name="contrib_folder_name">Name of the collection folder</string>
+    <string name="contrib_folder_hint">2026 - Party</string>
+    <string name="contrib_folder_note">The folder is created new. An existing album is not possible — guests deliver raw material, curating comes later.</string>
+    <string name="contrib_section_space">Library</string>
+    <string name="contrib_section_validity">Valid</string>
+    <string name="contrib_days_short">%1$d d</string>
+    <string name="contrib_section_max">At most</string>
+    <string name="contrib_name_missing">Name missing</string>
+    <string name="contrib_create">Create</string>
+
+    <!-- Share -->
+    <string name="share_expiry_unlimited">Valid indefinitely</string>
+    <string name="share_expiry_7">Valid 7 days</string>
+    <string name="share_expiry_30">Valid 30 days</string>
+    <string name="share_expiry_365">Valid 1 year</string>
+    <string name="share_title_photo">Share photo</string>
+    <string name="share_title_album">Share album: “%1$s”</string>
+    <string name="share_intro_photo">Creates a link to exactly this photo — the guest page shows the picture and offers the original for download.</string>
+    <string name="share_intro_album">Creates a read-only link to send around. Private items (🔒) stay hidden.</string>
+    <string name="share_link_label">Link</string>
+    <string name="share_active_links">Active links</string>
+    <string name="share_empty">No active links yet.</string>
+    <string name="share_revoked_toast">Link revoked.</string>
+    <string name="share_expiry_pick">Choose</string>
+    <string name="share_creating">Creating link…</string>
+    <string name="share_create">Create new link</string>
+    <string name="share_close">Close</string>
+    <string name="share_row_created">created %1$s</string>
+    <string name="share_row_last_seen">last opened %1$s</string>
+    <string name="share_row_never">not opened yet</string>
+    <string name="share_row_expired">expired</string>
+    <string name="share_row_expires">expires %1$s</string>
+    <string name="share_copy_link">Copy link</string>
+    <string name="share_share">Send</string>
+    <string name="share_revoke_link">Revoke link</string>
+    <string name="share_revoke_title">Revoke link?</string>
+    <string name="share_revoke_body">Anyone holding the link loses access immediately. This cannot be undone — for new access you need a new link.</string>
+    <string name="share_revoke">Revoke</string>
+    <string name="share_fresh_title">New link</string>
+    <string name="share_copy">Copy</string>
+    <string name="share_mail_pill">Email…</string>
+    <string name="share_fresh_hint">Visible only now — the server does not store the link itself, only its fingerprint.</string>
+    <string name="share_mail_title">Send by email</string>
+    <string name="share_mail_intro_photo">The server sends the link to this one photo through its own mail configuration. The mail does not say which album it comes from.</string>
+    <string name="share_mail_intro_album">The server sends the link to “%1$s” through its own mail configuration.</string>
+    <string name="share_mail_to">Recipient</string>
+    <string name="share_mail_to_hint">name@example.com</string>
+    <string name="share_mail_name">Name (optional)</string>
+    <string name="share_mail_message">Message (optional)</string>
+    <string name="share_mail_message_hint">A few lines to go with it…</string>
+    <string name="share_mail_sent">Sent.</string>
+    <string name="share_mail_sending">Sending…</string>
+    <string name="share_mail_send">Send</string>
+    <string name="share_forbidden">You lack the rights for this — shared albums can only be curated by whoever manages the library.</string>
+    <string name="share_link_chooser_title">Send link</string>
+
+    <!-- Trails -->
+    <string name="trails_tab_day">Day</string>
+    <string name="trails_tab_places">Places</string>
+    <string name="trails_tab_map">Map</string>
+    <string name="trails_tab_devices">Devices</string>
+    <string name="trails_back_to_day">Back to the day</string>
+    <string name="trails_close">Close Trails</string>
+    <plurals name="trails_points">
+        <item quantity="one">%1$s point</item>
+        <item quantity="other">%1$s points</item>
+    </plurals>
+    <string name="trails_empty_store">still empty</string>
+    <string name="trails_back_today">→ back to today</string>
+    <string name="trails_not_derived">No stays and journeys have been detected for this day yet — usually the nightly run does that.</string>
+    <string name="trails_deriving">Processing…</string>
+    <string name="trails_derive_now">Process this day now</string>
+    <string name="trails_day_empty">Nothing stored for this day.</string>
+    <string name="trails_next_recorded">next day with a recording</string>
+    <string name="trails_shown">shown: %1$d</string>
+    <plurals name="trails_visits">
+        <item quantity="one">%1$d stay</item>
+        <item quantity="other">%1$d stays</item>
+    </plurals>
+    <plurals name="trails_activities">
+        <item quantity="one">%1$d journey</item>
+        <item quantity="other">%1$d journeys</item>
+    </plurals>
+    <string name="trails_own_history">Trails is your own history — it lives only in your storage.</string>
+    <string name="trails_loading">loading…</string>
+    <plurals name="trails_days_recorded">
+        <item quantity="one">%1$d day with a recording</item>
+        <item quantity="other">%1$d days with recordings</item>
+    </plurals>
+    <string name="trails_close_dialog">Close</string>
+    <string name="trails_no_places">No stays detected yet.</string>
+    <string name="trails_places_nightly">Processing runs at night.</string>
+    <string name="trails_place_unnamed">Unnamed place</string>
+    <string name="trails_last">last %1$s</string>
+    <string name="trails_all_years">All</string>
+    <string name="trails_heat_empty_store">No points stored yet.</string>
+    <string name="trails_heat_rendering">Across all years — the server is building the grid from %1$s points right now.</string>
+    <string name="trails_heat_no_points">No points for this period.</string>
+    <string name="trails_heat_summary">%1$s points in %2$s cells</string>
+    <string name="trails_heat_truncated">" · truncated"</string>
+    <string name="trails_forbidden">Trails is not enabled for this account (or locked in the demo).</string>
+    <string name="trails_visit_home">🏠 Home</string>
+    <string name="trails_visit_work">💼 Work</string>
+    <string name="trails_visit_searched">🔎 Searched address</string>
+    <string name="trails_visit_generic">Stay</string>
+    <string name="trails_act_walking">On foot</string>
+    <string name="trails_act_running">Running</string>
+    <string name="trails_act_cycling">Bike</string>
+    <string name="trails_act_car">Car</string>
+    <string name="trails_act_motorcycle">Motorbike</string>
+    <string name="trails_act_bus">Bus</string>
+    <string name="trails_act_train">Train</string>
+    <string name="trails_act_subway">Subway</string>
+    <string name="trails_act_tram">Tram</string>
+    <string name="trails_act_ferry">Ferry</string>
+    <string name="trails_act_flight">Flight</string>
+    <string name="trails_act_sailing">Sailing</string>
+    <string name="trails_act_ski">Ski</string>
+    <string name="trails_act_still">Still</string>
+    <string name="trails_act_way">Journey</string>
+
+    <!-- Trails: devices tab -->
+    <string name="trails_dev_recording">Recording</string>
+    <string name="trails_dev_none">no device</string>
+    <plurals name="trails_dev_count">
+        <item quantity="one">%1$d device</item>
+        <item quantity="other">%1$d devices</item>
+    </plurals>
+    <string name="trails_dev_intro">OwnTracks sends your locations to MPD — an open protocol, and the data lands only in your own storage.</string>
+    <string name="trails_dev_empty">No device set up yet.</string>
+    <string name="trails_dev_no_token">" · no token"</string>
+    <string name="trails_dev_last">" · last %1$s"</string>
+    <string name="trails_dev_seen">" · seen %1$s"</string>
+    <string name="trails_dev_delete">Delete</string>
+    <string name="trails_dev_add">+ Set up device</string>
+    <string name="trails_sources_title">Sources in storage</string>
+    <string name="trails_sources_intro">After a migration, old journeys and your own detection sit side by side in the same period. This is where you get rid of them.</string>
+    <string name="trails_source_counts">%1$s points · %2$s stays · %3$s journeys</string>
+    <string name="trails_archive_title">Take along</string>
+    <string name="trails_archive_none">no archive</string>
+    <string name="trails_archive_files">%1$d files · %2$s</string>
+    <string name="trails_archive_intro">Every raw message sits unchanged in the archive, plus the derived stays and journeys. Whoever downloads it has everything.</string>
+    <string name="trails_archive_empty">No archive files yet — the nightly run writes them at 04:00.</string>
+    <string name="trails_archive_zip">Archive as ZIP</string>
+    <string name="trails_archive_rebuild">Rebuild archive</string>
+    <string name="trails_archive_rebuilt">%1$d months written.</string>
+    <string name="trails_archive_running">Running — with large stores this takes a few minutes.</string>
+    <string name="trails_store_title">Storage</string>
+    <string name="trails_store_summary">%1$s points, %2$s stays, %3$s journeys</string>
+    <string name="trails_store_range">%1$s to %2$s</string>
+    <string name="trails_dev_remove_title">Remove device?</string>
+    <string name="trails_dev_remove_body">“%1$s” loses its token and can no longer send. Points already recorded stay.</string>
+    <string name="trails_dev_remove">Remove</string>
+    <string name="trails_dev_default_name">Phone</string>
+    <string name="trails_dev_setup_title">Set up device</string>
+    <string name="trails_dev_setup_intro">The device ID tells several recorders apart and later shows up on every point.</string>
+    <string name="trails_dev_id">Device ID</string>
+    <string name="trails_dev_name">Name</string>
+    <string name="trails_dev_create">Create</string>
+    <string name="trails_ot_title">Set up OwnTracks</string>
+    <string name="trails_ot_intro">“Apply” opens OwnTracks with the configuration ready — just confirm there. The token is never typed by hand.</string>
+    <string name="trails_ot_address">Address</string>
+    <string name="trails_ot_user">User</string>
+    <string name="trails_ot_password">Password (token)</string>
+    <string name="trails_ot_token_hint">This token exists only now. Lost it? Simply create the device again — the same name renews the token.</string>
+    <string name="trails_ot_missing">OwnTracks is not installed on this device. The values above can be tapped and copied.</string>
+    <string name="trails_ot_apply">Apply in OwnTracks</string>
+    <string name="trails_ot_done">Done</string>
+    <string name="trails_src_delete_title">Delete “%1$s”</string>
+    <string name="trails_src_only_derived">Only stays and journeys</string>
+    <string name="trails_src_only_derived_body">%1$s stays and %2$s journeys of this source are dropped, the raw points stay. The migration case.</string>
+    <string name="trails_src_whole">The whole source</string>
+    <string name="trails_src_whole_body">Everything goes, including the %1$s raw points — as a prefix, so “google” also matches “google:h1”. The way back from a failed import.</string>
+    <string name="trails_src_irreversible">This cannot be undone.</string>
+    <string name="trails_src_deleted">Deleted.</string>
+    <string name="trails_src_delete_final">Delete permanently</string>
+    <string name="trails_choice_selected">selected</string>
+    <string name="trails_choice_unselected">not selected</string>
+    <string name="trails_dl_no_downloads">Downloads folder not writable</string>
+    <string name="trails_dl_no_write">No write access</string>
+    <string name="trails_dl_no_location">No storage location</string>
+    <string name="trails_dl_saved">Saved: %1$s</string>
+    <string name="trails_collapse">collapse</string>
+    <string name="trails_expand">expand</string>
+    <!-- Custom place name (contract 2026-09-08) -->
+    <string name="trails_place_rename">Name this place</string>
+    <string name="trails_place_name_hint">Name</string>
+    <string name="trails_place_osm_name">From the map service: %1$s</string>
+    <string name="trails_place_name_reset">Reset</string>
+    <string name="trails_place_name_saved">Place name saved</string>
+    <string name="trails_place_name_cleared">Custom place name removed</string>
+    <string name="trails_place_name_failed">Could not save the place name: %1$s</string>
+    <string name="trails_place_custom">custom name</string>
+    <string name="trails_act_vehicle">Vehicle</string>
+    <string name="trails_ot_resend">Send recording settings to OwnTracks</string>
+    <string name="trails_ot_resend_hint">For an OwnTracks that is already signed in: only sets the chosen level plus “significant changes” mode; address and token stay. OwnTracks asks before applying.</string>
+    <string name="trails_ot_missing_short">OwnTracks is not installed on this device.</string>
+    <string name="trails_rec_title">Recording</string>
+    <string name="trails_rec_sparsam">Frugal</string>
+    <string name="trails_rec_normal">Normal</string>
+    <string name="trails_rec_genau">Precise</string>
+    <string name="trails_rec_hint_sparsam">From 250 m of movement, at most every 5 minutes. Barely noticeable on the battery; a walk through the village stays coarse.</string>
+    <string name="trails_rec_hint_normal">From 100 m of movement, at most once a minute. Like Google Timeline; walks and drives come out clean.</string>
+    <string name="trails_rec_hint_genau">From 50 m of movement, every 20 seconds. Noticeable on the battery; for hiking days, switch back afterwards.</string>
+    <string name="trails_dl_started">Loading “%1$s” …</string>
+    <string name="trails_dl_open">Open</string>
+    <string name="trails_dl_no_app">No app for %1$s on this device.</string>
+    <string name="timeline_retry">Try again</string>
+    <string name="timeline_partial">Not everything loaded</string>
+    <string name="map_fullscreen">Fullscreen map</string>
+</resources>

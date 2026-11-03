@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modul-Bildschirme: Timeline, Memories, Suche, Stats, Tours, Trails,
+     Beisteuern, Teilen. Deutsch ist Standard und Rueckfall; Englisch in
+     values-en/strings_module.xml. Wortlaut unveraendert uebernommen (08.09.2026). -->
+<resources>
+    <!-- Suche -->
+    <string name="search_close">Suche schließen</string>
+    <string name="search_placeholder">Suchen…</string>
+    <string name="search_clear">Suche leeren</string>
+    <string name="search_scope_all">Alle</string>
+    <string name="search_scope_shared">Geteilt</string>
+    <string name="search_scope_personal">Persönlich</string>
+    <string name="search_building">Suchindex wird erstellt…</string>
+    <string name="search_hint">Suche über Albumtitel, Texte und Links —\nab zwei Zeichen geht's los.</string>
+    <string name="search_no_results">Keine Treffer.</string>
+    <string name="search_type_album">Album</string>
+    <string name="search_type_link">Link</string>
+    <string name="search_type_quote">Zitat</string>
+    <string name="search_type_note">Notiz</string>
+    <string name="search_type_info">Info</string>
+    <string name="search_type_heading">Überschrift</string>
+    <string name="search_type_text">Text</string>
+
+    <!-- Memories (Pinnwand) -->
+    <string name="memories_close">Erinnerungen schließen</string>
+    <string name="memories_back_today">→ zurück zu Heute</string>
+    <string name="memories_title_today">Heute vor…</string>
+    <string name="memories_title_day">An diesem Tag vor…</string>
+    <string name="memories_empty">An diesem Tag\nnoch keine Erinnerungen.</string>
+    <string name="memories_this_year">Dieses Jahr</string>
+    <plurals name="memories_years_ago">
+        <item quantity="one">Vor einem Jahr</item>
+        <item quantity="other">Vor %1$d Jahren</item>
+    </plurals>
+    <plurals name="memories_more">
+        <item quantity="one">und eine weitere</item>
+        <item quantity="other">und %1$d weitere</item>
+    </plurals>
+    <string name="memories_teaser_and">und</string>
+    <string name="memories_teaser_multi">Heute vor %1$s Jahren — %2$s</string>
+    <plurals name="memories_teaser_single">
+        <item quantity="one">Heute vor einem Jahr (%2$s) — %3$s</item>
+        <item quantity="other">Heute vor %1$d Jahren (%2$s) — %3$s</item>
+    </plurals>
+    <plurals name="memories_teaser_count">
+        <item quantity="one">%1$d Erinnerung</item>
+        <item quantity="other">%1$d Erinnerungen</item>
+    </plurals>
+    <string name="memories_footer">✦ Deine Erinnerungen ✦</string>
+    <string name="memories_theme_auto">🎨 Auto</string>
+    <string name="memories_theme_creme">🎞 Creme</string>
+    <string name="memories_theme_dark">🌙 Dunkel</string>
+    <string name="memories_theme_sepia">📜 Sepia</string>
+    <string name="memories_theme_nordic">❄️ Nordic</string>
+    <string name="memories_theme_sunset">🌇 Sunset</string>
+
+    <!-- Tours -->
+    <string name="tours_close">Tours schließen</string>
+    <string name="tours_back_to_list">Zurück zur Liste</string>
+    <plurals name="tours_track_count">
+        <item quantity="one">%1$d Track</item>
+        <item quantity="other">%1$d Tracks</item>
+    </plurals>
+    <string name="tours_pick_track">Track auswählen</string>
+    <string name="tours_filter_all">Alle</string>
+    <string name="tours_year">Jahr</string>
+    <string name="tours_year_pick">Jahr wählen</string>
+    <string name="tours_all_years">Alle Jahre</string>
+    <string name="tours_search_placeholder">Suchen…</string>
+    <string name="tours_none_found">Keine Tracks gefunden</string>
+    <string name="tours_no_points">Keine GPS-Punkte in der Datei</string>
+    <string name="tours_gpx_unreadable">GPX nicht ladbar</string>
+    <string name="tours_distance">Distanz</string>
+    <string name="tours_duration">Dauer</string>
+    <string name="tours_hr_avg">Ø Puls</string>
+    <string name="tours_hr_max">Max Puls</string>
+    <string name="tours_file">Datei</string>
+    <string name="tours_elevation">Höhenprofil</string>
+    <string name="tours_album_search">Album suchen…</string>
+    <string name="tours_state_open">Offen</string>
+    <string name="tours_state_used">Im Album</string>
+    <string name="tours_state_stub">Stummel</string>
+    <string name="tours_badge_open">offen</string>
+    <string name="tours_badge_old">tours/</string>
+    <string name="tours_stub_unlesbar">unlesbar</string>
+    <string name="tours_stub_punkte">kaum Punkte</string>
+    <string name="tours_stub_strecke">unter 0,5 km</string>
+    <string name="tours_stub_dauer">unter 5 Min.</string>
+    <string name="tours_points">Punkte</string>
+    <string name="tours_folder">Liegt in</string>
+    <string name="tours_used_in">Im Album</string>
+    <string name="tours_insert_into_album">In Album einfügen …</string>
+    <string name="tours_already_in">schon drin</string>
+    <string name="tours_inserted">Am Ende von „%1$s“ eingefügt</string>
+    <string name="tours_recycle">In den Papierkorb</string>
+    <string name="tours_recycle_blocked">Löschen erst, wenn kein Album sie mehr benutzt.</string>
+    <string name="tours_recycle_title">Tour in den Papierkorb?</string>
+    <string name="tours_recycle_hint">Aus dem Papierkorb der NAS lässt sie sich zurückholen.</string>
+    <string name="tours_no_distance">ohne Strecke</string>
+    <string name="tours_recycled">Im Papierkorb</string>
+    <string name="tours_deleted_no_bin">Gelöscht (kein Papierkorb gefunden)</string>
+    <string name="tours_not_deleted">Nicht gelöscht: %1$s</string>
+    <string name="tours_stubs_unused">%1$s Stummel in keinem Album</string>
+    <string name="tours_recycle_all">Alle in den Papierkorb</string>
+    <string name="tours_recycle_all_title">%1$s Stummel in den Papierkorb?</string>
+    <string name="tours_recycle_all_body">Alle Stummel, die gerade in der Liste stehen und in keinem Album verwendet werden. Aus dem Papierkorb der NAS lassen sie sich zurückholen.</string>
+    <string name="tours_recycle_progress">%1$s / %2$s …</string>
+    <string name="tours_recycled_n">%1$s von %2$s im Papierkorb</string>
+
+    <!-- Stats -->
+    <string name="stats_close">Statistiken schließen</string>
+    <string name="stats_scanning">Bibliothek wird gescannt — das dauert beim ersten Mal…</string>
+    <string name="stats_loading">Lade Statistiken…</string>
+    <string name="stats_photos">Photos</string>
+    <string name="stats_storage">Speicher</string>
+    <string name="stats_period">Zeitraum</string>
+    <string name="stats_words">Wörter</string>
+    <string name="stats_texts">Texte</string>
+    <string name="stats_albums_with_text">Alben mit Text</string>
+    <string name="stats_per_year">📈 Photos pro Jahr</string>
+    <string name="stats_per_month">📆 Photos pro Monat</string>
+    <string name="stats_seasons">🌸 Jahreszeiten</string>
+    <string name="stats_weekdays">📅 Wochentage</string>
+    <string name="stats_hours">🕐 Uhrzeiten</string>
+    <string name="stats_cameras">📷 Kameras</string>
+    <string name="stats_gps_per_year">📍 GPS-Abdeckung pro Jahr (%)</string>
+    <string name="stats_filesize_per_year">💾 Ø Dateigröße pro Jahr (MB)</string>
+    <string name="stats_storage_per_year">📦 Speicher pro Jahr (GB)</string>
+    <string name="stats_top_albums">🗂️ Top Alben</string>
+    <string name="stats_diary_texts">✍️ Tagebuch-Texte</string>
+    <string name="stats_writing_per_year">📝 Schreibaktivität pro Jahr (Wörter)</string>
+    <string name="stats_text_styles">🏷️ Text-Stile</string>
+    <string name="stats_diary_score">🏆 Tagebuch-Score (Texte je Photo)</string>
+    <string name="stats_tours_per_year">🚴 Touren je Jahr</string>
+    <string name="stats_month_year">📅 Monat / Jahr</string>
+    <string name="stats_no_data">Keine Daten.</string>
+    <string name="stats_up_to">bis %1$s</string>
+    <string name="stats_style_default">Standard</string>
+    <string name="stats_style_info">Info</string>
+    <string name="stats_style_quote">Zitat</string>
+    <string name="stats_style_note">Notiz</string>
+    <string name="stats_style_heading">Überschrift</string>
+    <string-array name="stats_weekday_labels">
+        <item>Mo</item><item>Di</item><item>Mi</item><item>Do</item><item>Fr</item><item>Sa</item><item>So</item>
+    </string-array>
+    <string-array name="stats_season_labels">
+        <item>Frühling</item><item>Sommer</item><item>Herbst</item><item>Winter</item>
+    </string-array>
+    <string-array name="stats_month_letters">
+        <item>J</item><item>F</item><item>M</item><item>A</item><item>M</item><item>J</item><item>J</item><item>A</item><item>S</item><item>O</item><item>N</item><item>D</item>
+    </string-array>
+
+    <!-- Timeline -->
+    <string name="timeline_filter_uncurated">Durchlauf</string>
+    <string name="timeline_filter_all">Alle</string>
+    <string name="timeline_not_backed_up">%1$d nicht gesichert</string>
+    <string name="timeline_clear_selection">Auswahl aufheben</string>
+    <string name="timeline_selected">%1$d ausgewählt</string>
+    <string name="timeline_sort_into">Einsortieren</string>
+    <plurals name="timeline_backup_now_n">
+        <item quantity="one">Jetzt sichern</item>
+        <item quantity="other">%1$d jetzt sichern</item>
+    </plurals>
+    <string name="timeline_backup_now">Jetzt sichern</string>
+    <string name="timeline_share_selection">Weitergeben</string>
+    <string name="timeline_delete">Löschen</string>
+    <string name="timeline_delete_title_trash">In den Papierkorb?</string>
+    <string name="timeline_delete_title_nothing">Nichts zu löschen</string>
+    <plurals name="timeline_delete_title_n">
+        <item quantity="one">%1$d Datei löschen?</item>
+        <item quantity="other">%1$d Dateien löschen?</item>
+    </plurals>
+    <string name="timeline_fate_server">Die Dateien werden vom Server entfernt.</string>
+    <string name="timeline_fate_recycle">Die Dateien landen im Papierkorb der NAS. Zurückholen geht in File Station.</string>
+    <string name="timeline_fate_final">Kein Papierkorb auf der Freigabe — die Dateien sind unwiderruflich weg.</string>
+    <string name="timeline_fate_mixed">Achtung, gemischt: in einem Bereich ist der Papierkorb aktiv, im anderen nicht — dort wäre es endgültig.</string>
+    <plurals name="timeline_device_note">
+        <item quantity="one">Eine Aufnahme liegt nur auf dem Gerät — sie wandert in dessen Papierkorb (30 Tage wiederherstellbar); danach fragt Android noch einmal.</item>
+        <item quantity="other">%1$d Aufnahmen liegen nur auf dem Gerät — sie wandern in dessen Papierkorb (30 Tage wiederherstellbar); danach fragt Android noch einmal.</item>
+    </plurals>
+    <plurals name="timeline_pc_note">
+        <item quantity="one">Eine Datei liegt nur auf diesem PC — sie wandert in den Papierkorb des Systems.</item>
+        <item quantity="other">%1$d Dateien liegen nur auf diesem PC — sie wandern in den Papierkorb des Systems.</item>
+    </plurals>
+    <string name="pc_folders_title">Ordner auf diesem PC</string>
+    <string name="timeline_download_selection">Herunterladen</string>
+    <string name="pc_folders_intro">Fotos und Videos aus diesen Ordnern (samt Unterordnern) erscheinen im Zeitstrahl. Was noch nicht auf der NAS liegt, trägt die durchgestrichene Wolke — markieren und „Sichern“ lädt es in den Durchlauf.</string>
+    <string name="pc_folders_empty">Noch kein Ordner gewählt.</string>
+    <string name="pc_folders_add">Ordner hinzufügen …</string>
+    <string name="pc_folders_remove">Ordner entfernen</string>
+    <string name="pc_folders_target">Hochladen in den Bestand</string>
+    <string name="pc_folders_target_shared">Familie</string>
+    <string name="pc_folders_target_personal">Privat</string>
+    <string name="pc_folders_choose">Ordner mit Fotos wählen</string>
+    <string name="settings_pc_folders_hint">Fotos vom PC im Zeitstrahl zeigen und markiert hochladen</string>
+    <string name="timeline_kept_one">Die Datei gehört zu einem Album und bleibt erhalten.</string>
+    <string name="timeline_kept_all">Alle %1$d gehören zu Alben und bleiben erhalten.</string>
+    <plurals name="timeline_kept_some">
+        <item quantity="one">Löschen ist für den Ausschuss gedacht. %1$d Datei gehört zu einem Album und bleibt unangetastet.</item>
+        <item quantity="other">Löschen ist für den Ausschuss gedacht. %1$d Dateien gehören zu einem Album und bleiben unangetastet.</item>
+    </plurals>
+    <string name="timeline_curate_hint">Kuratieren heißt verteilen — Löschen ist für den Ausschuss gedacht.</string>
+    <string name="timeline_sort_into_title">Einsortieren nach…</string>
+    <string name="timeline_album_search">Album suchen</string>
+    <string name="timeline_year_match">passt</string>
+    <string name="timeline_video">Video</string>
+    <string name="timeline_in_album">In einem Album</string>
+    <string name="timeline_selected_mark">ausgewählt</string>
+    <plurals name="timeline_photo_count">
+        <item quantity="one">%1$d Aufnahme</item>
+        <item quantity="other">%1$d Aufnahmen</item>
+    </plurals>
+    <string name="timeline_memories">Erinnerungen</string>
+    <plurals name="timeline_years_ago">
+        <item quantity="one">vor %1$d Jahr</item>
+        <item quantity="other">vor %1$d Jahren</item>
+    </plurals>
+
+    <!-- Beisteuern (Contrib) -->
+    <string name="contrib_close">Beisteuern schließen</string>
+    <string name="contrib_title">Beisteuern</string>
+    <string name="contrib_intro">Ein Beisteuern-Link lässt andere Fotos und Videos abliefern — ohne Konto, ohne App, einfach im Browser. Die Dateien landen in einem Sammelordner, nicht in einem Album; einsortiert wird danach ganz normal über die Timeline.</string>
+    <string name="contrib_fresh_title">Neuer Beisteuern-Link</string>
+    <string name="contrib_qr_local_only">Achtung: Dieser Server ist unter einer Adresse im eigenen Netz eingetragen. Der Code funktioniert deshalb nur für Gäste im selben WLAN.</string>
+    <string name="contrib_qr_hint">Zum Abfotografieren hinhalten — die Gäste brauchen weder Konto noch App.</string>
+    <string name="contrib_copy">Kopieren</string>
+    <string name="contrib_share">Weitergeben</string>
+    <string name="contrib_link_label">Link</string>
+    <string name="contrib_fresh_hint">Nur jetzt sichtbar — der Server kennt danach nur noch den Fingerabdruck. Auch der QR-Code ist dann weg.</string>
+    <string name="contrib_active_links">Aktive Links</string>
+    <string name="contrib_empty">Noch keine Beisteuern-Links.</string>
+    <string name="contrib_create_button">+ Beisteuern-Link anlegen</string>
+    <string name="contrib_qr_title">Zum Abfotografieren</string>
+    <string name="contrib_qr_dialog_local_only">Nur für Gäste im selben WLAN — der Server ist unter einer Adresse im eigenen Netz eingetragen.</string>
+    <string name="contrib_close_dialog">Schließen</string>
+    <string name="contrib_revoke_title">Link widerrufen?</string>
+    <string name="contrib_revoke_body">Der Link zu „%1$s“ funktioniert dann nicht mehr. Die %2$d bereits abgelieferten Dateien bleiben im Sammelordner liegen.</string>
+    <string name="contrib_revoke">Widerrufen</string>
+    <string name="contrib_space_shared">Familie</string>
+    <string name="contrib_space_personal">Privat</string>
+    <string name="contrib_row_files">%1$d von %2$d Dateien</string>
+    <string name="contrib_expired">abgelaufen</string>
+    <string name="contrib_until">bis %1$s</string>
+    <string name="contrib_full">Obergrenze erreicht — weitere Uploads werden abgewiesen.</string>
+    <string name="contrib_show_qr">QR-Code zeigen</string>
+    <string name="contrib_share_link">Link teilen</string>
+    <string name="contrib_withdraw">Zurückziehen</string>
+    <string name="contrib_create_title">Beisteuern-Link anlegen</string>
+    <string name="contrib_folder_name">Name des Sammelordners</string>
+    <string name="contrib_folder_hint">2026 - Feier</string>
+    <string name="contrib_folder_note">Der Ordner wird neu angelegt. Ein bestehendes Album geht nicht — Gäste liefern Rohmaterial, kuratiert wird später.</string>
+    <string name="contrib_section_space">Bereich</string>
+    <string name="contrib_section_validity">Gültig</string>
+    <string name="contrib_days_short">%1$d T</string>
+    <string name="contrib_section_max">Höchstens</string>
+    <string name="contrib_name_missing">Name fehlt</string>
+    <string name="contrib_create">Anlegen</string>
+
+    <!-- Teilen (Share) -->
+    <string name="share_expiry_unlimited">Unbegrenzt gültig</string>
+    <string name="share_expiry_7">7 Tage gültig</string>
+    <string name="share_expiry_30">30 Tage gültig</string>
+    <string name="share_expiry_365">1 Jahr gültig</string>
+    <string name="share_title_photo">Foto teilen</string>
+    <string name="share_title_album">Album teilen: „%1$s“</string>
+    <string name="share_intro_photo">Erzeugt einen Link auf genau dieses Foto — die Gastseite zeigt das Bild und bietet das Original zum Herunterladen.</string>
+    <string name="share_intro_album">Erzeugt einen Nur-Lese-Link zum Verschicken. Private Elemente (🔒) bleiben darin ausgeblendet.</string>
+    <string name="share_link_label">Link</string>
+    <string name="share_active_links">Aktive Links</string>
+    <string name="share_empty">Noch keine aktiven Links.</string>
+    <string name="share_revoked_toast">Link widerrufen.</string>
+    <string name="share_expiry_pick">Auswahl</string>
+    <string name="share_creating">Erzeuge Link…</string>
+    <string name="share_create">Neuen Link erzeugen</string>
+    <string name="share_close">Schließen</string>
+    <string name="share_row_created">erstellt %1$s</string>
+    <string name="share_row_last_seen">zuletzt geöffnet %1$s</string>
+    <string name="share_row_never">noch nie geöffnet</string>
+    <string name="share_row_expired">abgelaufen</string>
+    <string name="share_row_expires">läuft ab %1$s</string>
+    <string name="share_copy_link">Link kopieren</string>
+    <string name="share_share">Weitergeben</string>
+    <string name="share_revoke_link">Link widerrufen</string>
+    <string name="share_revoke_title">Link widerrufen?</string>
+    <string name="share_revoke_body">Wer den Link hat, verliert sofort den Zugang. Rückgängig geht das nicht — für neuen Zugang brauchst du einen neuen Link.</string>
+    <string name="share_revoke">Widerrufen</string>
+    <string name="share_fresh_title">Neuer Link</string>
+    <string name="share_copy">Kopieren</string>
+    <string name="share_mail_pill">E-Mail…</string>
+    <string name="share_fresh_hint">Nur jetzt sichtbar — der Server speichert den Link selbst nicht, nur seinen Fingerabdruck.</string>
+    <string name="share_mail_title">Per E-Mail verschicken</string>
+    <string name="share_mail_intro_photo">Der Server verschickt den Link zu diesem einen Foto über seine eigene Mail-Konfiguration. Aus welchem Album es stammt, steht nicht in der Mail.</string>
+    <string name="share_mail_intro_album">Der Server verschickt den Link zu „%1$s“ über seine eigene Mail-Konfiguration.</string>
+    <string name="share_mail_to">Empfänger</string>
+    <string name="share_mail_to_hint">name@beispiel.de</string>
+    <string name="share_mail_name">Name (optional)</string>
+    <string name="share_mail_message">Nachricht (optional)</string>
+    <string name="share_mail_message_hint">Ein paar Zeilen dazu…</string>
+    <string name="share_mail_sent">Verschickt.</string>
+    <string name="share_mail_sending">Sende…</string>
+    <string name="share_mail_send">Senden</string>
+    <string name="share_forbidden">Dafür fehlen dir die Rechte — geteilte Alben darf nur kuratieren, wer den Bereich betreut.</string>
+    <string name="share_link_chooser_title">Link weitergeben</string>
+
+    <!-- Trails -->
+    <string name="trails_tab_day">Tag</string>
+    <string name="trails_tab_places">Orte</string>
+    <string name="trails_tab_map">Karte</string>
+    <string name="trails_tab_devices">Geräte</string>
+    <string name="trails_back_to_day">Zurück zum Tag</string>
+    <string name="trails_close">Trails schließen</string>
+    <plurals name="trails_points">
+        <item quantity="one">%1$s Punkt</item>
+        <item quantity="other">%1$s Punkte</item>
+    </plurals>
+    <string name="trails_empty_store">noch leer</string>
+    <string name="trails_back_today">→ zurück zu Heute</string>
+    <string name="trails_not_derived">Für diesen Tag sind noch keine Aufenthalte und Wege erkannt — das macht sonst der Nachtlauf.</string>
+    <string name="trails_deriving">Wird ausgewertet…</string>
+    <string name="trails_derive_now">Tag jetzt auswerten</string>
+    <string name="trails_day_empty">Für diesen Tag liegt nichts im Speicher.</string>
+    <string name="trails_next_recorded">nächster Tag mit Aufzeichnung</string>
+    <string name="trails_shown">gezeigt: %1$d</string>
+    <plurals name="trails_visits">
+        <item quantity="one">%1$d Aufenthalt</item>
+        <item quantity="other">%1$d Aufenthalte</item>
+    </plurals>
+    <plurals name="trails_activities">
+        <item quantity="one">%1$d Weg</item>
+        <item quantity="other">%1$d Wege</item>
+    </plurals>
+    <string name="trails_own_history">Trails ist deine eigene Historie — sie liegt nur in deinem Speicher.</string>
+    <string name="trails_loading">lädt…</string>
+    <plurals name="trails_days_recorded">
+        <item quantity="one">%1$d Tag mit Aufzeichnung</item>
+        <item quantity="other">%1$d Tage mit Aufzeichnung</item>
+    </plurals>
+    <string name="trails_close_dialog">Schließen</string>
+    <string name="trails_no_places">Noch keine Aufenthalte erkannt.</string>
+    <string name="trails_places_nightly">Die Auswertung läuft nachts.</string>
+    <string name="trails_place_unnamed">Ort ohne Namen</string>
+    <string name="trails_last">zuletzt %1$s</string>
+    <string name="trails_all_years">Alles</string>
+    <string name="trails_heat_empty_store">Noch keine Punkte im Speicher.</string>
+    <string name="trails_heat_rendering">Über alle Jahre — der Server rastert gerade %1$s Punkte.</string>
+    <string name="trails_heat_no_points">Für diesen Zeitraum liegen keine Punkte vor.</string>
+    <string name="trails_heat_summary">%1$s Punkte in %2$s Zellen</string>
+    <string name="trails_heat_truncated">" · gekürzt"</string>
+    <string name="trails_forbidden">Trails ist für dieses Konto nicht freigeschaltet (oder im Demo gesperrt).</string>
+    <string name="trails_visit_home">🏠 Zuhause</string>
+    <string name="trails_visit_work">💼 Arbeit</string>
+    <string name="trails_visit_searched">🔎 Gesuchte Adresse</string>
+    <string name="trails_visit_generic">Aufenthalt</string>
+    <string name="trails_act_walking">Zu Fuß</string>
+    <string name="trails_act_running">Laufen</string>
+    <string name="trails_act_cycling">Rad</string>
+    <string name="trails_act_car">Auto</string>
+    <string name="trails_act_motorcycle">Motorrad</string>
+    <string name="trails_act_bus">Bus</string>
+    <string name="trails_act_train">Zug</string>
+    <string name="trails_act_subway">U-Bahn</string>
+    <string name="trails_act_tram">Straßenbahn</string>
+    <string name="trails_act_ferry">Fähre</string>
+    <string name="trails_act_flight">Flug</string>
+    <string name="trails_act_sailing">Segeln</string>
+    <string name="trails_act_ski">Ski</string>
+    <string name="trails_act_still">Stillstand</string>
+    <string name="trails_act_way">Weg</string>
+
+    <!-- Trails: Geräte-Tab -->
+    <string name="trails_dev_recording">Aufzeichnung</string>
+    <string name="trails_dev_none">kein Gerät</string>
+    <plurals name="trails_dev_count">
+        <item quantity="one">%1$d Gerät</item>
+        <item quantity="other">%1$d Geräte</item>
+    </plurals>
+    <string name="trails_dev_intro">OwnTracks schickt deine Standorte an MPD — offenes Protokoll, die Daten landen ausschließlich in deinem eigenen Speicher.</string>
+    <string name="trails_dev_empty">Noch kein Gerät eingerichtet.</string>
+    <string name="trails_dev_no_token">" · ohne Token"</string>
+    <string name="trails_dev_last">" · zuletzt %1$s"</string>
+    <string name="trails_dev_seen">" · gesehen %1$s"</string>
+    <string name="trails_dev_delete">Löschen</string>
+    <string name="trails_dev_add">+ Gerät einrichten</string>
+    <string name="trails_sources_title">Quellen im Speicher</string>
+    <string name="trails_sources_intro">Nach einem Umstieg liegen Alt-Wege und die eigene Erkennung nebeneinander im selben Zeitraum. Hier wird man sie los.</string>
+    <string name="trails_source_counts">%1$s Punkte · %2$s Aufenthalte · %3$s Wege</string>
+    <string name="trails_archive_title">Mitnehmen</string>
+    <string name="trails_archive_none">kein Archiv</string>
+    <string name="trails_archive_files">%1$d Dateien · %2$s</string>
+    <string name="trails_archive_intro">Jede Rohnachricht liegt unverändert im Archiv, dazu die abgeleiteten Aufenthalte und Wege. Wer das herunterlädt, hat alles.</string>
+    <string name="trails_archive_empty">Noch keine Archivdateien — der Nachtlauf schreibt sie um 04:00.</string>
+    <string name="trails_archive_zip">Archiv als ZIP</string>
+    <string name="trails_archive_rebuild">Archiv neu bauen</string>
+    <string name="trails_archive_rebuilt">%1$d Monate geschrieben.</string>
+    <string name="trails_archive_running">Läuft — bei großen Beständen dauert das einige Minuten.</string>
+    <string name="trails_store_title">Speicher</string>
+    <string name="trails_store_summary">%1$s Punkte, %2$s Aufenthalte, %3$s Wege</string>
+    <string name="trails_store_range">%1$s bis %2$s</string>
+    <string name="trails_dev_remove_title">Gerät entfernen?</string>
+    <string name="trails_dev_remove_body">„%1$s“ verliert seinen Token und kann nichts mehr senden. Die bereits aufgezeichneten Punkte bleiben erhalten.</string>
+    <string name="trails_dev_remove">Entfernen</string>
+    <string name="trails_dev_default_name">Handy</string>
+    <string name="trails_dev_setup_title">Gerät einrichten</string>
+    <string name="trails_dev_setup_intro">Die Geräte-ID unterscheidet mehrere Aufzeichner voneinander und taucht später an jedem Punkt auf.</string>
+    <string name="trails_dev_id">Geräte-ID</string>
+    <string name="trails_dev_name">Name</string>
+    <string name="trails_dev_create">Anlegen</string>
+    <string name="trails_ot_title">OwnTracks einrichten</string>
+    <string name="trails_ot_intro">„Übernehmen“ öffnet OwnTracks mit fertiger Konfiguration — dort nur noch bestätigen. Der Token wird dabei nie abgetippt.</string>
+    <string name="trails_ot_address">Adresse</string>
+    <string name="trails_ot_user">Benutzer</string>
+    <string name="trails_ot_password">Passwort (Token)</string>
+    <string name="trails_ot_token_hint">Diesen Token gibt es nur jetzt. Verloren? Gerät einfach neu anlegen — derselbe Name erneuert den Token.</string>
+    <string name="trails_ot_missing">OwnTracks ist auf diesem Gerät nicht installiert. Die Werte oben lassen sich antippen und kopieren.</string>
+    <string name="trails_ot_apply">In OwnTracks übernehmen</string>
+    <string name="trails_ot_done">Fertig</string>
+    <string name="trails_src_delete_title">„%1$s“ löschen</string>
+    <string name="trails_src_only_derived">Nur Aufenthalte und Wege</string>
+    <string name="trails_src_only_derived_body">%1$s Aufenthalte und %2$s Wege dieser Quelle fallen weg, die Rohpunkte bleiben. Der Umstiegsfall.</string>
+    <string name="trails_src_whole">Die ganze Quelle</string>
+    <string name="trails_src_whole_body">Alles fällt, auch die %1$s Rohpunkte — und zwar als Präfix, „google“ trifft auch „google:h1“. Der Rückweg aus einem missglückten Import.</string>
+    <string name="trails_src_irreversible">Das lässt sich nicht rückgängig machen.</string>
+    <string name="trails_src_deleted">Gelöscht.</string>
+    <string name="trails_src_delete_final">Endgültig löschen</string>
+    <string name="trails_choice_selected">gewählt</string>
+    <string name="trails_choice_unselected">nicht gewählt</string>
+    <string name="trails_dl_no_downloads">Downloads-Ordner nicht beschreibbar</string>
+    <string name="trails_dl_no_write">Kein Schreibzugriff</string>
+    <string name="trails_dl_no_location">Kein Speicherort</string>
+    <string name="trails_dl_saved">Gespeichert: %1$s</string>
+    <string name="trails_collapse">zuklappen</string>
+    <string name="trails_expand">aufklappen</string>
+    <!-- Eigener Ortsname (Vertrag 08.09.2026) -->
+    <string name="trails_place_rename">Ort benennen</string>
+    <string name="trails_place_name_hint">Name</string>
+    <string name="trails_place_osm_name">Vom Kartendienst: %1$s</string>
+    <string name="trails_place_name_reset">Zurücksetzen</string>
+    <string name="trails_place_name_saved">Ortsname gespeichert</string>
+    <string name="trails_place_name_cleared">Eigener Ortsname entfernt</string>
+    <string name="trails_place_name_failed">Ortsname konnte nicht gespeichert werden: %1$s</string>
+    <string name="trails_place_custom">eigener Name</string>
+    <string name="trails_act_vehicle">Fahrzeug</string>
+    <string name="trails_ot_resend">Aufzeichnungswerte an OwnTracks senden</string>
+    <string name="trails_ot_resend_hint">Für ein OwnTracks, das schon angemeldet ist: setzt nur die gewählte Stufe samt Modus „Wesentliche Änderungen"; Adresse und Token bleiben. OwnTracks fragt vor dem Übernehmen.</string>
+    <string name="trails_ot_missing_short">OwnTracks ist auf diesem Gerät nicht installiert.</string>
+    <string name="trails_rec_title">Aufzeichnung</string>
+    <string name="trails_rec_sparsam">Sparsam</string>
+    <string name="trails_rec_normal">Normal</string>
+    <string name="trails_rec_genau">Genau</string>
+    <string name="trails_rec_hint_sparsam">Ab 250 m Bewegung, höchstens alle 5 Minuten. Kaum spürbar am Akku; ein Gang durchs Dorf bleibt grob.</string>
+    <string name="trails_rec_hint_normal">Ab 100 m Bewegung, höchstens jede Minute. Wie Google Timeline; Spaziergänge und Fahrten sind sauber.</string>
+    <string name="trails_rec_hint_genau">Ab 50 m Bewegung, alle 20 Sekunden. Merklich am Akku; für Wandertage, danach zurückstellen.</string>
+    <string name="trails_dl_started">Lade „%1$s“ …</string>
+    <string name="trails_dl_open">Öffnen</string>
+    <string name="trails_dl_no_app">Keine App für %1$s auf dem Gerät.</string>
+    <string name="timeline_retry">Erneut versuchen</string>
+    <string name="timeline_partial">Nicht alles geladen</string>
+    <string name="map_fullscreen">Karte im Vollbild</string>
+</resources>
