@@ -21,6 +21,13 @@ Die Apps sprechen nur mit deinem Server. Kein Konto bei irgendwem, keine
 Telemetrie, kein Push-Dienst; die Serveradresse wird einmal eingegeben oder
 als QR-Code von der Seite „App verbinden“ des Servers gescannt.
 
+## Ausprobieren
+
+Die Apps brauchen einen Server. Einen öffentlichen Demo-Server gibt es: in der
+App die Adresse `https://mpd.bgg-home.de` eingeben, Konto `mpd-demo`, Passwort
+`mpd-demo` (nur lesend, sechs Beispielalben). Im Browser zeigt
+[mpd.bgg-home.de/demo-login](https://mpd.bgg-home.de/demo-login) dieselben Alben ohne Passwort.
+
 ## Installieren
 
 Fertige Pakete: [bgg-home.de/mpd.apk](https://bgg-home.de/mpd.apk)
