@@ -205,6 +205,50 @@ class ArmableMapView(context: Context) : MapView(context) {
     }
 }
 
+/**
+ * Alle Punkte einpassen — ohne die Endlosschleife von osmdroid.
+ *
+ * ANR 05.11.2026 (Vorgabe: „app hat jetzt hänger da wo karte kommt"), Trace
+ * aus dem Bugreport: Hauptthread 20 s in Projection.getCloserPixel, gerufen
+ * aus MapView.zoomToBoundingBox im onFirstLayout der Tour-Karte. Der Weg:
+ * zoomToBoundingBox rechnet mit Breite minus 2 x Rand; ist die Karte beim
+ * ersten Layout kleiner als der Rand (oder noch 0 x 0), wird der Logarithmus
+ * einer negativen Zahl zur Zoomstufe NaN, die Projektion bekommt eine
+ * Kartengroesse NaN, und getCloserPixel addiert sie in einer while-Schleife,
+ * die so nie endet. Dasselbe passiert mit einer nicht endlichen Koordinate.
+ *
+ * Deshalb hier: nur endliche Punkte, und eingepasst wird erst, wenn die
+ * Karte groesser als der doppelte Rand ist — sonst beim naechsten Layout
+ * noch einmal. Bis dahin Mitte und Zoom 12, damit nie Leere steht.
+ */
+internal fun MapView.passeSicherEin(punkte: List<GeoPoint>, randPx: Int) {
+    val endlich = punkte.filter { it.latitude.isFinite() && it.longitude.isFinite() }
+    if (endlich.isEmpty()) return
+    val box = BoundingBox.fromGeoPoints(endlich)
+    if (endlich.size == 1 || box.latitudeSpan == 0.0 && box.longitudeSpanWithDateLine == 0.0) {
+        controller.setZoom(12.0)
+        controller.setCenter(endlich[0])
+        return
+    }
+    fun gross() = width > 2 * randPx && height > 2 * randPx
+    if (gross()) {
+        zoomToBoundingBox(box, false, randPx)
+        return
+    }
+    controller.setZoom(12.0)
+    controller.setCenter(box.centerWithDateLine)
+    addOnLayoutChangeListener(object : android.view.View.OnLayoutChangeListener {
+        override fun onLayoutChange(
+            v: android.view.View, l: Int, t: Int, r: Int, b: Int,
+            ol: Int, ot: Int, or: Int, ob: Int,
+        ) {
+            if (!gross()) return
+            removeOnLayoutChangeListener(this)
+            zoomToBoundingBox(box, false, randPx)
+        }
+    })
+}
+
 internal fun newMapView(context: Context, topo: Boolean): ArmableMapView {
     ensureOsmdroid(context)
     return ArmableMapView(context).apply {
@@ -262,13 +306,11 @@ actual fun MapElementBlock(elem: PdxElement) {
                             })
                         }
                         addOnFirstLayoutListener { _, _, _, _, _ ->
-                            if (pins.size == 1) {
-                                controller.setZoom(12.0)
-                                controller.setCenter(GeoPoint(pins[0].lat, pins[0].lon))
-                            } else {
-                                val box = BoundingBox.fromGeoPoints(pins.map { GeoPoint(it.lat, it.lon) })
-                                zoomToBoundingBox(box, false, (48 * resources.displayMetrics.density).toInt())
-                            }
+                            // 1 Pin → Zoom 12 wie im Web, sonst alle einpassen
+                            passeSicherEin(
+                                pins.map { GeoPoint(it.lat, it.lon) },
+                                (48 * resources.displayMetrics.density).toInt(),
+                            )
                         }
                     }
                 },
@@ -523,10 +565,7 @@ actual fun TourElementBlock(vm: AppViewModel, elem: PdxElement, imageLoader: coi
                                 }
                             }
                             addOnFirstLayoutListener { _, _, _, _, _ ->
-                                zoomToBoundingBox(
-                                    BoundingBox.fromGeoPoints(geo), false,
-                                    (24 * density).toInt(),
-                                )
+                                passeSicherEin(geo, (24 * density).toInt())
                             }
                         }
                     },
