@@ -1284,6 +1284,7 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
                 val (photos, photoIndexById) =
                     buildPhotos(content.elements, summary.name, content.meta.showLocked)
                 tourDaten.clear()
+                fotoOrteCache.clear()
                 openAlbum = OpenAlbum(
                     summary = summary,
                     title = content.meta.title.ifBlank { summary.name },
@@ -3047,6 +3048,39 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
      */
     val tourDaten = HashMap<String, Any>()
     private val tourLaeufe = HashMap<String, kotlinx.coroutines.Deferred<Any>>()
+
+    /**
+     * Ortsangaben der Fotos je Bereich und Zeitraum (Schluessel
+     * [de.bgghome.mpd.util.fotoOrtSchluessel]), fuer „Fotos auf der Tour"
+     * (05.11.2026, Koordinaten zuerst). Geleert mit dem Album wie [tourDaten].
+     */
+    private val fotoOrteCache = HashMap<String, Map<String, de.bgghome.mpd.util.FotoOrt>>()
+
+    /**
+     * Ortsangaben aller Fotos des Bereichs zwischen zwei Aufnahmetagen.
+     * Ein aelterer Server ohne die Route (404) und ein Netzfehler ergeben
+     * eine leere Liste: die Tour-Karte faellt dann fuer jedes Foto auf die
+     * Uhrzeit zurueck, wie vor dem 05.11.2026 — die Spur selbst ist zu dem
+     * Zeitpunkt schon geladen, ein zweiter Fehlertext brächte nichts.
+     */
+    suspend fun fotoOrte(space: String, von: String, bis: String): Map<String, de.bgghome.mpd.util.FotoOrt> {
+        val key = "$space|$von|$bis"
+        fotoOrteCache[key]?.let { return it }
+        val orte = try {
+            api.photosGeo(baseUrl, space, von, bis).photos
+                .filter { it.lat.isFinite() && it.lon.isFinite() }
+                .associate {
+                    de.bgghome.mpd.util.fotoOrtSchluessel(it.space, it.album, it.file) to
+                        de.bgghome.mpd.util.FotoOrt(it.lat, it.lon)
+                }
+        } catch (e: MpdHttpException) {
+            emptyMap()
+        } catch (e: IOException) {
+            emptyMap()
+        }
+        fotoOrteCache[key] = orte
+        return orte
+    }
 
     /**
      * Tour-Daten holen — aus [tourDaten] oder per [laden]. Laufen Vorwaermer

@@ -119,15 +119,27 @@ internal actual suspend fun ladeTour(
         parseGpx(vm.api.fetchText(url))
     }
     if (parsed.points.isEmpty()) throw TourOhnePunkte()
-    // Fotomarker: Aufnahmezeit aus dem Dateinamen auf die Spur gelegt,
+    // Fotomarker: Koordinaten aus dem EXIF zuerst, sonst die Aufnahmezeit
+    // aus dem Dateinamen auf die Spur gelegt (util/TourFotos.kt, 05.11.2026),
     // als Mini-Foto wie auf Android (22.09.: „die Karte zeigt
     // nicht die kleinen MiniFotos an").
+    val orte = de.bgghome.mpd.util.spurTage(parsed)
+        ?.let { (von, bis) -> vm.fotoOrte(album.summary.space, von, bis) }
+        .orEmpty()
     // Wie Android: nicht im Aufrufer-Kontext (Main) rechnen (29.09.2026).
     val pins = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
         val liste = mutableListOf<KartenPin>()
+        val positionen = de.bgghome.mpd.util.tourFotoPositionen(
+            parsed,
+            album.photos.map { photo ->
+                de.bgghome.mpd.util.TourFoto(
+                    photo.file,
+                    orte[de.bgghome.mpd.util.fotoOrtSchluessel(photo.space, photo.album, photo.file)],
+                )
+            },
+        )
         album.photos.forEachIndexed { photoIndex, photo ->
-            val ts = de.bgghome.mpd.util.filenameEpochSeconds(photo.file) ?: return@forEachIndexed
-            val pos = de.bgghome.mpd.util.positionAt(parsed, ts) ?: return@forEachIndexed
+            val pos = positionen[photoIndex] ?: return@forEachIndexed
             liste += KartenPin(pos.lat, pos.lon, photo.file, tag = photoIndex, bildUrl = photo.mUrl)
         }
         parsed.anzeigePunkte

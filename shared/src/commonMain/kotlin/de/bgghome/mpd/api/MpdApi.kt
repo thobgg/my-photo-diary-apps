@@ -1505,6 +1505,21 @@ class MpdApi(private val settings: SettingsStore) {
         baseUrl: String, vararg tail: String, query: Map<String, String?> = emptyMap(),
     ): HttpUrl = api(baseUrl, "trails", *tail, query = query)
 
+    /**
+     * GET /api/photos/geo — Ortsangaben der Fotos eines Zeitraums, gebuendelt.
+     * [from]/[to] sind Aufnahmetage YYYY-MM-DD (Ortszeit, einschliesslich).
+     * Limit auf dem Servermaximum; `truncated` bleibt in der Antwort sichtbar.
+     */
+    suspend fun photosGeo(
+        baseUrl: String, space: String, from: String, to: String,
+    ): PhotoGeoResponse = withContext(Dispatchers.IO) {
+        val url = api(
+            baseUrl, "photos", "geo",
+            query = mapOf("space" to space, "from" to from, "to" to to, "limit" to "50000"),
+        )
+        decode(PhotoGeoResponse.serializer(), get(url))
+    }
+
     /** GET /api/trails/status — Umfang des eigenen Speichers. */
     suspend fun trailsStatus(baseUrl: String): TrailStatus = withContext(Dispatchers.IO) {
         decode(TrailStatus.serializer(), get(trailsUrl(baseUrl, "status")))

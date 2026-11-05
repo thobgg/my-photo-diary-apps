@@ -341,10 +341,13 @@ internal actual suspend fun ladeTour(
         parseGpx(vm.api.fetchText(url))
     }
     if (parsed.points.isEmpty()) throw TourOhnePunkte()
-    // „Fotos auf der Tour": Album-Fotos per Dateinamens-Zeit auf
-    // den Track interpolieren und als ECHTE Mini-Foto-Pins backen
-    // (03.09.: goldene Punkte reichten nicht — die Fotos
-    // selbst sollen auf der Karte stehen).
+    // „Fotos auf der Tour": Koordinaten aus dem EXIF zuerst, sonst die
+    // Dateinamens-Zeit auf den Track interpoliert (util/TourFotos.kt,
+    // 05.11.2026) — und als ECHTE Mini-Foto-Pins backen (03.09.: goldene
+    // Punkte reichten nicht — die Fotos selbst sollen auf der Karte stehen).
+    val orte = de.bgghome.mpd.util.spurTage(parsed)
+        ?.let { (von, bis) -> vm.fotoOrte(album.summary.space, von, bis) }
+        .orEmpty()
     //
     // NICHT AUF MAIN (29.09.2026, ANR beim Scrollen): Die Schleife lief im
     // Aufrufer-Kontext, also auf dem Main-Thread — je Foto positionAt ueber
@@ -352,11 +355,17 @@ internal actual suspend fun ladeTour(
     // Pins werden gleich hier gebacken, nicht erst in der AndroidView-Factory.
     val markers = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
         val liste = mutableListOf<TourPhotoMarker>()
+        val positionen = de.bgghome.mpd.util.tourFotoPositionen(
+            parsed,
+            album.photos.map { photo ->
+                de.bgghome.mpd.util.TourFoto(
+                    photo.file,
+                    orte[de.bgghome.mpd.util.fotoOrtSchluessel(photo.space, photo.album, photo.file)],
+                )
+            },
+        )
         album.photos.forEachIndexed { photoIndex, photo ->
-            val ts = de.bgghome.mpd.util.filenameEpochSeconds(photo.file)
-                ?: return@forEachIndexed
-            val pos = de.bgghome.mpd.util.positionAt(parsed, ts)
-                ?: return@forEachIndexed
+            val pos = positionen[photoIndex] ?: return@forEachIndexed
             val request = coil3.request.ImageRequest.Builder(context)
                 .data(photo.mUrl).size(128).allowHardware(false).build()
             val bmp = (imageLoader.execute(request).image as? coil3.BitmapImage)?.bitmap
