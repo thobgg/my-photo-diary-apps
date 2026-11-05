@@ -103,6 +103,7 @@ import kotlinx.coroutines.launch
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.OpenAlbum
 import de.bgghome.mpd.SaveState
+import de.bgghome.mpd.api.MpdApi
 import de.bgghome.mpd.api.PdxElement
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.pluralStringResource
@@ -907,9 +908,21 @@ private fun PhotoThumb(
     modifier: Modifier,
     useXl: Boolean,
 ) {
-    val thumbs = elem.thumbnails ?: return
-    val url = vm.baseUrl + if (useXl) thumbs.xl else thumbs.m
     val isVideo = elem.type == "video"
+    // Titelbild eines Videos (05.11.2026: „ein Titelbild, kein black
+    // screen"): Die Album-Antwort traegt auch fuer Videos /api/thumbnail-
+    // Adressen, und die antworten bei Videos mit 415 — die Kachel blieb
+    // schwarz. Das Web faellt auf /api/video-thumb zurueck (album-render.js,
+    // source_album || albumName); der Zeitstrahl nimmt ihn direkt. Hier
+    // genauso, aufgeloest auf den Quellordner bei referenzierten Videos.
+    val url = if (isVideo) {
+        val summary = vm.openAlbum?.summary ?: return
+        val file = elem.file ?: return
+        vm.baseUrl + MpdApi.videoThumbPath(summary.space, elem.sourceAlbum ?: summary.name, file)
+    } else {
+        val thumbs = elem.thumbnails ?: return
+        vm.baseUrl + if (useXl) thumbs.xl else thumbs.m
+    }
 
     Box(
         modifier = modifier

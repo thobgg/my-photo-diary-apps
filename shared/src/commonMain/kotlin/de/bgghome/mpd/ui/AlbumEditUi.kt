@@ -168,7 +168,7 @@ internal fun BoxScope.EditElementButtons(
     // Tippen und nicht langes Druecken: langes Druecken IST im Edit-Modus
     // das Verschieben (detectDragGesturesAfterLongPress, AlbumDrag.kt).
     // Der Tipp war frei — er tat hier bisher nichts, genau wie im Web.
-    val hatMenue = elem.type == "photo" || elem.type == "video"
+    val hatMenue = elem.istDatei
     if (hatMenue) {
         Box(Modifier.matchParentSize().clickable { menuOpen = true })
         TileMenu(vm, elem, menuOpen) { menuOpen = false }
@@ -193,9 +193,9 @@ internal fun BoxScope.EditElementButtons(
     TileButton(Alignment.TopEnd, this, onClick = { onRemove(elem) }) {
         Icon(MpdIcons.Cross, stringResource(Res.string.edit_remove), Modifier.size(14.dp), tint = Color.White)
     }
-    // Physisch loeschen: dieselbe Bedingung wie der Menuepunkt — nur
-    // type=photo (wie im Web), nur Dateien des eigenen Albumordners.
-    if (elem.type == "photo" && elem.error == null && elem.sourceAlbum == null) {
+    // Physisch loeschen: dieselbe Bedingung wie der Menuepunkt — Foto
+    // und Video, nur Dateien des eigenen Albumordners.
+    if (elem.istDatei && elem.error == null && elem.sourceAlbum == null) {
         TileButton(Alignment.BottomEnd, this, onClick = { vm.requestDeleteFile(elem) }) {
             Icon(MpdIcons.Trash, stringResource(Res.string.edit_delete_file), Modifier.size(15.dp), tint = MpdRed)
         }
@@ -229,12 +229,15 @@ private fun TileMenu(
             },
             onClick = { vm.toggleLocked(elem.id); onDismiss() },
         )
-        // Physisch loeschen: wie im Web nur type=photo (kein Video);
-        // zusaetzlich nur Dateien des eigenen Albumordners — der Endpunkt
+        // Physisch loeschen: Foto UND Video (05.11.2026: „Videos haben
+        // keine Loeschfunktion"). Das Web bietet den Papierkorb nur bei
+        // type=photo; der Server nimmt seit 09/2026 beide Endungen, der
+        // Zeitstrahl loescht Videos laengst. Bewusste Abweichung vom Web.
+        // Weiterhin nur Dateien des eigenen Albumordners — der Endpunkt
         // loest den Namen im aktuellen Album auf, source_album-Referenzen
         // wuerden ins Leere gehen.
         when {
-            elem.type == "photo" && elem.error == null && elem.sourceAlbum == null ->
+            elem.istDatei && elem.error == null && elem.sourceAlbum == null ->
                 DropdownMenuItem(
                     text = { Text(stringResource(Res.string.menu_delete_file), color = MpdRed) },
                     leadingIcon = {
@@ -245,7 +248,7 @@ private fun TileMenu(
             // Warum der Punkt fehlt, statt ihn wortlos wegzulassen: ein
             // fehlender Menuepunkt sieht aus wie ein Fehler. Ein Satz, der
             // den Grund nennt, ist billiger als die Frage danach.
-            elem.type == "photo" && elem.sourceAlbum != null ->
+            elem.istDatei && elem.sourceAlbum != null ->
                 DropdownMenuItem(
                     text = {
                         Text(

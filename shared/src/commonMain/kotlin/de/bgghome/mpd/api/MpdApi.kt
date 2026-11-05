@@ -149,6 +149,10 @@ data class PdxElement(
     @SerialName("show_elevation") val showElevation: Boolean = true,
     val error: String? = null,
 ) {
+    /** Foto oder Video: ein Element, hinter dem eine Mediendatei im
+     *  Albumordner steht — die Kacheln mit Menue, Schloss und Papierkorb. */
+    val istDatei: Boolean get() = type == "photo" || type == "video"
+
     /** Seitenverhaeltnis wie im Web: unbekannt → 1.5. */
     val aspectRatio: Float
         get() = resolution?.takeIf { it.width > 0 && it.height > 0 }
