@@ -60,7 +60,39 @@ data class StatsResponse(
     val avgFilesizeMbPerYear: Map<String, Double> = emptyMap(),
     @SerialName("albums_summary") val albumsSummary: List<AlbumStatSummary> = emptyList(),
     val spaces: List<String> = emptyList(),
+    /** Jahr → ("KW_Wochentag" mit Wochentag 0=Mo → Anzahl) — Tag/Woche-Ansicht
+     *  des Webs (openDrilldown), seit 13.11.2026 auch in der App. */
+    @SerialName("photos_per_year_week")
+    val photosPerYearWeek: Map<String, Map<String, Long>> = emptyMap(),
 )
+
+/* -- /api/stats/geo: je Space ein Paket; die App fuehrt zusammen -------- */
+
+/** Ein geocodierter Ort (5-km-Cluster, Koordinate auf 3 Stellen). */
+@Serializable
+data class GeoStatPoint(
+    val lat: Double = 0.0,
+    val lon: Double = 0.0,
+    val count: Long = 0,
+    val country: String = "",
+)
+
+@Serializable
+data class StatsGeo(
+    @SerialName("total_gps_photos") val totalGpsPhotos: Long = 0,
+    @SerialName("cluster_count") val clusterCount: Long = 0,
+    @SerialName("country_counts") val countryCounts: Map<String, Long> = emptyMap(),
+    @SerialName("map_points") val mapPoints: List<GeoStatPoint> = emptyList(),
+) {
+    /** Shared + Personal additiv, wie der Web-Merge. */
+    operator fun plus(o: StatsGeo): StatsGeo = StatsGeo(
+        totalGpsPhotos = totalGpsPhotos + o.totalGpsPhotos,
+        clusterCount = clusterCount + o.clusterCount,
+        countryCounts = (countryCounts.keys + o.countryCounts.keys)
+            .associateWith { (countryCounts[it] ?: 0L) + (o.countryCounts[it] ?: 0L) },
+        mapPoints = mapPoints + o.mapPoints,
+    )
+}
 
 @Serializable
 data class AlbumStatSummary(

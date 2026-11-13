@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import de.bgghome.mpd.api.MpdApi
 import de.bgghome.mpd.api.MpdHttpException
+import de.bgghome.mpd.api.StatsGeo
 import de.bgghome.mpd.api.StatsResponse
 import de.bgghome.mpd.api.TextStats
 import de.bgghome.mpd.api.TextYear
@@ -33,6 +34,42 @@ class StatsState(
     var scanning by mutableStateOf(false)
     var error by mutableStateOf<String?>(null)
     private var job: Job? = null
+
+    /** Weltkarte und Laender (/api/stats/geo), seit 13.11.2026. null und
+     *  nicht [geoComputing] = nichts zu zeigen (Modul gesperrt, alter Server). */
+    var geo by mutableStateOf<StatsGeo?>(null)
+    var geoComputing by mutableStateOf(false)
+    var geoError by mutableStateOf<String?>(null)
+    private var geoJob: Job? = null
+
+    /** Der Server geocodiert beim ersten Mal im Hintergrund (202) — wie das
+     *  Web alle 5 s nachfragen, hoechstens eine Viertelstunde. 503 heisst
+     *  „kein MAPTILER_KEY": dann steht der Grund in der Karte statt der Karte. */
+    private fun loadGeo() {
+        if (geoJob?.isActive == true || geo != null) return
+        geoJob = scope.launch {
+            geoError = null
+            try {
+                var resp = api.statsGeo(baseUrl())
+                var tries = 0
+                while (resp == null && tries < 180) {
+                    geoComputing = true
+                    delay(5000)
+                    resp = api.statsGeo(baseUrl())
+                    tries++
+                }
+                geoComputing = false
+                geo = resp?.values?.reduceOrNull { a, b -> a + b }
+            } catch (e: MpdHttpException) {
+                geoComputing = false
+                // 403/404: Modul oder Route fehlt — die Karte bleibt still weg.
+                if (e.code != 403 && !e.routeMissing) geoError = e.detail
+            } catch (e: IOException) {
+                geoComputing = false
+                geoError = serverUnreachable(e)
+            }
+        }
+    }
 
     /** Shared + Personal additiv zusammenfuehren (wie der Web-Merge). */
     private fun mergeTextStats(parts: List<TextStats>): TextStats? {
@@ -86,6 +123,7 @@ class StatsState(
                         val bySpace = api.statsText(baseUrl()).values.toList()
                         text = mergeTextStats(bySpace)
                     }
+                    loadGeo()
                 }
             } catch (e: MpdHttpException) {
                 scanning = false
@@ -100,10 +138,14 @@ class StatsState(
     /** Alles, was zu einem Konto gehoert, vergessen (Abmelden, Kontowechsel). */
     fun vergiss() {
         job?.cancel(); job = null
+        geoJob?.cancel(); geoJob = null
         open = false
         data = null
         text = null
         scanning = false
         error = null
+        geo = null
+        geoComputing = false
+        geoError = null
     }
 }

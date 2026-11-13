@@ -1166,7 +1166,7 @@ private fun HeatMapView(heat: TrailHeatmap) {
     }
 }
 
-private fun heatFarbe(t: Float): Color {
+internal fun heatFarbe(t: Float): Color {
     val blau = Color(0xFF2E75B6); val gold = Color(0xFFC8922A); val rot = Color(0xFFE74C3C)
     val basis = if (t < 0.5f) androidx.compose.ui.graphics.lerp(blau, gold, t / 0.5f)
     else androidx.compose.ui.graphics.lerp(gold, rot, (t - 0.5f) / 0.5f)

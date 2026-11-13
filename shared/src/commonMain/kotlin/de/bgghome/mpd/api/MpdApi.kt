@@ -1478,6 +1478,19 @@ class MpdApi(private val settings: SettingsStore) {
             else decode(StatsResponse.serializer(), text)
         }
 
+    /** GET /api/stats/geo — je Space ein Paket (Weltkarte, Laender). 202 =
+     *  der Server geocodiert noch → null; 503 = kein MAPTILER_KEY
+     *  (MpdHttpException mit dem Servertext). */
+    suspend fun statsGeo(baseUrl: String, space: String = "both"): Map<String, StatsGeo>? =
+        withContext(Dispatchers.IO) {
+            val url = api(baseUrl, "stats", "geo", query = mapOf("space" to space))
+            val (code, text) = runWithCode(Request.Builder().url(url).build())
+            if (code == 202) null
+            else json.parseToJsonElement(text).jsonObject.mapValues { (_, v) ->
+                json.decodeFromJsonElement(StatsGeo.serializer(), v)
+            }
+        }
+
     /** GET /api/stats/text — je Space ein TextStats-Paket. */
     suspend fun statsText(baseUrl: String, space: String = "both"): Map<String, TextStats> =
         withContext(Dispatchers.IO) {

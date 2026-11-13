@@ -18,7 +18,25 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.graphics.drawscope.Stroke
+import de.bgghome.mpd.api.StatsGeo
+import de.bgghome.mpd.ui.karte.GeoPunkt
+import de.bgghome.mpd.ui.karte.KachelEbene
+import de.bgghome.mpd.ui.karte.KachelKarte
+import de.bgghome.mpd.ui.karte.KartenZustand
+import kotlin.math.ln
+import kotlin.math.sqrt
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -52,8 +70,16 @@ import de.bgghome.mpd.ui.theme.Mpd
  * Monat/Jahr, Photos pro Jahr/Monat, Jahreszeiten, Wochentage,
  * Uhrzeiten, Kameras, GPS-Abdeckung, Dateigroessen, Speicher pro Jahr,
  * Top-Alben sowie die kompletten Tagebuch-Text-Statistiken inkl.
- * Score. Es fehlen nur Weltkarte/Top-Laender (brauchen Maptiler-Geo).
- * Der Server scannt beim ersten Aufruf im Hintergrund (202 → Poll).
+ * Score. Seit 13.11.2026 auch Weltkarte (Punkte/Heatmap auf der eigenen
+ * Kachelkarte), Top Laender und die Tag/Woche-Ansicht je Jahr (Tipp auf
+ * eine Zeile der Monat/Jahr-Heatmap, wie openDrilldown im Web). Der
+ * Server scannt beim ersten Aufruf im Hintergrund (202 → Poll); Geo
+ * braucht serverseitig einen MAPTILER_KEY, sonst sagt die Karte das.
+ *
+ * Layout (13.11.2026, „manche Darstellung in der App nicht sonderlich
+ * schoen breitgezogen"): ein adaptives Raster statt einer Spalte — ab
+ * zwei mal 380 dp stehen die Karten nebeneinander wie chart-grid-2 im
+ * Web; Kopfzahlen, Heatmaps und Weltkarte nehmen die volle Breite.
  */
 
 /** Die Jahreszeiten sind SCHLUESSEL der Server-Antwort (seasonCounts);
@@ -115,7 +141,7 @@ fun StatsScreen(vm: AppViewModel) {
                     )
                 }
             },
-        ) { stats -> StatsContent(stats, vm.stats.text, tours) }
+        ) { stats -> StatsContent(stats, vm.stats.text, tours, vm.stats.geo, vm.stats.geoComputing, vm.stats.geoError) }
     }
 }
 
@@ -124,19 +150,26 @@ private fun StatsContent(
     stats: StatsResponse,
     text: TextStats?,
     tours: List<de.bgghome.mpd.api.TourListEntry>? = null,
+    geo: StatsGeo? = null,
+    geoComputing: Boolean = false,
+    geoError: String? = null,
 ) {
     val colors = Mpd.colors
     val monthLetters = stringArrayResource(Res.array.stats_month_letters)
     val seasonLabels = stringArrayResource(Res.array.stats_season_labels)
     val weekdayLabels = stringArrayResource(Res.array.stats_weekday_labels)
-    LazyColumn(
-        Modifier.fillMaxSize(),
+    // Tag/Woche: aufgeklappt fuer genau ein Jahr (Web: openDrilldown).
+    var drillYear by remember { mutableStateOf<String?>(null) }
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(380.dp),
+        modifier = Modifier.fillMaxSize(),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(
             start = 14.dp, end = 14.dp, top = 4.dp, bottom = 28.dp,
         ),
         verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        item {
+        item(span = { GridItemSpan(maxLineSpan) }) {
             Row(
                 Modifier.horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -164,7 +197,15 @@ private fun StatsContent(
 
         // ── 📅 Heatmap Monat/Jahr (Web: c-Monat/Jahr-Matrix) ─────────
         if (stats.photosPerYearMonth.isNotEmpty()) {
-            item { MonthYearHeatmap(stats) }
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                MonthYearHeatmap(stats, onYearTap = { y -> drillYear = if (drillYear == y) null else y })
+            }
+        }
+        // ── 🗓️ Tag / Woche fuer das angetippte Jahr ──────────────────
+        drillYear?.let { year ->
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                DayWeekHeatmap(stats, year, weekdayLabels, onClose = { drillYear = null })
+            }
         }
 
         item {
@@ -258,6 +299,21 @@ private fun StatsContent(
                     barColor = colors.blueMid,
                     labelEvery = if (a.size <= 12) 1 else 5,
                 )
+            }
+        }
+
+        // ── 🗺️ Foto-Weltkarte + 🌍 Top Laender (Web: /api/stats/geo) ──
+        if (geo != null || geoComputing || geoError != null) {
+            item(span = { GridItemSpan(maxLineSpan) }) { WorldMapCard(geo, geoComputing, geoError) }
+        }
+        if (geo != null && geo.countryCounts.isNotEmpty()) {
+            item {
+                StatCard(stringResource(Res.string.stats_top_countries), trailing = stringResource(Res.string.stats_by_photo_count)) {
+                    RankedBars(
+                        geo.countryCounts.entries.sortedByDescending { it.value }.take(10)
+                            .map { it.key to it.value.toFloat() },
+                    ) { groupedInt(it.toLong()) }
+                }
             }
         }
 
@@ -383,9 +439,11 @@ private fun TourYearStats(tours: List<de.bgghome.mpd.api.TourListEntry>) {
     }
 }
 
-/** Heatmap Jahr × Monat: Intensitaet = Photoanzahl (Web-Sektion 📅). */
+/** Heatmap Jahr × Monat: Intensitaet = Photoanzahl (Web-Sektion 📅).
+ *  Tipp auf eine Zeile oeffnet Tag/Woche fuer das Jahr (Web: Klick auf
+ *  die Zelle, openDrilldown). */
 @Composable
-private fun MonthYearHeatmap(stats: StatsResponse) {
+private fun MonthYearHeatmap(stats: StatsResponse, onYearTap: (String) -> Unit = {}) {
     val colors = Mpd.colors
     val years = stats.photosPerYearMonth.keys
         .mapNotNull { it.toIntOrNull() }.sorted().map { "$it" }
@@ -394,12 +452,18 @@ private fun MonthYearHeatmap(stats: StatsResponse) {
         .flatMap { it.values }.maxOrNull()?.coerceAtLeast(1L) ?: 1L
     val cellColor = colors.blue
 
-    StatCard(stringResource(Res.string.stats_month_year)) {
+    StatCard(
+        stringResource(Res.string.stats_month_year),
+        trailing = if (stats.photosPerYearWeek.isNotEmpty()) stringResource(Res.string.stats_day_week_hint) else null,
+    ) {
         Row {
             // Jahresspalte
             Column(Modifier.padding(end = 8.dp, top = 16.dp)) {
                 years.forEach {
-                    Box(Modifier.height(16.dp), contentAlignment = Alignment.CenterStart) {
+                    Box(
+                        Modifier.height(16.dp).clickable { onYearTap(it) },
+                        contentAlignment = Alignment.CenterStart,
+                    ) {
                         Text(it, color = colors.muted, fontSize = 9.sp)
                     }
                 }
@@ -415,7 +479,13 @@ private fun MonthYearHeatmap(stats: StatsResponse) {
                 Canvas(
                     Modifier
                         .fillMaxWidth()
-                        .height((years.size * 16).dp),
+                        .height((years.size * 16).dp)
+                        .pointerInput(years) {
+                            detectTapGestures { off ->
+                                val yi = (off.y / (size.height / years.size)).toInt()
+                                years.getOrNull(yi)?.let(onYearTap)
+                            }
+                        },
                 ) {
                     val cw = size.width / 12f
                     val ch = size.height / years.size
@@ -438,6 +508,162 @@ private fun MonthYearHeatmap(stats: StatsResponse) {
             }
         }
     }
+}
+
+/** 🗓️ Tag / Woche eines Jahres: 7 Zeilen (Mo..So) × Kalenderwochen,
+ *  Zelle = Fotos an dem Tag (Web: openDrilldown, Schluessel „KW_Wochentag"). */
+@Composable
+private fun DayWeekHeatmap(
+    stats: StatsResponse,
+    year: String,
+    weekdayLabels: List<String>,
+    onClose: () -> Unit,
+) {
+    val colors = Mpd.colors
+    val pyw = stats.photosPerYearWeek[year] ?: emptyMap()
+    val cells = remember(pyw) {
+        pyw.mapNotNull { (k, v) ->
+            val (w, d) = k.split("_").let { (it.getOrNull(0)?.toIntOrNull() ?: return@mapNotNull null) to (it.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null) }
+            Triple(w, d, v)
+        }
+    }
+    val maxWeek = (cells.maxOfOrNull { it.first } ?: 52).coerceAtLeast(52)
+    val max = (cells.maxOfOrNull { it.third } ?: 1L).coerceAtLeast(1L)
+    val cellColor = colors.blue
+    StatCard(
+        stringResource(Res.string.stats_day_week),
+        trailing = stringResource(Res.string.stats_year_x, year),
+        onClose = onClose,
+    ) {
+        if (cells.isEmpty()) {
+            Text(stringResource(Res.string.stats_no_data), color = colors.muted, fontSize = 13.sp)
+            return@StatCard
+        }
+        Row {
+            Column(Modifier.padding(end = 6.dp)) {
+                (0..6).forEach { d ->
+                    Box(Modifier.height(14.dp), contentAlignment = Alignment.CenterStart) {
+                        Text(weekdayLabels.getOrElse(d) { "" }, color = colors.muted, fontSize = 9.sp)
+                    }
+                }
+            }
+            Column(Modifier.weight(1f)) {
+                Canvas(Modifier.fillMaxWidth().height((7 * 14).dp)) {
+                    val cw = size.width / maxWeek
+                    val ch = size.height / 7f
+                    cells.forEach { (w, d, v) ->
+                        if (w < 1 || w > maxWeek || d < 0 || d > 6 || v <= 0) return@forEach
+                        val alpha = 0.15f + 0.85f * (v / max.toFloat())
+                        drawRoundRect(
+                            color = cellColor.copy(alpha = alpha),
+                            topLeft = Offset((w - 1) * cw + 0.5f, d * ch + 1f),
+                            size = Size((cw - 1f).coerceAtLeast(1f), ch - 2f),
+                            cornerRadius = CornerRadius(1.dp.toPx()),
+                        )
+                    }
+                }
+                Row(Modifier.fillMaxWidth().padding(top = 3.dp)) {
+                    val kw = stringResource(Res.string.stats_week_abbr)
+                    listOf(1, 10, 20, 30, 40, 50).forEach { w ->
+                        Box(Modifier.weight(1f)) {
+                            Text("$kw $w", color = colors.muted, fontSize = 9.sp)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** 🗺️ Foto-Weltkarte: geocodierte Orte als Punkte (Radius ~ Fotoanzahl)
+ *  oder als Heatmap (Farbe wie Trails), auf der eigenen Kachelkarte. Die
+ *  Karte ist erst nach Antippen bedienbar (sonst scrollt das Dashboard
+ *  nicht mehr), Vollbild wie bei Tours. */
+@Composable
+private fun WorldMapCard(geo: StatsGeo?, computing: Boolean, error: String?) {
+    val colors = Mpd.colors
+    var heat by remember { mutableStateOf(false) }
+    var armed by remember { mutableStateOf(false) }
+    var vollbild by remember { mutableStateOf(false) }
+    val zustand = remember { KartenZustand() }
+    var eingepasst by remember(geo) { mutableStateOf(false) }
+    val summary = geo?.let {
+        stringResource(
+            Res.string.stats_map_summary,
+            groupedInt(it.totalGpsPhotos), groupedInt(it.clusterCount), groupedInt(it.countryCounts.size.toLong()),
+        )
+    }
+    StatCard(stringResource(Res.string.stats_world_map), trailing = summary) {
+        when {
+            geo == null && computing -> Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(Modifier.size(18.dp))
+                Text(stringResource(Res.string.stats_geo_computing), color = colors.muted, fontSize = 13.sp, modifier = Modifier.padding(start = 10.dp))
+            }
+            geo == null -> Text(
+                stringResource(Res.string.stats_geo_unavailable, error ?: ""),
+                color = colors.muted, fontSize = 13.sp,
+            )
+            geo.mapPoints.isEmpty() -> Text(stringResource(Res.string.stats_no_data), color = colors.muted, fontSize = 13.sp)
+            else -> {
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(bottom = 8.dp)) {
+                    ModeChip(stringResource(Res.string.stats_map_dots), !heat) { heat = false }
+                    ModeChip(stringResource(Res.string.stats_map_heat), heat) { heat = true }
+                }
+                val maxCount = remember(geo) { geo.mapPoints.maxOfOrNull { it.count } ?: 1L }
+                val karte: @Composable (Modifier, Boolean) -> Unit = { mod, voll ->
+                    BoxWithConstraints(mod.clip(RoundedCornerShape(8.dp))) {
+                        if (!eingepasst) {
+                            zustand.passeEin(geo.mapPoints.map { GeoPunkt(it.lat, it.lon) }, constraints.maxWidth, constraints.maxHeight, 24, einzelZoom = 6)
+                            eingepasst = true
+                        }
+                        val dichte = androidx.compose.ui.platform.LocalDensity.current.density
+                        KachelKarte(zustand, KachelEbene.STANDARD, Modifier.fillMaxSize(), interaktiv = voll || armed) z@{ zumSchirm ->
+                            geo.mapPoints.forEach { p ->
+                                val pt = zumSchirm(GeoPunkt(p.lat, p.lon))
+                                if (pt.x < -60f || pt.y < -60f || pt.x > size.width + 60f || pt.y > size.height + 60f) return@forEach
+                                if (heat) {
+                                    // Logarithmisch wie bei Trails, sonst frisst der Wohnort alles.
+                                    val t = (ln(1.0 + p.count) / ln(1.0 + maxCount)).toFloat().coerceIn(0f, 1f)
+                                    drawCircle(heatFarbe(t), (10f + 22f * t) * dichte, pt)
+                                } else {
+                                    // Web: radius 4 + sqrt(count/max) * 18, blau mit weisser Kontur.
+                                    val ratio = sqrt(p.count.toDouble() / maxCount).toFloat()
+                                    val r = (4f + ratio * 18f) * dichte
+                                    drawCircle(colors.blue.copy(alpha = 0.4f + ratio * 0.5f), r, pt)
+                                    drawCircle(Color.White.copy(alpha = 0.8f), r, pt, style = Stroke(1f * dichte))
+                                }
+                            }
+                        }
+                        if (!voll) {
+                            ArmOverlay(armed, { armed = true }, Modifier.fillMaxSize())
+                            VollbildKnopf { vollbild = true }
+                        }
+                    }
+                }
+                karte(Modifier.fillMaxWidth().height(320.dp), false)
+                if (vollbild) {
+                    KarteVollbild(onClose = { vollbild = false }) { mod -> karte(mod, true) }
+                }
+            }
+        }
+    }
+}
+
+/** Kleiner Umschalt-Chip (Punkte/Heatmap), Optik wie die Filter in Tours. */
+@Composable
+private fun ModeChip(label: String, active: Boolean, onClick: () -> Unit) {
+    val colors = Mpd.colors
+    Text(
+        label,
+        color = if (active) colors.textOnAccent else colors.muted,
+        fontSize = 12.sp,
+        modifier = Modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(if (active) colors.blue else Color.Transparent)
+            .border(1.dp, if (active) colors.blue else colors.border, RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 10.dp, vertical = 4.dp),
+    )
 }
 
 /** Horizontale Rangliste mit Balken (Kameras, Top-Alben, Stile, Score). */
@@ -509,6 +735,7 @@ private fun TextNumber(value: String, label: String) {
 private fun StatCard(
     title: String,
     trailing: String? = null,
+    onClose: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
     val colors = Mpd.colors
@@ -519,7 +746,7 @@ private fun StatCard(
             .background(colors.surface)
             .padding(14.dp),
     ) {
-        Row(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
+        Row(Modifier.fillMaxWidth().padding(bottom = 10.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(
                 title,
                 color = colors.muted,
@@ -529,6 +756,14 @@ private fun StatCard(
             )
             if (trailing != null) {
                 Text(trailing, color = colors.muted.copy(alpha = 0.7f), fontSize = 11.sp)
+            }
+            if (onClose != null) {
+                Box(
+                    Modifier.padding(start = 8.dp).size(24.dp).clip(CircleShape).clickable(onClick = onClose),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(MpdIcons.Cross, stringResource(Res.string.stats_close_card), Modifier.size(14.dp), tint = colors.muted)
+                }
             }
         }
         content()
