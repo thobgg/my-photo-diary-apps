@@ -133,6 +133,7 @@
     <string name="stats_month_year">📅 Month / year</string>
     <string name="stats_no_data">No data.</string>
     <string name="stats_up_to">up to %1$s</string>
+    <string name="stats_space_both">Both</string>
     <string name="stats_world_map">🗺️ Photo world map</string>
     <string name="stats_map_dots">Dots</string>
     <string name="stats_map_heat">Heatmap</string>

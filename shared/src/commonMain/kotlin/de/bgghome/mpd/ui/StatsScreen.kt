@@ -119,6 +119,8 @@ fun StatsScreen(vm: AppViewModel) {
         // Einzige Kopfzeile mit Theme-Schrift — beibehalten.
         header = { ScreenTitle("Statistiken", fontFamily = Mpd.style.fontFamily) },
     ) {
+      Column(Modifier.fillMaxSize()) {
+        SpaceChips(vm.stats.space) { vm.stats.waehleBereich(it) }
         LoadState(
             error = vm.stats.error, data = vm.stats.data,
             // Der Abstand sitzt hier an der Box, nicht am Text — so war es.
@@ -144,6 +146,24 @@ fun StatsScreen(vm: AppViewModel) {
                 }
             },
         ) { stats -> StatsContent(stats, vm.stats.text, tours, vm.stats.geo, vm.stats.geoComputing, vm.stats.geoError) }
+      }
+    }
+}
+
+/** Bereichswahl wie im Web: Geteilt, Beide, Persoenlich. */
+@Composable
+private fun SpaceChips(aktuell: String, onWahl: (String) -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 6.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        listOf(
+            "shared" to Res.string.menu_filter_shared,
+            "both" to Res.string.stats_space_both,
+            "personal" to Res.string.menu_filter_personal,
+        ).forEach { (key, label) ->
+            ModeChip(stringResource(label), aktuell == key) { onWahl(key) }
+        }
     }
 }
 

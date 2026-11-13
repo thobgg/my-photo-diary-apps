@@ -32,6 +32,23 @@ class StatsState(
     private val scope: CoroutineScope,
 ) {
     var open by mutableStateOf(false)
+
+    /** Bereich der Auswertung: "shared", "personal" oder "both" (Vorgabe, wie
+     *  der Server). Gilt fuer Stats, Text und Weltkarte zugleich. */
+    var space by mutableStateOf("both")
+        private set
+
+    fun waehleBereich(neu: String) {
+        if (neu == space) return
+        space = neu
+        job?.cancel(); job = null
+        geoJob?.cancel(); geoJob = null
+        data = null; text = null; geo = null
+        scanning = false; geoComputing = false
+        error = null; geoError = null
+        load()
+    }
+
     var data by mutableStateOf<StatsResponse?>(null)
     var text by mutableStateOf<TextStats?>(null)
     var scanning by mutableStateOf(false)
@@ -53,12 +70,12 @@ class StatsState(
         geoJob = scope.launch {
             geoError = null
             try {
-                var resp = api.statsGeo(baseUrl())
+                var resp = api.statsGeo(baseUrl(), space)
                 var tries = 0
                 while (resp == null && tries < 180) {
                     geoComputing = true
                     delay(5000)
-                    resp = api.statsGeo(baseUrl())
+                    resp = api.statsGeo(baseUrl(), space)
                     tries++
                 }
                 geoComputing = false
@@ -106,14 +123,14 @@ class StatsState(
         job = scope.launch {
             error = null
             try {
-                var resp = api.stats(baseUrl())
+                var resp = api.stats(baseUrl(), space)
                 var tries = 0
                 // Erst-Scan grosser Bibliotheken dauert Minuten — Web pollt
                 // alle 2 s, wir etwas gemuetlicher.
                 while (resp == null && tries < 120) {
                     scanning = true
                     delay(2500)
-                    resp = api.stats(baseUrl())
+                    resp = api.stats(baseUrl(), space)
                     tries++
                 }
                 scanning = false
@@ -123,7 +140,7 @@ class StatsState(
                 // je Space ein Paket, die App fuehrt additiv zusammen.
                 if (resp != null) {
                     runCatching {
-                        val bySpace = api.statsText(baseUrl()).values.toList()
+                        val bySpace = api.statsText(baseUrl(), space).values.toList()
                         text = mergeTextStats(bySpace)
                     }
                     loadGeo()
