@@ -20,13 +20,6 @@ The apps talk to your server only. There is no account with anyone, no
 telemetry and no push service; the server address is entered once, or
 scanned as a QR code from the server's "Connect app" page.
 
-## Try it
-
-The apps need a server. A public demo server exists: in the app enter the
-address `https://mpd.bgg-home.de`, account `mpd-demo`, password `mpd-demo`
-(read-only, six sample albums). In the browser, [mpd.bgg-home.de/demo-login](https://mpd.bgg-home.de/demo-login)
-shows the same albums without any password.
-
 ## Install
 
 Ready-made packages: [bgg-home.de/mpd.apk](https://bgg-home.de/mpd.apk)

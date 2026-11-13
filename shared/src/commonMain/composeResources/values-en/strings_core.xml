@@ -63,7 +63,6 @@
     <string name="setup_label_password">Password</string>
     <string name="setup_http_warning">Unencrypted (http) — use only on your own network.</string>
     <string name="setup_sign_in">Sign in</string>
-    <string name="setup_demo_prefix">Demo login: </string>
     <string name="setup_cert_title">Unknown certificate</string>
     <string name="setup_cert_body">The server uses a certificate that no known authority vouches for — normal for your own NAS. Trust it only if it is your server.</string>
     <string name="setup_cert_valid_until">Valid until %1$s</string>
