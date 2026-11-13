@@ -245,9 +245,6 @@ data class AppSettingsData(
     @SerialName("share_enabled") val shareEnabled: Boolean = true,
     @SerialName("demo_enabled") val demoEnabled: Boolean = true,
     @SerialName("memories_push_enabled") val memoriesPushEnabled: Boolean = true,
-    @SerialName("companion_provider") val companionProvider: String = "anthropic",
-    /** Nur fuer Admins geliefert: maskierter Key ("sk-…xy12") oder "". */
-    @SerialName("companion_api_key_hint") val companionApiKeyHint: String? = null,
 )
 
 @Serializable
@@ -934,25 +931,6 @@ class MpdApi(private val settings: SettingsStore) {
     ): HttpUrl = api(baseUrl, "photo", space, album, file, *tail)
 
     /** GET /api/photo/…/exif — kuratierte EXIF-Felder des Servers. */
-    /** GET /api/companion/status → enabled? Fehlt die Route (Kern ohne
-     *  Companion) oder scheitert sie, gilt aus. */
-    suspend fun companionStatus(baseUrl: String): Boolean = withContext(Dispatchers.IO) {
-        runCatching {
-            json.parseToJsonElement(get(api(baseUrl, "companion", "status")))
-                .jsonObject["enabled"]?.jsonPrimitive?.booleanOrNull ?: false
-        }.getOrDefault(false)
-    }
-
-    /** POST /api/companion/suggest {text} → bis zu drei Formulierungen.
-     *  503 = nicht konfiguriert, 413 = Text zu lang (MpdHttpException). */
-    suspend fun companionSuggest(baseUrl: String, text: String): List<String> = withContext(Dispatchers.IO) {
-        val body = jsonBody(JsonObject(mapOf("text" to JsonPrimitive(text))))
-        val antwort = post(api(baseUrl, "companion", "suggest"), body)
-        json.parseToJsonElement(antwort).jsonObject["suggestions"]?.jsonArray
-            ?.mapNotNull { it.jsonObject["text"]?.jsonPrimitive?.contentOrNull?.takeIf { t -> t.isNotBlank() } }
-            .orEmpty()
-    }
-
     suspend fun exif(baseUrl: String, space: String, album: String, file: String): ExifData =
         withContext(Dispatchers.IO) {
             decode(ExifData.serializer(), get(photoUrl(baseUrl, space, album, file, "exif")))

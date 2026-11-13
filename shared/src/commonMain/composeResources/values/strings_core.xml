@@ -279,12 +279,6 @@
     <string name="settings_scope_personal">Meine Alben</string>
     <string name="settings_scope_shared">Familienalben</string>
     <string name="settings_scope_both">Alle Alben</string>
-    <string name="settings_companion_provider">KI-Provider</string>
-    <string name="settings_companion_provider_hint">Dienst für die Formulierungshilfe im Edit Mode.</string>
-    <string name="settings_key_set_x">Gesetzt: %1$s</string>
-    <string name="settings_key_none">Noch kein Key hinterlegt.</string>
-    <string name="settings_key_placeholder">API-Key eingeben…</string>
-    <string name="settings_key_saved">Key gespeichert</string>
     <string name="nav_albums">Alben</string>
     <string name="nav_timeline">Timeline</string>
     <string name="nav_search">Suche</string>
@@ -363,22 +357,13 @@
     <string name="vm_downloaded_partly">%1$s von %2$s heruntergeladen. %3$s</string>
     <string name="setup_from_link">Serveradresse aus dem Code übernommen.</string>
     <string name="vm_err_http_x">Server meldet %1$s: %2$s</string>
-    <!-- Web-Paritaet Kern (22.09.2026): Hilfe, Handy verbinden, Formulierungshilfe, Rueckgaengig -->
+    <!-- Web-Paritaet Kern (22.09.2026): Hilfe, Handy verbinden, Rueckgaengig -->
     <string name="menu_help">Hilfe</string>
     <string name="menu_connect">Handy verbinden</string>
     <string name="connect_title">App verbinden</string>
     <string name="connect_lead">Die MPD-App fragt beim ersten Start nach der Adresse deines Servers. Scanne den Code mit der Kamera des Handys, dann musst du nichts abtippen.</string>
     <string name="connect_step">Code scannen, dann „In MPD öffnen" antippen — die Adresse steht dann schon im Feld.</string>
     <string name="connect_copy">Adresse kopieren</string>
-    <string name="text_block_ai">Formulierungshilfe</string>
-    <string name="companion_title">✨ Formulierungshilfe</string>
-    <string name="companion_thinking">Denke nach…</string>
-    <string name="companion_apply_hint">Antippen zum Übernehmen — nur Formulierung.</string>
-    <string name="companion_err_empty">Bitte erst etwas schreiben, dann helfe ich beim Feinschliff.</string>
-    <string name="companion_err_not_configured">Companion ist nicht konfiguriert.</string>
-    <string name="companion_err_too_long">Text zu lang.</string>
-    <string name="companion_err_no_suggestions">Keine Vorschläge erhalten.</string>
-    <string name="companion_err_connection">Verbindung zu Companion fehlgeschlagen.</string>
     <string name="undo_title">Rückgängig (Strg+Z)</string>
     <string name="redo_title">Wiederherstellen (Strg+Umschalt+Z)</string>
 </resources>

@@ -279,12 +279,6 @@
     <string name="settings_scope_personal">My albums</string>
     <string name="settings_scope_shared">Family albums</string>
     <string name="settings_scope_both">All albums</string>
-    <string name="settings_companion_provider">AI provider</string>
-    <string name="settings_companion_provider_hint">Service for the writing assistant in edit mode.</string>
-    <string name="settings_key_set_x">Set: %1$s</string>
-    <string name="settings_key_none">No key stored yet.</string>
-    <string name="settings_key_placeholder">Enter API key…</string>
-    <string name="settings_key_saved">Key saved</string>
     <string name="nav_albums">Albums</string>
     <string name="nav_timeline">Timeline</string>
     <string name="nav_search">Search</string>
@@ -369,15 +363,6 @@
     <string name="connect_lead">The MPD app asks for your server address on first start. Scan the code with your phone camera and you won\'t have to type anything.</string>
     <string name="connect_step">Scan the code, then tap "Open in MPD" — the address is already filled in.</string>
     <string name="connect_copy">Copy address</string>
-    <string name="text_block_ai">Phrasing help</string>
-    <string name="companion_title">✨ Phrasing help</string>
-    <string name="companion_thinking">Thinking…</string>
-    <string name="companion_apply_hint">Tap to apply — wording only.</string>
-    <string name="companion_err_empty">Write something first, then I can help polish it.</string>
-    <string name="companion_err_not_configured">Companion is not configured.</string>
-    <string name="companion_err_too_long">Text too long.</string>
-    <string name="companion_err_no_suggestions">No suggestions received.</string>
-    <string name="companion_err_connection">Connection to Companion failed.</string>
     <string name="undo_title">Undo (Ctrl+Z)</string>
     <string name="redo_title">Redo (Ctrl+Shift+Z)</string>
 </resources>

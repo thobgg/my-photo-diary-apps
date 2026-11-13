@@ -3159,16 +3159,6 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
     /** PDF von einer Adresse zeigen (Hilfe: das Benutzerhandbuch vom Server). */
     fun openPdfUrl(title: String, url: String) { openPdf = OpenPdf(title, url) }
 
-    /** Formulierungshilfe (Write-Companion, /api/companion): null = noch nicht geprueft. */
-    var companionEnabled by mutableStateOf<Boolean?>(null)
-        private set
-
-    fun pruefeCompanion() {
-        if (companionEnabled != null) return
-        companionEnabled = false
-        viewModelScope.launch { companionEnabled = api.companionStatus(baseUrl) }
-    }
-
     fun openPdf(elem: de.bgghome.mpd.api.PdxElement) {
         val url = elem.documentUrl?.let { baseUrl + it }
             ?: mediaUrl("document", elem)

@@ -286,10 +286,6 @@ internal fun TextBlockEditor(vm: AppViewModel, elem: PdxElement) {
     var value by remember(elem.id) { mutableStateOf(TextFieldValue(elem.text.orEmpty())) }
     var emojiOpen by remember(elem.id) { mutableStateOf(false) }
     var source by remember(elem.id) { mutableStateOf(elem.source.orEmpty()) }
-    var vorschlaege by remember(elem.id) { mutableStateOf<List<String>?>(null) }
-    var companionBusy by remember(elem.id) { mutableStateOf(false) }
-    var companionFehler by remember(elem.id) { mutableStateOf<String?>(null) }
-    val companionScope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
     // Der Editor traegt den gewaehlten PDX-Stil (05.09.: „im
     // Bearbeiten-Modus fehlen die PDX-Schriftstile"). Vorher sah jeder
@@ -377,34 +373,6 @@ internal fun TextBlockEditor(vm: AppViewModel, elem: PdxElement) {
                 }
             }
             Spacer(Modifier.width(4.dp))
-            // Write-Companion (Web: companion.js, ✨ in der Text-Toolbar): bis zu
-            // drei Formulierungen vom Server, Antippen uebernimmt den Text -
-            // nur, wenn der Server den Companion konfiguriert hat.
-            LaunchedEffect(Unit) { vm.pruefeCompanion() }
-            if (vm.companionEnabled == true) {
-                TextButton(
-                    enabled = !companionBusy,
-                    onClick = {
-                        if (value.text.isBlank()) { companionFehler = Texte.t(Res.string.companion_err_empty); return@TextButton }
-                        companionBusy = true; companionFehler = null; vorschlaege = null
-                        companionScope.launch {
-                            try {
-                                val v = vm.api.companionSuggest(vm.baseUrl, value.text)
-                                if (v.isEmpty()) companionFehler = Texte.t(Res.string.companion_err_no_suggestions) else vorschlaege = v
-                            } catch (e: de.bgghome.mpd.api.MpdHttpException) {
-                                companionFehler = when (e.code) {
-                                    503 -> Texte.t(Res.string.companion_err_not_configured)
-                                    413 -> Texte.t(Res.string.companion_err_too_long)
-                                    else -> apiErrorText(e, forbidden = Texte.t(Res.string.companion_err_connection))
-                                }
-                            } catch (e: Exception) {
-                                companionFehler = Texte.t(Res.string.companion_err_connection)
-                            } finally { companionBusy = false }
-                        }
-                    },
-                ) { Text(if (companionBusy) stringResource(Res.string.companion_thinking) else "✨ " + stringResource(Res.string.text_block_ai), fontSize = 13.sp) }
-                Spacer(Modifier.width(8.dp))
-            }
             // Markdown-light (v1.5): hier steht bewusst der Rohtext mit
             // Sternchen — gerendert wird nur in der Ansicht.
             Text(
@@ -416,22 +384,6 @@ internal fun TextBlockEditor(vm: AppViewModel, elem: PdxElement) {
             )
             TextButton(onClick = { vm.closeTextEdit() }) {
                 Text(stringResource(Res.string.common_ok), color = MpdBlue, fontSize = 15.sp)
-            }
-        }
-        companionFehler?.let { Text(it, color = MpdRed, fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp)) }
-        vorschlaege?.let { liste ->
-            Column(Modifier.fillMaxWidth().padding(top = 6.dp)) {
-                Text(stringResource(Res.string.companion_title), color = Mpd.colors.muted, fontSize = 12.sp)
-                liste.forEach { v ->
-                    Text(
-                        v, fontSize = 14.sp, color = Mpd.colors.text,
-                        modifier = Modifier.fillMaxWidth().padding(top = 6.dp)
-                            .clip(RoundedCornerShape(8.dp)).background(Mpd.colors.surface)
-                            .clickable { value = TextFieldValue(v, TextRange(v.length)); vorschlaege = null }
-                            .padding(10.dp),
-                    )
-                }
-                Text(stringResource(Res.string.companion_apply_hint), color = Mpd.colors.muted, fontSize = 11.sp, modifier = Modifier.padding(top = 4.dp))
             }
         }
     }

@@ -50,17 +50,10 @@ import org.jetbrains.compose.resources.stringResource
 /*
  * Einstellungen — natives Gegenstueck zum Einstellungen-Modal des Web
  * (index.html _openSettingsModal): Sektion „Fuer dich" fuer alle,
- * „Global"/„Write Companion" nur fuer Admins (POST /api/settings ist
+ * „Global" nur fuer Admins (POST /api/settings ist
  * serverseitig ohnehin admin-only). Als eigener Screen statt Modal —
  * Handy-Muster, die Web-Referenz ist Desktop-gepraegt.
  */
-
-private val COMPANION_PROVIDERS = listOf(
-    "anthropic" to "Anthropic (Claude)",
-    "groq" to "Groq (Llama)",
-    "mistral" to "Mistral",
-    "gemini" to "Google Gemini Flash",
-)
 
 @Composable
 fun SettingsScreen(vm: AppViewModel, who: WhoAmI) {
@@ -215,10 +208,6 @@ fun SettingsScreen(vm: AppViewModel, who: WhoAmI) {
                     checked = app?.memoriesPushEnabled == true,
                     enabled = app != null,
                 ) { on -> vm.saveSetting("memories_push_enabled", JsonPrimitive(on)) }
-
-                SettingsSection("Write Companion", badge = stringResource(Res.string.settings_badge_admin))
-                CompanionEditor(vm)
-
             }
 
             // Fusszeile: Version
@@ -417,72 +406,5 @@ private fun SettingsSwitchRow(
 ) {
     SettingsRowScaffold(name, hint) {
         Switch(checked = checked, enabled = enabled, onCheckedChange = onChange)
-    }
-}
-
-/** KI-Provider + API-Key (Web: Sektion „Write Companion"). */
-@Composable
-private fun CompanionEditor(vm: AppViewModel) {
-    val colors = Mpd.colors
-    val app = vm.appSettings
-    var providerMenu by remember { mutableStateOf(false) }
-    var keyInput by remember { mutableStateOf("") }
-
-    SettingsRowScaffold(
-        stringResource(Res.string.settings_companion_provider),
-        stringResource(Res.string.settings_companion_provider_hint),
-    ) {
-        Box {
-            TextButton(onClick = { providerMenu = true }) {
-                Text(COMPANION_PROVIDERS.firstOrNull { it.first == app?.companionProvider }?.second
-                    ?: (app?.companionProvider ?: "…"))
-            }
-            DropdownMenu(expanded = providerMenu, onDismissRequest = { providerMenu = false }) {
-                COMPANION_PROVIDERS.forEach { (key, label) ->
-                    DropdownMenuItem(
-                        text = { Text(label) },
-                        onClick = {
-                            providerMenu = false
-                            vm.saveSetting("companion_provider", JsonPrimitive(key))
-                        },
-                    )
-                }
-            }
-        }
-    }
-
-    val hintText = app?.companionApiKeyHint.orEmpty()
-    Column(Modifier.padding(horizontal = 18.dp, vertical = 6.dp)) {
-        Text(
-            if (hintText.isNotBlank()) stringResource(Res.string.settings_key_set_x, hintText) else stringResource(Res.string.settings_key_none),
-            color = colors.muted,
-            fontSize = 12.sp,
-        )
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = keyInput,
-                onValueChange = { keyInput = it },
-                modifier = Modifier.weight(1f),
-                placeholder = { Text(stringResource(Res.string.settings_key_placeholder)) },
-                singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            )
-            TextButton(
-                enabled = keyInput.isNotBlank(),
-                onClick = {
-                    vm.updateAppSettings(
-                        buildJsonObject { put("companion_api_key", JsonPrimitive(keyInput)) },
-                    ) { err ->
-                        vm.meldung(
-                            if (err == null) Texte.t(Res.string.settings_key_saved)
-                            else Texte.t(Res.string.settings_err_x, err),
-                            kurz = true,
-                        )
-                        if (err == null) keyInput = ""
-                    }
-                },
-            ) { Text(stringResource(Res.string.common_save)) }
-        }
     }
 }
