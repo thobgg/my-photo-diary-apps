@@ -43,6 +43,9 @@ import de.bgghome.mpd.ui.theme.Mpd
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.adminCreateUser
+import de.bgghome.mpd.api.adminDeleteUser
+import de.bgghome.mpd.api.adminPatchUser
 
 /*
  * Benutzerverwaltung — natives Gegenstueck zum „Benutzer"-Modal des Web

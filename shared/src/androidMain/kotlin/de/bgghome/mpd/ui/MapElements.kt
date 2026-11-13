@@ -72,6 +72,7 @@ import java.io.File
 import kotlin.math.cos
 import kotlin.math.hypot
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.gpxUrl
 
 /*
  * map- und tour-Elemente — Nachbau der Leaflet-Teile aus

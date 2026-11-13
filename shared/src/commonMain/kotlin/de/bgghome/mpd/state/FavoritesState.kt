@@ -20,6 +20,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 import java.io.IOException
+import de.bgghome.mpd.api.createEmptyAlbum
 
 /*
  * Favoriten (App-Extra 02.09.2026): source_album-Referenzen im Album

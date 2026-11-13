@@ -12,6 +12,7 @@ import de.bgghome.mpd.api.Photo
 import de.bgghome.mpd.state.serverUnreachable
 import java.io.IOException
 import kotlinx.coroutines.launch
+import de.bgghome.mpd.api.uploadFile
 
 /**
  * Android-Teil des ViewModels (Aufteilung 22.09.2026): alles, was Context,

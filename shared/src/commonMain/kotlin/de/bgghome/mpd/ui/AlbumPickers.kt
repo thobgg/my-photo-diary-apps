@@ -43,6 +43,7 @@ import de.bgghome.mpd.api.MpdApi
 import de.bgghome.mpd.api.UnassignedFile
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.pluralStringResource
+import de.bgghome.mpd.api.unassignedMedia
 
 /*
  * Auswahl-Dialoge fuer die Albumgestaltung. Web-Referenz: openAddPhotoModal

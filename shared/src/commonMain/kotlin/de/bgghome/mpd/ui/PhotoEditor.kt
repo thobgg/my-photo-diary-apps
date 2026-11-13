@@ -68,6 +68,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.editPhoto
+import de.bgghome.mpd.api.resetPhoto
 
 // -- Foto-Editor -------------------------------------------------------------
 

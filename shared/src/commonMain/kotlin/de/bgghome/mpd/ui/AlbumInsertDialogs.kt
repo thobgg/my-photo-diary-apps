@@ -61,6 +61,11 @@ import de.bgghome.mpd.api.TourListEntry
 import de.bgghome.mpd.api.UnassignedFile
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.deleteTour
+import de.bgghome.mpd.api.gpxFiles
+import de.bgghome.mpd.api.placeTour
+import de.bgghome.mpd.api.tours
+import de.bgghome.mpd.api.unassignedFiles
 
 /*
  * Einfuege-Dialoge fuer die restlichen Elementtypen + Cover-Wechsler.

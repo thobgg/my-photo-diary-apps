@@ -61,6 +61,7 @@ import de.bgghome.mpd.util.tourStats
 import kotlinx.coroutines.launch
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.gpxUrl
 
 /*
  * Desktop-Fassung der Album-Elemente mit Karte: die Compose-Kachelkarte

@@ -60,6 +60,15 @@ import java.net.URLEncoder
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import de.bgghome.mpd.api.trailsArchive
+import de.bgghome.mpd.api.trailsArchiveZipUrl
+import de.bgghome.mpd.api.trailsCreateDevice
+import de.bgghome.mpd.api.trailsDeleteDevice
+import de.bgghome.mpd.api.trailsDeleteSource
+import de.bgghome.mpd.api.trailsDevices
+import de.bgghome.mpd.api.trailsRebuildArchive
+import de.bgghome.mpd.api.trailsSources
+import de.bgghome.mpd.api.trailsStatus
 
 /*
  * Trails, Bereich „Geraete" — alles, was den Speicher fuellt und wieder

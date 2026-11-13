@@ -48,6 +48,7 @@ import de.bgghome.mpd.api.FolderCandidate
 import de.bgghome.mpd.api.WhoAmI
 import de.bgghome.mpd.ui.theme.Mpd
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.albumFiles
 
 /*
  * „Neues Album" — Port des Create-Dialogs der Web-Startseite (index.js):

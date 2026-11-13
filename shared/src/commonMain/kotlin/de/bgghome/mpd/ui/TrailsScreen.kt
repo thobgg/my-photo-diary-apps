@@ -84,6 +84,14 @@ import java.util.Locale
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.roundToInt
+import de.bgghome.mpd.api.setTrailsPlaceName
+import de.bgghome.mpd.api.trailsDay
+import de.bgghome.mpd.api.trailsDays
+import de.bgghome.mpd.api.trailsDerive
+import de.bgghome.mpd.api.trailsExportDayUrl
+import de.bgghome.mpd.api.trailsHeatmap
+import de.bgghome.mpd.api.trailsPlaces
+import de.bgghome.mpd.api.trailsStatus
 
 /*
  * Modul „Trails" — die eigene Standorthistorie (Dawarich-Abloesung,

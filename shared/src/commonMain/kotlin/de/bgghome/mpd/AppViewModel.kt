@@ -38,6 +38,22 @@ import kotlinx.serialization.json.put
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.io.IOException
 import javax.net.ssl.SSLException
+import de.bgghome.mpd.api.albumsWithoutJson
+import de.bgghome.mpd.api.appSettings
+import de.bgghome.mpd.api.coverFromSource
+import de.bgghome.mpd.api.createAlbum
+import de.bgghome.mpd.api.createEmptyAlbum
+import de.bgghome.mpd.api.deleteFile
+import de.bgghome.mpd.api.deleteTourFile
+import de.bgghome.mpd.api.durchlaufTotal
+import de.bgghome.mpd.api.importFile
+import de.bgghome.mpd.api.notifyPull
+import de.bgghome.mpd.api.photosGeo
+import de.bgghome.mpd.api.recycleStatus
+import de.bgghome.mpd.api.timeline
+import de.bgghome.mpd.api.updateAppSettings
+import de.bgghome.mpd.api.updateUserSettings
+import de.bgghome.mpd.api.userSettings
 
 
 data class OpenAlbum(

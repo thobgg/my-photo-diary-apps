@@ -16,6 +16,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
+import de.bgghome.mpd.api.stats
+import de.bgghome.mpd.api.statsGeo
+import de.bgghome.mpd.api.statsText
 
 /*
  * Modul „stats" (GET /api/stats, /api/stats/text) — aus dem ViewModel

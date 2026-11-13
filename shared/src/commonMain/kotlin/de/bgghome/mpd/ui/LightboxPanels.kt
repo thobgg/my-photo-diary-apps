@@ -70,6 +70,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.api.exif
+import de.bgghome.mpd.api.renamePhoto
+import de.bgghome.mpd.api.renamePreview
+import de.bgghome.mpd.api.saveExif
 
 /*
  * Lightbox-Zusatzflaechen: EXIF-Panel (lightbox-exif.js) und Foto-Editor

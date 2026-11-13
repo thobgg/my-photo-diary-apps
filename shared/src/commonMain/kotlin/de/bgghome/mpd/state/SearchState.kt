@@ -13,6 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
+import de.bgghome.mpd.api.search
 
 /*
  * Modul „search" (GET /api/search) — aus dem ViewModel herausgeloest

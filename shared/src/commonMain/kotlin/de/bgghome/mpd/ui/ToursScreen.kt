@@ -70,6 +70,10 @@ import de.bgghome.mpd.util.parseGpx
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import de.bgghome.mpd.api.deleteTour
+import de.bgghome.mpd.api.placeTour
+import de.bgghome.mpd.api.tourFileUrl
+import de.bgghome.mpd.api.tours
 
 /*
  * Tours-Modul — Nachbau von frontend/tours.html: globale Trackliste mit
