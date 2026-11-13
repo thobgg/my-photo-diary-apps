@@ -48,6 +48,8 @@ import kotlinx.coroutines.launch
 import de.bgghome.mpd.api.contribCreate
 import de.bgghome.mpd.api.contribList
 import de.bgghome.mpd.api.contribRevoke
+import de.bgghome.mpd.canContribLink
+import de.bgghome.mpd.meldung
 
 /*
  * Beisteuern — Gastlinks, mit denen andere Fotos in einen Sammelordner

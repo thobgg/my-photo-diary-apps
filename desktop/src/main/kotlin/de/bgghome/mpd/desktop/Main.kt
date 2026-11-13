@@ -62,6 +62,11 @@ import de.bgghome.mpd.ui.TimelineScreen
 import org.jetbrains.compose.resources.stringResource
 import de.bgghome.mpd.ui.SetupScreen
 import de.bgghome.mpd.ui.theme.MpdTheme
+import de.bgghome.mpd.closeLightbox
+import de.bgghome.mpd.closeTimelineLightbox
+import de.bgghome.mpd.closeVideo
+import de.bgghome.mpd.switchHomeTab
+import de.bgghome.mpd.tryOpenModule
 
 /**
  * Erster Desktop-Stand (22.09.2026): Fenster, Theme, Anmeldung. Danach

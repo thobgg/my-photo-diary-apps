@@ -57,6 +57,8 @@ import de.bgghome.mpd.api.ThumbCrop
 import de.bgghome.mpd.ui.theme.Mpd
 import kotlin.math.min
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.setCoverCrop
 
 /**
  * Ausschnitt-Editor (Web: Lupe → _openAlbumCropEditor). Der Rahmen bleibt

@@ -51,6 +51,8 @@ import kotlinx.coroutines.launch
 import coil3.compose.AsyncImage
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.ui.theme.Mpd
+import de.bgghome.mpd.loadUserSettings
+import de.bgghome.mpd.openMemory
 
 /*
  * Modul „Erinnerungen" — Pinnwand-Stil wie memories.html (Wunsch

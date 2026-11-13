@@ -59,6 +59,10 @@ import de.bgghome.mpd.ui.theme.Mpd
 import kotlin.math.min
 import org.jetbrains.compose.resources.stringResource
 import de.bgghome.mpd.api.albumFiles
+import de.bgghome.mpd.deleteAlbumFromTile
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.renameAlbumFromTile
+import de.bgghome.mpd.setCoverFromTile
 
 /*
  * Kachel-Aktionen wie im Web (index.html): auf dem Cover sitzen 🔍-Lupe

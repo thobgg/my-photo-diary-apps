@@ -38,6 +38,10 @@ import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.MpdApi
 import de.bgghome.mpd.api.PdxElement
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.moveElement
+import de.bgghome.mpd.openLightbox
+import de.bgghome.mpd.openVideo
+import de.bgghome.mpd.photoIndexOf
 
 // Foto- und Videokacheln der Albumansicht (Reihe, Einzelbild, Fehlerkasten).
 // Herausgeloest aus AlbumViewScreen.kt (13.11.2026).

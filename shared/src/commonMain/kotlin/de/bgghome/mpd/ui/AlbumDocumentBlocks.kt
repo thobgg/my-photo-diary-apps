@@ -35,6 +35,8 @@ import coil3.compose.AsyncImage
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.PdxElement
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.mediaUrl
+import de.bgghome.mpd.openPdf
 
 // Dokument-, PDF- und Textdatei-Bloecke der Albumansicht.
 // Herausgeloest aus AlbumViewScreen.kt (13.11.2026).

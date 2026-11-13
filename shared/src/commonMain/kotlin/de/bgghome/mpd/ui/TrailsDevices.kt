@@ -69,6 +69,8 @@ import de.bgghome.mpd.api.trailsDevices
 import de.bgghome.mpd.api.trailsRebuildArchive
 import de.bgghome.mpd.api.trailsSources
 import de.bgghome.mpd.api.trailsStatus
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.waehleAufzeichnung
 
 /*
  * Trails, Bereich „Geraete" — alles, was den Speicher fuellt und wieder

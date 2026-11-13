@@ -33,6 +33,8 @@ import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.ui.theme.Mpd
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.pluralStringResource
+import de.bgghome.mpd.loadDeviceFolderList
+import de.bgghome.mpd.toggleTimelineBucket
 
 /**
  * Welche Geraeteordner in der Timeline erscheinen (06.09.2026:

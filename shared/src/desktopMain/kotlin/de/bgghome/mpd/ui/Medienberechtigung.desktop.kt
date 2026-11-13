@@ -3,6 +3,7 @@ package de.bgghome.mpd.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import de.bgghome.mpd.AppViewModel
+import de.bgghome.mpd.loadLocalMedia
 
 /**
  * Keine Berechtigung noetig: die Ordner auf diesem PC hat der Nutzer selbst

@@ -74,6 +74,10 @@ import de.bgghome.mpd.api.exif
 import de.bgghome.mpd.api.renamePhoto
 import de.bgghome.mpd.api.renamePreview
 import de.bgghome.mpd.api.saveExif
+import de.bgghome.mpd.bumpEditVersion
+import de.bgghome.mpd.moduleAllowed
+import de.bgghome.mpd.openTrailsAt
+import de.bgghome.mpd.reloadAlbum
 
 /*
  * Lightbox-Zusatzflaechen: EXIF-Panel (lightbox-exif.js) und Foto-Editor

@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
+import de.bgghome.mpd.updateAppSettings
 
 // Benachrichtigungen, Benutzerverwaltung, Einstellungen.
 // Erweiterungen von MpdApi, herausgeloest aus MpdApi.kt (13.11.2026).

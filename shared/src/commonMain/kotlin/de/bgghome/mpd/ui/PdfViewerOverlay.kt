@@ -45,6 +45,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.closePdf
 
 /**
  * PDF-Ansicht — Gegenstueck zum PDF-Reader-Modal des Webs (dort pdf.js).

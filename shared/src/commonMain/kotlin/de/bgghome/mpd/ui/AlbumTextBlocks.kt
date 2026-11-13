@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.PdxElement
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.startTextEdit
 
 // Text-, Trenner- und Link-Bloecke der Albumansicht.
 // Herausgeloest aus AlbumViewScreen.kt (13.11.2026).

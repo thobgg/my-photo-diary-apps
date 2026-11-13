@@ -69,6 +69,13 @@ import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import kotlinx.coroutines.launch
 import java.io.File
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.canCurate
+import de.bgghome.mpd.canShare
+import de.bgghome.mpd.deleteSinglePhoto
+import de.bgghome.mpd.explain
+import de.bgghome.mpd.isDeletable
+import de.bgghome.mpd.loadRecycleStatusForSpaces
+import de.bgghome.mpd.meldung
 
 /**
  * Lightbox (Schritt 1): Wischen zwischen den Fotos eines Albums, stufenloses

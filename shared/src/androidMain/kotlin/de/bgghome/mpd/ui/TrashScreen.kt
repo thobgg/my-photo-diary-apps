@@ -46,6 +46,7 @@ import de.bgghome.mpd.data.LocalMedia
 import de.bgghome.mpd.ui.theme.Mpd
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.pluralStringResource
+import de.bgghome.mpd.clearSelection
 
 /*
  * Papierkorb des Geraets (07.09.2026).

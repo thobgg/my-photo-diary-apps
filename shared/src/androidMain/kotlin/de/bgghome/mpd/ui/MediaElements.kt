@@ -49,6 +49,8 @@ import de.bgghome.mpd.api.PdxElement
 import de.bgghome.mpd.ui.theme.Mpd
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.closeVideo
+import de.bgghome.mpd.mediaUrl
 
 /*
  * Video- und Audio-Wiedergabe. Moeglich seit den Serveraenderungen vom

@@ -70,6 +70,8 @@ import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
 import de.bgghome.mpd.api.editPhoto
 import de.bgghome.mpd.api.resetPhoto
+import de.bgghome.mpd.bumpEditVersion
+import de.bgghome.mpd.save
 
 // -- Foto-Editor -------------------------------------------------------------
 

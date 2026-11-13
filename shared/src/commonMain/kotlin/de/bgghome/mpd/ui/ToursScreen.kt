@@ -74,6 +74,8 @@ import de.bgghome.mpd.api.deleteTour
 import de.bgghome.mpd.api.placeTour
 import de.bgghome.mpd.api.tourFileUrl
 import de.bgghome.mpd.api.tours
+import de.bgghome.mpd.canCurate
+import de.bgghome.mpd.meldung
 
 /*
  * Tours-Modul — Nachbau von frontend/tours.html: globale Trackliste mit

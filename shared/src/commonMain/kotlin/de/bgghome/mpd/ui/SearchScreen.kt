@@ -50,6 +50,7 @@ import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.MpdApi
 import de.bgghome.mpd.api.SearchResult
 import de.bgghome.mpd.ui.theme.Mpd
+import de.bgghome.mpd.openAlbumFromSearch
 
 /*
  * Modul „Suche" — Gegenstueck zu search.html/search.js (Ctrl+K-Suche des

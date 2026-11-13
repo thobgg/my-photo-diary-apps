@@ -45,6 +45,10 @@ import androidx.compose.ui.unit.sp
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.CertInfo
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.dismissPendingCert
+import de.bgghome.mpd.login
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.trustPendingCert
 
 /*
  * Einrichtung — Look 1:1 von frontend/login.html: navyblauer Grund,

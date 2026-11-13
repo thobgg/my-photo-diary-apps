@@ -66,6 +66,13 @@ import de.bgghome.mpd.api.gpxFiles
 import de.bgghome.mpd.api.placeTour
 import de.bgghome.mpd.api.tours
 import de.bgghome.mpd.api.unassignedFiles
+import de.bgghome.mpd.canCurate
+import de.bgghome.mpd.ersetzeTourDatei
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.removeElement
+import de.bgghome.mpd.setAlbumCover
+import de.bgghome.mpd.speichereSofort
+import de.bgghome.mpd.tourElementeFuer
 
 /*
  * Einfuege-Dialoge fuer die restlichen Elementtypen + Cover-Wechsler.

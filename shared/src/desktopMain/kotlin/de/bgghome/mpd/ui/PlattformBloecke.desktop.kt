@@ -62,6 +62,11 @@ import kotlinx.coroutines.launch
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.jetbrains.compose.resources.stringResource
 import de.bgghome.mpd.api.gpxUrl
+import de.bgghome.mpd.fotoOrte
+import de.bgghome.mpd.mediaUrl
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.openLightbox
+import de.bgghome.mpd.tourHolen
 
 /*
  * Desktop-Fassung der Album-Elemente mit Karte: die Compose-Kachelkarte

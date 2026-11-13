@@ -73,6 +73,10 @@ import kotlin.math.cos
 import kotlin.math.hypot
 import org.jetbrains.compose.resources.stringResource
 import de.bgghome.mpd.api.gpxUrl
+import de.bgghome.mpd.fotoOrte
+import de.bgghome.mpd.openLightbox
+import de.bgghome.mpd.save
+import de.bgghome.mpd.tourHolen
 
 /*
  * map- und tour-Elemente — Nachbau der Leaflet-Teile aus

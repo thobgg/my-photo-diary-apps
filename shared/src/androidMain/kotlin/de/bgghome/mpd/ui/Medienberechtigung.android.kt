@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import de.bgghome.mpd.AppViewModel
+import de.bgghome.mpd.loadLocalMedia
 
 @Composable
 actual fun GeraetefotosAnfordern(vm: AppViewModel) {

@@ -64,6 +64,7 @@ import de.bgghome.mpd.api.StatsResponse
 import de.bgghome.mpd.api.TextStats
 import de.bgghome.mpd.ui.theme.Mpd
 import de.bgghome.mpd.api.tours
+import de.bgghome.mpd.moduleAllowed
 
 /*
  * Modul „Stats" — natives Gegenstueck zu stats.html/stats.js (dort

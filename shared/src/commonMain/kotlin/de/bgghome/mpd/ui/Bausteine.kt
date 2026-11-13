@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import de.bgghome.mpd.api.MpdHttpException
 import de.bgghome.mpd.ui.theme.Mpd
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.explain
 
 /*
  * Kleine Bausteine, die mehrfach von Hand gebaut waren (08.09.2026,

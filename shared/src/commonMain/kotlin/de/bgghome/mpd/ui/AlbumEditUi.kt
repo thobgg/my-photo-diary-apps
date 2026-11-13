@@ -68,6 +68,23 @@ import de.bgghome.mpd.ui.theme.Mpd
 import de.bgghome.mpd.SaveState
 import de.bgghome.mpd.api.PdxElement
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.canCurate
+import de.bgghome.mpd.cancelDeleteFile
+import de.bgghome.mpd.closeTextEdit
+import de.bgghome.mpd.commitTextEdit
+import de.bgghome.mpd.meldung
+import de.bgghome.mpd.performDeleteFile
+import de.bgghome.mpd.redo
+import de.bgghome.mpd.requestDeleteFile
+import de.bgghome.mpd.saveNow
+import de.bgghome.mpd.setAlbumTitle
+import de.bgghome.mpd.setAlbumYear
+import de.bgghome.mpd.setQuoteSource
+import de.bgghome.mpd.setSeparatorLabel
+import de.bgghome.mpd.setSeparatorStyle
+import de.bgghome.mpd.setTextStyle
+import de.bgghome.mpd.toggleLocked
+import de.bgghome.mpd.undo
 
 /*
  * Edit-Bausteine der Albumgestaltung — Web-Referenzen: album-edit.js

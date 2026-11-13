@@ -5,6 +5,7 @@ import de.bgghome.mpd.shared.res.*
 import de.bgghome.mpd.state.Texte
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
+import de.bgghome.mpd.meldung
 
 /**
  * Desktop-Fassung der [SystemDienste]. Ein Teilen-Blatt gibt es hier

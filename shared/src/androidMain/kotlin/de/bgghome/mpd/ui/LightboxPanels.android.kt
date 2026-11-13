@@ -72,6 +72,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.localEditFinished
 
 /*
  * Android-Teile der Lightbox-Seitenleisten (Aufteilung 22.09.2026):

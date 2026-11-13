@@ -21,6 +21,7 @@ import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.ui.theme.Mpd
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.zeigeErinnerungen
 
 /**
  * Goldener Hinweisstreifen unter dem Kopf der Albenuebersicht — 1:1 der

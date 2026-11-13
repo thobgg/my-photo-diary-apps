@@ -30,6 +30,9 @@ import javax.net.ssl.SSLSocket
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 import de.bgghome.mpd.state.Texte
+import de.bgghome.mpd.login
+import de.bgghome.mpd.logout
+import de.bgghome.mpd.undoDeleteAlbum
 
 /**
  * HTTP-Fehler mit dem "detail"-Text des Backends (lokalisierte Meldung).

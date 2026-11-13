@@ -33,6 +33,8 @@ import androidx.compose.material3.Text
 import de.bgghome.mpd.AppViewModel
 import de.bgghome.mpd.api.WhoAmI
 import org.jetbrains.compose.resources.stringResource
+import de.bgghome.mpd.logout
+import de.bgghome.mpd.refreshAfterPasswordChange
 
 /*
  * Passwort aendern — zwei Anlaesse, ein Bildschirm:

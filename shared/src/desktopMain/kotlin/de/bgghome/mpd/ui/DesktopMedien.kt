@@ -3,6 +3,7 @@ package de.bgghome.mpd.ui
 import de.bgghome.mpd.AppViewModel
 import java.awt.Desktop
 import java.io.File
+import de.bgghome.mpd.meldung
 
 /**
  * Video und Ton am Desktop (22.09.2026, „moeglichst nativ"): kein

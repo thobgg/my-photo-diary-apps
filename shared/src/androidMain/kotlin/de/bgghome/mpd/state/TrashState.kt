@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import de.bgghome.mpd.clearSelection
 
 /*
  * Papierkorb des Geraets: ansehen, zurueckholen, endgueltig weg.

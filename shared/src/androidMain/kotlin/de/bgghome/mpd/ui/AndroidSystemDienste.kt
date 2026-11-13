@@ -11,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import de.bgghome.mpd.state.Texte
 import java.io.File
+import de.bgghome.mpd.meldung
 
 /** Android-Fassung der [SystemDienste]: ClipboardManager, SEND-Intent, PackageManager. */
 class AndroidSystemDienste(private val context: Context) : SystemDienste {
