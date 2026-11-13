@@ -246,6 +246,7 @@
     <string name="exif_only_device">nur auf dem Gerät</string>
     <string name="exif_no_album">in keinem Album</string>
     <string name="exif_resolution">Auflösung</string>
+    <string name="exif_size">Dateigröße</string>
     <string name="exif_load_failed">EXIF nicht ladbar: %1$s</string>
     <string name="exif_locked_module">nicht freigeschaltet</string>
     <string name="exif_capture">Aufnahme</string>

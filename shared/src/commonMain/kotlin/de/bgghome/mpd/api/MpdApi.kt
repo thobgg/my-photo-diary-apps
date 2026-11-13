@@ -327,6 +327,8 @@ data class ExifData(
     val gps: ExifGps? = null,
     val description: String? = null,
     val error: String? = null,
+    /** Bytes; additiv seit 13.11.2026, aeltere Server lassen es weg. */
+    @SerialName("file_size") val fileSize: Long? = null,
 )
 
 /** Normierter Zuschnitt 0..1 — bezogen aufs Bild NACH Drehung/Spiegelung/

@@ -234,6 +234,7 @@
     <string name="exif_only_device">only on the device</string>
     <string name="exif_no_album">in no album</string>
     <string name="exif_resolution">Resolution</string>
+    <string name="exif_size">File size</string>
     <string name="exif_load_failed">EXIF could not be loaded: %1$s</string>
     <string name="exif_locked_module">not enabled</string>
     <string name="exif_capture">Capture</string>

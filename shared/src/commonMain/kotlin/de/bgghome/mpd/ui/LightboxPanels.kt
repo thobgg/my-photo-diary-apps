@@ -252,6 +252,11 @@ internal fun ExifPanel(
             photo.resolution?.takeIf { it.width > 0 }?.let {
                 ExifRow(stringResource(Res.string.exif_resolution), "${it.width} × ${it.height}")
             }
+            // Dateigroesse kommt mit den EXIF (Wunsch 13.11.2026); die
+            // Album-Antwort traegt sie nicht, darum erst nach dem Laden.
+            exif?.fileSize?.takeIf { it > 0 }?.let {
+                ExifRow(stringResource(Res.string.exif_size), humanBytes(it))
+            }
 
             when {
                 error != null -> Text(stringResource(Res.string.exif_load_failed, error.orEmpty()), color = MpdRed, fontSize = 14.sp)
