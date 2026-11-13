@@ -152,6 +152,9 @@
     <string name="delete_hint_default">Diese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="delete_file_title">Datei löschen?</string>
     <string name="delete_file_body">Datei, Thumbnails und alle Backup-Versionen (.bak) werden entfernt.</string>
+    <string name="edit_delete_tour">Tour löschen</string>
+    <string name="delete_tour_title">Tour löschen?</string>
+    <string name="delete_tour_body">Das Tour-Element wird aus dem Album entfernt und die GPX-Datei kommt in den Papierkorb der Freigabe.</string>
 
     <!-- Wartung -->
     <string name="backups_title">Sicherungen</string>
@@ -322,6 +325,10 @@
     <string name="map_layer_map">Karte</string>
     <string name="gpx_no_points">Keine GPS-Punkte in GPX-Datei</string>
     <string name="gpx_load_failed">GPX konnte nicht geladen werden: %1$s</string>
+    <string name="gpx_open_external">In Karten-App öffnen</string>
+    <string name="gpx_open_chooser">Tour öffnen mit …</string>
+    <string name="gpx_open_no_app">Keine App für GPX-Dateien gefunden</string>
+    <string name="gpx_open_failed">GPX konnte nicht übergeben werden: %1$s</string>
     <string name="tour_default_title">Tour</string>
     <string name="pdf_load_failed">PDF konnte nicht geladen werden</string>
     <string name="pdf_page">Seite %1$d</string>

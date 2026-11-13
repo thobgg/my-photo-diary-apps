@@ -575,6 +575,20 @@ private fun TourDetail(
                 }
             }
 
+            // „In Karten-App oeffnen" (13.11.2026): dieselbe GPX an OsmAnd
+            // und Co. — fuer jeden, nicht nur Kuratoren.
+            val dienste = LocalSystemDienste.current
+            if (dienste.kannGpxOeffnen) {
+                TextButton(
+                    onClick = { scope.launch { dienste.oeffneGpx(vm, vm.api.tourFileUrl(vm.baseUrl, tour), tour.filename) } },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp)
+                        .clip(RoundedCornerShape(6.dp))
+                        .border(1.dp, colors.border, RoundedCornerShape(6.dp)),
+                ) { IconLabel(MpdIcons.Compass, stringResource(Res.string.gpx_open_external), color = colors.text, iconSize = 16.dp, gap = 6.dp) }
+            }
+
             if (canCurate) {
                 TextButton(
                     onClick = { pickerOpen = true },

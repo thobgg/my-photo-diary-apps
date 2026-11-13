@@ -195,6 +195,17 @@ internal fun BoxScope.EditElementButtons(
     }
     // Physisch loeschen: dieselbe Bedingung wie der Menuepunkt — Foto
     // und Video, nur Dateien des eigenen Albumordners.
+    // Tour-Kachel (13.11.2026): das × nimmt nur das Element heraus (ohne
+    // Rueckfrage, die GPX bleibt), der Papierkorb legt Element UND Datei
+    // weg — mit Rueckfrage. Nur im Familienbestand (dort liegen Touren) und
+    // nur fuer Dateien dieses Albumordners; der Server sperrt sonst.
+    val tourLoeschbar = elem.type == "tour" && elem.file != null && elem.sourceAlbum == null &&
+        vm.openAlbum?.summary?.space == "shared" && vm.canCurate("shared")
+    if (tourLoeschbar) {
+        TileButton(Alignment.BottomEnd, this, onClick = { vm.requestDeleteFile(elem) }) {
+            Icon(MpdIcons.Trash, stringResource(Res.string.edit_delete_tour), Modifier.size(15.dp), tint = MpdRed)
+        }
+    }
     if (elem.istDatei && elem.error == null && elem.sourceAlbum == null) {
         TileButton(Alignment.BottomEnd, this, onClick = { vm.requestDeleteFile(elem) }) {
             Icon(MpdIcons.Trash, stringResource(Res.string.edit_delete_file), Modifier.size(15.dp), tint = MpdRed)
@@ -849,6 +860,8 @@ internal fun DeleteFileDialog(vm: AppViewModel) {
     // seit 08.09.2026 nur noch in recycleBySpace gehalten (vorher ein
     // zweites recycleActive nur fuer diesen Dialog).
     val recycleActive = vm.openAlbum?.summary?.space?.let { vm.recycleBySpace[it] }
+    // Tour-Kachel: Element raus und GPX in den Papierkorb (13.11.2026).
+    val istTour = elem.type == "tour"
     val hint = when (recycleActive) {
         true -> stringResource(Res.string.delete_hint_recycle)
         false -> stringResource(Res.string.delete_hint_norecycle)
@@ -860,13 +873,13 @@ internal fun DeleteFileDialog(vm: AppViewModel) {
         // Nicht „endgueltig" sagen, wenn es nicht endgueltig ist: bei
         // aktivem Papierkorb der Freigabe widersprach der Titel dem
         // Hinweis direkt darunter („landet im Papierkorb").
-        title = { Text(stringResource(Res.string.delete_file_title)) },
+        title = { Text(stringResource(if (istTour) Res.string.delete_tour_title else Res.string.delete_file_title)) },
         text = {
             Column {
                 Text(elem.file.orEmpty(), color = MpdText, fontSize = 15.sp)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    stringResource(Res.string.delete_file_body),
+                    stringResource(if (istTour) Res.string.delete_tour_body else Res.string.delete_file_body),
                     color = MpdMuted, fontSize = 14.sp,
                 )
                 Spacer(Modifier.height(8.dp))

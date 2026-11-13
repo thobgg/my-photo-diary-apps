@@ -109,6 +109,24 @@ class DesktopSystemDienste(private val settings: de.bgghome.mpd.data.SettingsSto
         }
     }
 
+    override val kannGpxOeffnen = true
+
+    /** GPX in einen Temp-Ordner laden und dem Systemprogramm fuer .gpx
+     *  geben (xdg-open bzw. die Windows-Zuordnung). Gibt es keines, bleibt
+     *  die Datei liegen und die Meldung nennt den Pfad. */
+    override suspend fun oeffneGpx(vm: de.bgghome.mpd.AppViewModel, url: String, filename: String) {
+        try {
+            val dir = java.io.File(System.getProperty("java.io.tmpdir"), "mpd-gpx").apply { mkdirs() }
+            val file = java.io.File(dir, filename.substringAfterLast('/').ifBlank { "tour.gpx" })
+            file.outputStream().use { vm.api.downloadStream(url, it) }
+            val desktop = if (java.awt.Desktop.isDesktopSupported()) java.awt.Desktop.getDesktop() else null
+            if (desktop != null && desktop.isSupported(java.awt.Desktop.Action.OPEN)) desktop.open(file)
+            else vm.meldung(Texte.t(Res.string.trails_dl_saved, file.absolutePath))
+        } catch (e: Exception) {
+            vm.meldung(Texte.t(Res.string.gpx_open_failed, e.message ?: e.javaClass.simpleName))
+        }
+    }
+
     /** „1.19.0 (Build 1)": Versionsnummer des gemeinsamen Codes plus Desktop-Build-Zaehler. */
     override val versionName: String = run {
         val version = System.getProperty("jpackage.app-version") ?: "dev"

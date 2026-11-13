@@ -130,6 +130,37 @@ class AndroidSystemDienste(private val context: Context) : SystemDienste {
 
     override fun toggleSprache() = de.bgghome.mpd.data.AppLanguage.toggle(context)
 
+    override val kannGpxOeffnen = true
+
+    /**
+     * GPX in den Share-Cache (derselbe eng geschnittene FileProvider-Ordner
+     * wie beim Weitergeben von Fotos, file_paths.xml), dann ACTION_VIEW mit
+     * application/gpx+xml in der Systemauswahl. OsmAnd importiert die Spur
+     * und zeigt sie; Komoot und Locus ebenso. Nicht der DownloadManager und
+     * kein nackter Link: der Server will die Sitzung sehen.
+     */
+    override suspend fun oeffneGpx(vm: de.bgghome.mpd.AppViewModel, url: String, filename: String) {
+        try {
+            val name = filename.substringAfterLast('/').ifBlank { "tour.gpx" }
+            val file = File(shareDir(context), name)
+            file.outputStream().use { vm.api.downloadStream(url, it) }
+            val uri = androidx.core.content.FileProvider.getUriForFile(
+                context, "${context.packageName}.fileprovider", file,
+            )
+            val intent = Intent(Intent.ACTION_VIEW)
+                .setDataAndType(uri, "application/gpx+xml")
+                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            context.startActivity(
+                Intent.createChooser(intent, Texte.t(Res.string.gpx_open_chooser))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            )
+        } catch (_: android.content.ActivityNotFoundException) {
+            vm.meldung(Texte.t(Res.string.gpx_open_no_app), kurz = true)
+        } catch (e: Exception) {
+            vm.meldung(Texte.t(Res.string.gpx_open_failed, e.message ?: e.javaClass.simpleName))
+        }
+    }
+
     /** „1.19.0 (Build 67)": Versionsnummer des gemeinsamen Codes plus versionCode. */
     override val versionName: String by lazy {
         runCatching {

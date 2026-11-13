@@ -129,6 +129,27 @@ internal fun LayerToggle(topo: Boolean, onToggle: () -> Unit, modifier: Modifier
     }
 }
 
+/** „In Karten-App oeffnen" (13.11.2026): die GPX an OsmAnd, Komoot und Co.
+ *  geben. Sitzt im Kopf der Tour-Kachel neben dem Layer-Umschalter, in
+ *  derselben Optik. Symbol Kompass — zur Abstimmung. */
+@Composable
+internal fun GpxOeffnenKnopf(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .padding(8.dp)
+            .clip(CircleShape)
+            .background(Color.Black.copy(alpha = 0.55f))
+            .clickable(onClick = onClick)
+            .padding(8.dp),
+    ) {
+        Icon(
+            MpdIcons.Compass,
+            stringResource(Res.string.gpx_open_external),
+            Modifier.size(20.dp), tint = Color.White,
+        )
+    }
+}
+
 /** Hoehenprofil — Gegenstueck zu _renderElevationProfile (SVG im Web). */
 @Composable
 internal fun ElevationProfile(track: GpxTrack) {

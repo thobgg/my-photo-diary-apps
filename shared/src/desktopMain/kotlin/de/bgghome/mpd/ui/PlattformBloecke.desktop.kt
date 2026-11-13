@@ -207,6 +207,21 @@ actual fun TourElementBlock(vm: AppViewModel, elem: PdxElement, imageLoader: Ima
                 elem.title ?: elem.file ?: stringResource(Res.string.tour_default_title),
                 color = Color(0xFFE0E0E0), fontSize = 16.sp, modifier = Modifier.weight(1f),
             )
+            // „In Karten-App oeffnen" (13.11.2026) — GPX an OsmAnd und Co.
+            val dienste = LocalSystemDienste.current
+            val oeffnenScope = rememberCoroutineScope()
+            val gpxDatei = elem.file
+            if (dienste.kannGpxOeffnen && gpxDatei != null) {
+                GpxOeffnenKnopf({
+                    oeffnenScope.launch {
+                        dienste.oeffneGpx(
+                            vm,
+                            vm.api.gpxUrl(vm.baseUrl, album.summary.space, elem.sourceAlbum ?: album.summary.name, gpxDatei),
+                            gpxDatei,
+                        )
+                    }
+                })
+            }
             LayerToggle(topo, { topo = !topo })
         }
 

@@ -144,6 +144,9 @@
     <string name="delete_hint_default">This action cannot be undone.</string>
     <string name="delete_file_title">Delete file?</string>
     <string name="delete_file_body">File, thumbnails and all backup versions (.bak) will be removed.</string>
+    <string name="edit_delete_tour">Delete tour</string>
+    <string name="delete_tour_title">Delete tour?</string>
+    <string name="delete_tour_body">The tour element is removed from the album and the GPX file goes to the share's recycle bin.</string>
 
     <string name="backups_title">Backups</string>
     <string name="backups_none">No backups yet — they are created on every save.</string>
@@ -308,6 +311,10 @@
     <string name="map_layer_map">Map</string>
     <string name="gpx_no_points">No GPS points in GPX file</string>
     <string name="gpx_load_failed">GPX could not be loaded: %1$s</string>
+    <string name="gpx_open_external">Open in maps app</string>
+    <string name="gpx_open_chooser">Open tour with …</string>
+    <string name="gpx_open_no_app">No app for GPX files found</string>
+    <string name="gpx_open_failed">GPX could not be handed over: %1$s</string>
     <string name="tour_default_title">Tour</string>
     <string name="pdf_load_failed">PDF could not be loaded</string>
     <string name="pdf_page">Page %1$d</string>

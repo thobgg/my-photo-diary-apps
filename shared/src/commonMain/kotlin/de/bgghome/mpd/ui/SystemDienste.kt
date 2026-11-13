@@ -75,6 +75,17 @@ interface SystemDienste {
     /** Sprache umschalten (de ↔ en). Android: Pro-App-Sprache des Systems
      *  (AppLanguage); Desktop: Einstellung + Locale, wirkt nach Neustart. */
     fun toggleSprache()
+
+    /** Kann eine GPX an ein anderes Programm geben (Android: „Oeffnen mit",
+     *  Desktop: Systemprogramm)? Sonst bleibt der Knopf weg. */
+    val kannGpxOeffnen: Boolean get() = false
+
+    /** Die GPX einer Tour mit der Sitzung laden und an eine Karten-App
+     *  geben — OsmAnd, Komoot, Locus (Wunsch 13.11.2026: „Touren per Tap
+     *  in OsmAnd oeffnen"). Bewusst die Systemauswahl und nicht ein festes
+     *  Paket: welche Karten-App einer hat, weiss nur sein Geraet. Fehler
+     *  kommen als vm.meldung. */
+    suspend fun oeffneGpx(vm: AppViewModel, url: String, filename: String) {}
 }
 
 val LocalSystemDienste = staticCompositionLocalOf<SystemDienste> {

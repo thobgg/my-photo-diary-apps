@@ -1127,12 +1127,22 @@ class MpdApi(private val settings: SettingsStore) {
      *  Admin. 409 (Text nennt die Alben), solange ein Album sie benutzt.
      *  Liefert, ob der Papierkorb gegriffen hat. */
     suspend fun deleteTour(baseUrl: String, tour: TourListEntry): Boolean =
+        deleteTourFile(baseUrl, tour.folder, tour.filename)
+
+    /** Dasselbe fuer eine GPX im Albumordner (Tour-Kachel, 13.11.2026):
+     *  [folder] ist der Albumordner im Familienbestand. */
+    suspend fun deleteTourFile(baseUrl: String, folder: String, filename: String): Boolean =
         withContext(Dispatchers.IO) {
-            val text = delete(api(baseUrl, "tours", "file", tour.folder, tour.filename))
+            val text = delete(api(baseUrl, "tours", "file", folder, filename))
             runCatching {
                 json.parseToJsonElement(text).jsonObject["recycled"]?.jsonPrimitive?.content == "true"
             }.getOrDefault(false)
         }
+
+    /** GET /api/gpx/{space}/{album}/{file} — die GPX eines Tour-Elements
+     *  (Kern, kein Modul-Gate; [album] ist bei source_album der Quellordner). */
+    fun gpxUrl(baseUrl: String, space: String, album: String, file: String): String =
+        api(baseUrl, "gpx", space, album, file).toString()
 
     /** POST …/cover-from-source — referenziertes Foto als cover.<ext> in den
      *  eigenen Ordner kopieren; Antwort traegt den neuen Dateinamen. */

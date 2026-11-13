@@ -1675,6 +1675,37 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
         pendingDelete = elem
     }
 
+    /**
+     * Tour-Kachel in den Papierkorb (13.11.2026): erst das Element heraus
+     * und das Album speichern, DANN die GPX loeschen. Die Reihenfolge ist
+     * Pflicht — der Server sperrt das Loeschen mit 409, solange ein Album
+     * die Datei nennt (TOURS.md §4.2). Scheitert das Speichern, kommt das
+     * Element zurueck und nichts ist geloescht. Kein „Rueckgaengig": die
+     * Datei liegt im Papierkorb der Freigabe, nicht in der App.
+     */
+    private fun performDeleteTour(elem: de.bgghome.mpd.api.PdxElement) {
+        val album = openAlbum ?: return
+        val file = elem.file ?: return
+        viewModelScope.launch {
+            removeElement(elem.id, autoSave = false)
+            if (!speichereSofort()) {
+                undoRemove()
+                meldung(t(Res.string.tour_save_failed))
+                return@launch
+            }
+            lastRemoved = null
+            try {
+                val recycled = api.deleteTourFile(baseUrl, album.summary.name, file)
+                meldung(
+                    t(if (recycled) Res.string.tours_recycled else Res.string.tours_deleted_no_bin),
+                    kurz = true,
+                )
+            } catch (e: Exception) {
+                meldung(t(Res.string.tours_not_deleted, e.message ?: t(Res.string.err_generic)))
+            }
+        }
+    }
+
     fun cancelDeleteFile() {
         pendingDelete = null
     }
@@ -1688,6 +1719,7 @@ open class AppViewModel(val plattform: Plattform) : ViewModel() {
     fun performDeleteFile() {
         val elem = pendingDelete ?: return
         pendingDelete = null
+        if (elem.type == "tour") return performDeleteTour(elem)
         val album = openAlbum ?: return
         val file = elem.file ?: return
         viewModelScope.launch {

@@ -1,5 +1,7 @@
 package de.bgghome.mpd.ui
 
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
 import coil3.request.allowHardware
 
 import de.bgghome.mpd.shared.res.*
@@ -493,6 +495,21 @@ actual fun TourElementBlock(vm: AppViewModel, elem: PdxElement, imageLoader: coi
                 fontSize = 16.sp,
                 modifier = Modifier.weight(1f),
             )
+            // „In Karten-App oeffnen" (13.11.2026) — GPX an OsmAnd und Co.
+            val dienste = LocalSystemDienste.current
+            val oeffnenScope = rememberCoroutineScope()
+            val gpxDatei = elem.file
+            if (dienste.kannGpxOeffnen && gpxDatei != null) {
+                GpxOeffnenKnopf({
+                    oeffnenScope.launch {
+                        dienste.oeffneGpx(
+                            vm,
+                            vm.api.gpxUrl(vm.baseUrl, album.summary.space, elem.sourceAlbum ?: album.summary.name, gpxDatei),
+                            gpxDatei,
+                        )
+                    }
+                })
+            }
             LayerToggle(topo, { topo = !topo })
         }
 
