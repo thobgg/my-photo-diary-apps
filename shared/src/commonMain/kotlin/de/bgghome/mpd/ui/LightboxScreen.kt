@@ -461,14 +461,10 @@ fun LightboxScreen(
                 }
             }
         }
-        // Filmstreifen am unteren Rand — Google Fotos auf dem Tablet;
-        // huepft mit dem Pager mit, Tipp springt zur Seite.
-        // Dieselbe Frage wie oben beim Metadaten-Blatt — einmal gemessen.
-        // Web-Idiom (Desktop): kein Filmstreifen (22.09.2026: „genau da
-        // stoert unten eben die Bilderleiste"), stattdessen wie die Web-Lightbox
+        // Kein Filmstreifen unten (13.11.2026, Vorgabe: wird nie benutzt und
+        // stoert). Am Desktop (Web-Idiom) stattdessen wie die Web-Lightbox
         // Pfeile links/rechts und der Zaehler „n / N" unten.
         val webIdiom = LocalSystemDienste.current.webIdiom
-        val wideStrip = wide && !webIdiom
         if (webIdiom && photos.size > 1) {
             androidx.compose.animation.AnimatedVisibility(
                 visible = chromeVisible && dismissProgress == 0f,
@@ -503,16 +499,6 @@ fun LightboxScreen(
                         .background(Color.Black.copy(alpha = 0.45f), RoundedCornerShape(10.dp))
                         .padding(horizontal = 10.dp, vertical = 4.dp),
                 )
-            }
-        }
-        if (wideStrip && photos.size > 1) {
-            androidx.compose.animation.AnimatedVisibility(
-                visible = chromeVisible && dismissProgress == 0f,
-                enter = androidx.compose.animation.fadeIn(),
-                exit = androidx.compose.animation.fadeOut(),
-                modifier = Modifier.align(Alignment.BottomCenter),
-            ) {
-                Filmstrip(vm, photos, pagerState, imageLoader)
             }
         }
 
@@ -599,59 +585,6 @@ fun LightboxScreen(
                         Text(stringResource(Res.string.common_cancel))
                     }
                 },
-            )
-        }
-    }
-}
-
-/** Filmstreifen (Tablet): kleine Thumbs, aktuelles Bild mit Goldrahmen. */
-@Composable
-private fun Filmstrip(
-    vm: AppViewModel,
-    photos: List<Photo>,
-    pagerState: androidx.compose.foundation.pager.PagerState,
-    imageLoader: ImageLoader,
-) {
-    val stripState = androidx.compose.foundation.lazy.rememberLazyListState()
-    val scope = rememberCoroutineScope()
-
-    // Aktuelles Bild im Streifen mittig halten
-    LaunchedEffect(pagerState.currentPage) {
-        stripState.animateScrollToItem(
-            pagerState.currentPage.coerceAtLeast(0),
-            scrollOffset = -300,
-        )
-    }
-
-    androidx.compose.foundation.lazy.LazyRow(
-        state = stripState,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.Black.copy(alpha = 0.55f))
-            .padding(vertical = 8.dp)
-            .navigationBarsPadding(),
-        horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(4.dp),
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
-    ) {
-        itemsIndexed(photos, key = { _, p -> p.originalUrl }) { index, photo ->
-            val current = index == pagerState.currentPage
-            coil3.compose.AsyncImage(
-                model = photo.mUrl,
-                imageLoader = imageLoader,
-                contentDescription = null,
-                contentScale = androidx.compose.ui.layout.ContentScale.Crop,
-                modifier = Modifier
-                    .size(width = 52.dp, height = 52.dp)
-                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(6.dp))
-                    .then(
-                        if (current) Modifier.border(
-                            2.dp, MpdGoldLt,
-                            androidx.compose.foundation.shape.RoundedCornerShape(6.dp),
-                        ) else Modifier
-                    )
-                    .androidClickableNoRipple {
-                        scope.launch { pagerState.animateScrollToPage(index) }
-                    },
             )
         }
     }
